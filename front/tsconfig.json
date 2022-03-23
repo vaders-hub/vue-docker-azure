@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./src/*"]
+    },
+    "types": ["vite/client"],
+    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "jsx": "preserve",
+    "noImplicitAny": false,
+    "isolatedModules": true
+  },
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["src/**/*.ts", "src/**/*", "src/**/*.vue"],
+  "exclude": ["node_modules", ".nuxt", "dist"],
+  "compileOnSave": false,
+  "references": [
+    {
+      "path": "./tsconfig.vite-config.json"
+    }
+  ]
+}
