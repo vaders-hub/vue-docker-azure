@@ -1,4 +1,5 @@
 {
+  "exports": "./dist/index.js",
   "name": "ski-api-server",
   "version": "0.0.1",
   "description": "",
@@ -9,7 +10,7 @@
     "dev": "set NODE_ENV=development && nodemon -x ts-node-dev ./src/index.ts",
     "build": "webpack",
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/main.js",
     "test": "jest -c jest.config.js"
   },
   "dependencies": {
@@ -23,7 +24,6 @@
     "moment": "^2.29.1",
     "morgan": "^1.10.0",
     "morgan-json": "^1.1.0",
-    "mysql2": "^2.3.3",
     "request": "^2.79.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vadertestmodulecalc": "^1.0.5",
@@ -45,7 +45,6 @@
     "@types/jsonwebtoken": "^8.5.6",
     "@types/morgan": "^1.9.3",
     "@types/morgan-json": "^1.1.0",
-    "@types/mysql": "^2.15.19",
     "@types/node": "^16.11.17",
     "@types/source-map-support": "^0.5.4",
     "@types/webpack": "^5.28.0",

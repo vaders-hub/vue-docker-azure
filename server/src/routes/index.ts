@@ -4,7 +4,11 @@ const router = express.Router()
 
 router.get('/member', async (req: Request, res: Response): Promise<any> => {
   console.log('req', req.query)
-  res.status(200).send({ data: { code: '0000', login: 'ok' } })
+
+  res
+    .set('Content-Type', 'application/json; charset=utf-8')
+    .status(201)
+    .json({ data: { code: '0000', login: 'ok' } })
 })
 
 export { router as indexRouter }

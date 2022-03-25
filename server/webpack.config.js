@@ -1,35 +1,35 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-const { NODE_ENV = "production" } = process.env;
+const { NODE_ENV = 'production' } = process.env
 
 module.exports = {
-  entry: path.resolve(__dirname, "src/index.ts"),
+  entry: path.resolve(__dirname, 'src/index.ts'),
   module: {
     rules: [
       {
         test: /\.ts?$/,
-        use: "ts-loader",
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
     ],
     exprContextCritical: false,
   },
   mode: NODE_ENV,
-  target: "node",
+  target: 'node',
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: ['.ts', '.js'],
   },
   plugins: [new CleanWebpackPlugin()],
-  devtool: "source-map",
+  devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
     },
   },
-};
+}

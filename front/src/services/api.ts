@@ -3,7 +3,7 @@ import type { AxiosInstance } from 'axios'
 
 const instance: AxiosInstance = axios.create({
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json;charset=utf-8',
   },
 })
 

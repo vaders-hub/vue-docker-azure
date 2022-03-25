@@ -1,0 +1,26 @@
+version: "3"
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+    ports:
+      - "443:443"
+    container_name: nodejs
+    volumes:
+      - ./server:/usr/src/app/server
+      - /usr/src/app/server/node_modules
+  vue-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile-front
+    ports:
+      - "8081:8081"
+    container_name: vue-ui
+    depends_on:
+      - nodejs
+    links:
+      - nodejs
+    volumes:
+      - ./front:/usr/src/app/front
+      - /usr/src/app/front/node_modules

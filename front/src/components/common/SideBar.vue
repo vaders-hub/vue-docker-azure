@@ -46,7 +46,7 @@ export default defineComponent({
 
     const onClickTree = (e) => {
       const { text } = e.node;
-      console.log("onclicktree", text);
+
       router.push({ name: text });
     };
     return {

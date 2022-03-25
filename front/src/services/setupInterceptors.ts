@@ -6,7 +6,7 @@ const setup = (store) => {
     (config) => {
       const mainStore = useMainStore()
       mainStore.changeLoadingdataStatus(true)
-      config.timeout = 10000
+      config.timeout = 5000
       return config
     },
     (error) => {
@@ -17,20 +17,27 @@ const setup = (store) => {
     (res) => {
       const mainStore = useMainStore()
       mainStore.changeLoadingdataStatus(false)
-      return res.data
+
+      return res
     },
     async (err) => {
       const mainStore = useMainStore()
-      const errStatus = err.response.status
-
       mainStore.changeLoadingdataStatus(false)
-      switch (errStatus) {
-        case 404:
-          break
-        case 500:
-          break
-        default:
+
+      if (err.response) {
+        if (err.response.status) {
+          const errStatus = err.response.status
+
+          switch (errStatus) {
+            case 404:
+              break
+            case 500:
+              break
+            default:
+          }
+        }
       }
+
       const originalConfig = err.config
       return Promise.reject(err)
     },

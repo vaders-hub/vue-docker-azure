@@ -2,7 +2,7 @@
 import { defineComponent, onMounted, ref, watch } from "vue";
 
 export default defineComponent({
-  name: "LoadingPage",
+  name: "LoadingData",
   props: {
     visible: {
       type: Boolean,
@@ -11,12 +11,12 @@ export default defineComponent({
   },
   components: {},
   setup(props) {
-    const divClass = ref("pageLoaderWrap hidden");
+    const divClass = ref("dataLoaderWrap hidden");
 
     watch(
       () => props.visible,
       (newVal, oldVal) => {
-        divClass.value = newVal === false ? "pageLoaderWrap hidden" : "pageLoaderWrap";
+        divClass.value = newVal === false ? "dataLoaderWrap hidden" : "dataLoaderWrap";
       }
     );
     return { divClass };
@@ -25,11 +25,11 @@ export default defineComponent({
 </script>
 <template>
   <div :class="divClass">
-    <p>page loading</p>
+    <p>data loading</p>
   </div>
 </template>
 <style lang="scss" scoped>
-.pageLoaderWrap {
+.dataLoaderWrap {
   display: table;
   position: fixed;
   top: 0;
@@ -37,16 +37,16 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 100;
+  z-index: 101;
   pointer-events: none;
-  background-color: rgba(255, 255, 0, 0.5);
+  background-color: rgba(0, 217, 255, 0.5);
   p {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
   }
 }
-div.pageLoaderWrap.hidden {
+div.dataLoaderWrap.hidden {
   display: none;
 }
 </style>

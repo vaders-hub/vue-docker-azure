@@ -1,0 +1,15 @@
+FROM node:14.16.1 as server-builder
+
+WORKDIR /usr/src/app
+
+COPY server/ ./server/
+RUN cd server && npm i && npm run build
+
+EXPOSE 443
+
+CMD ["node", "./server/dist/main.js"]
+
+# docker build -t vader/vue-app .
+# docker run -it -p 8081:8081 --rm --name vue-docker-app vader/vue-app
+# az acr update -n vueApp --admin-enabled true
+# az acr build --image vue-docker/azure:v2 --registry vueApp --file Dockerfile .

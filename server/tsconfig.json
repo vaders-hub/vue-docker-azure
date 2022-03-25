@@ -1,20 +1,16 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "module": "esnext",
-    "moduleResolution": "node",
     "lib": ["es2015", "es2016", "es2017", "esnext", "dom"],
+    "module": "esnext",
     "rootDir": ".",
+    "moduleResolution": "node",
     "typeRoots": ["./src/types", "./node_modules/@types"],
     "resolveJsonModule": true,
     "allowJs": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./src/*"]
-    },
+    "baseUrl": "./src",
     "outDir": "./dist",
-    "noEmit": true,
+    // "noEmit": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

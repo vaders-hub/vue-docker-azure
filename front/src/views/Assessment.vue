@@ -27,7 +27,3 @@ export default defineComponent({
     @click="mainStore.login()"
   />
 </template>
-
-<style>
-@import "@/assets/base.css";
-</style>

@@ -9,8 +9,8 @@ export const useMainStore = defineStore({
   id: 'mainStore',
   state: () => ({
     layout: 'Default',
-    loadingPage: false,
     loadingData: false,
+    loadingPage: false,
     members: [],
   }),
   actions: {
@@ -27,7 +27,12 @@ export const useMainStore = defineStore({
     async login() {
       try {
         const memInfo = { memid: '', mempw: '' }
-        const users = await this.api({ method: 'get', url: '/api/member', params: memInfo })
+        const users = await this.api({
+          method: 'get',
+          url: '/api/member',
+          params: memInfo,
+          data: {},
+        })
         if (users) return true
       } catch (e) {
         console.warn(e)
