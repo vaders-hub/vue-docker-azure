@@ -19,9 +19,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>assessment</div>
+  <h2>assessment</h2>
   <DxButton
-    text="Login"
+    text="Fetch"
     type="normal"
     styling-mode="outlined"
     @click="mainStore.login()"

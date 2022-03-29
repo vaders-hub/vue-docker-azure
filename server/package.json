@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "set NODE_ENV=development && nodemon -x ts-node-dev ./src/index.ts",
+    "dev": "set NODE_ENV=development && tsnd ./src/index.ts",
     "build": "webpack",
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
     "start": "node ./dist/main.js",
@@ -25,7 +25,7 @@
     "morgan": "^1.10.0",
     "morgan-json": "^1.1.0",
     "request": "^2.79.0",
-    "uglifyjs-webpack-plugin": "^2.2.0",
+    "uglifyjs-webpack-plugin": "^1.1.2",
     "vadertestmodulecalc": "^1.0.5",
     "winston": "^3.3.3"
   },
@@ -62,7 +62,7 @@
     "source-map-support": "^0.5.21",
     "ts-jest": "^27.1.2",
     "ts-loader": "^9.2.6",
-    "ts-node": "^10.3.0",
+    "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4",
     "webpack": "^5.65.0",

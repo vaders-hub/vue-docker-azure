@@ -38,6 +38,7 @@ router.beforeEach((to, from, next) => {
 
   next()
 })
+
 router.beforeResolve((to, from, next) => {
   const mainStore = useMainStore()
 

@@ -1,28 +1,30 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, inject } from "vue";
-import api from "@/services/api";
+import axiosInstance from "@/services/apiInstance";
 import { useRouter } from "vue-router";
+import DxTextBox from "devextreme-vue/text-box";
 import DxButton from "devextreme-vue/button";
 
 export default defineComponent({
   components: {
+    DxTextBox,
     DxButton,
   },
   setup(context) {
+    const api = inject("api", (opt) => {}, false);
     const router = useRouter();
     const goDashboard = async () => {
-      router.push({ name: "Dashboard" });
+      try {
+        api({ a: "b" });
+      } catch (e) {
+        console.warn(e);
+      }
+      // router.push({ name: "Dashboard" });
     };
     const goAssessment = async () => {
       router.push({ name: "Assessment" });
     };
-    const procLogin = async () => {
-      try {
-        const member = await api.get("/api/member");
-      } catch (e) {
-        console.warn(e);
-      }
-    };
+    const procLogin = async () => {};
     return {
       goDashboard,
       goAssessment,
@@ -43,10 +45,29 @@ export default defineComponent({
     />
     <DxButton
       text="Assessment"
-      type="success"
+      type="normal"
       styling-mode="outlined"
       @click="goAssessment()"
     />
-    <DxButton text="Login" type="normal" styling-mode="outlined" @click="procLogin()" />
+    <div class="loginBox">
+      <DxTextBox placeholder="id" />
+      <DxTextBox placeholder="password" />
+      <DxButton
+        text="Login"
+        class="btn"
+        type="success"
+        styling-mode="outlined"
+        @click="procLogin()"
+      />
+    </div>
   </div>
 </template>
+<style lang="scss">
+.loginBox {
+  width: 20rem;
+  margin: 1rem 0;
+  .btn {
+    margin-top: 0.5rem;
+  }
+}
+</style>

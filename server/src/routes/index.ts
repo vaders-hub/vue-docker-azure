@@ -8,7 +8,7 @@ router.get('/member', async (req: Request, res: Response): Promise<any> => {
   res
     .set('Content-Type', 'application/json; charset=utf-8')
     .status(201)
-    .json({ data: { code: '0000', login: 'ok' } })
+    .json({ data: { code: '0000', token: 'abcdefg' } })
 })
 
 export { router as indexRouter }

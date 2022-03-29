@@ -4,6 +4,7 @@ import Header from "@/components/common/Header.vue";
 import SideBar from "@/components/common/SideBar.vue";
 import Drawer from "devextreme-vue/drawer";
 import ScrollView from "devextreme-vue/scroll-view";
+import Line from "@/components/chart/Line.vue";
 
 export default defineComponent({
   name: "Dashboard",
@@ -12,6 +13,7 @@ export default defineComponent({
     SideBar,
     Drawer,
     ScrollView,
+    Line,
   },
   setup(context) {
     return {};
@@ -20,14 +22,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- <Header />
-  <Drawer>
-    <SideBar />
-    <ScrollView> dashboard </ScrollView>
-  </Drawer> -->
-  <div>dashboard</div>
+  <h2>dashboard</h2>
+  <div class="chartArea"><Line /></div>
 </template>
 
-<style>
+<style lang="scss">
 @import "@/assets/base.css";
+.chartArea {
+  width: 20rem;
+}
 </style>

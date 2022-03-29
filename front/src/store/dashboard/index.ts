@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
-export const useMainStore = defineStore({
-  id: 'aboutStore',
+export const useDashboardStore = defineStore({
+  id: 'dashboardStore',
   state: () => ({
     items: [],
   }),
