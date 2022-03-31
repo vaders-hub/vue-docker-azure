@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
-    "module": "ESNext",
+    "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "lib": ["esnext", "ESNext.AsyncIterable", "dom"],
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
@@ -15,7 +15,7 @@
       "~/*": ["./*"],
       "@/*": ["./src/*"]
     },
-    "types": ["vite/client"],
+    "types": ["vite/client", "@types/jest", "cypress"],
     "typeRoots": ["./src/types", "./node_modules/@types"],
     "jsx": "preserve",
     "noImplicitAny": false,
@@ -23,7 +23,7 @@
   },
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["src/**/*.ts", "src/**/*", "src/**/*.vue"],
-  "exclude": ["node_modules", ".nuxt", "dist"],
+  "exclude": ["node_modules", "dist"],
   "compileOnSave": false,
   "references": [
     {

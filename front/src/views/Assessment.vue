@@ -24,6 +24,6 @@ export default defineComponent({
     text="Fetch"
     type="normal"
     styling-mode="outlined"
-    @click="mainStore.login()"
+    @click="mainStore.login({})"
   />
 </template>

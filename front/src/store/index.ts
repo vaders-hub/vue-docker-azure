@@ -25,17 +25,14 @@ export const useMainStore = defineStore({
       // if (!this.loadingData) return
       this.loadingData = status
     },
-    async login() {
+    async login(payload) {
       try {
-        const memInfo = { memid: '', mempw: '' }
-        this.test()
-        // const users = await this.api({
-        //   method: 'get',
-        //   url: '/api/member',
-        //   params: memInfo,
-        //   data: {},
-        // })
-        // if (users) return true
+        const users = await this.api({
+          method: 'post',
+          url: '/api/member',
+          data: payload,
+        })
+        if (users) return true
       } catch (e) {
         console.warn(e)
       }

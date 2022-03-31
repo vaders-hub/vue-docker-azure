@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import apiInstance from '@/services/apiInstance'
 import setupInterceptors from '@/services/setupInterceptors'
 import router from './router'
 import api, { handleApi } from '@/plugins/api'

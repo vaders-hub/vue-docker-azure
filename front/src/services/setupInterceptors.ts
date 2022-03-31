@@ -6,8 +6,7 @@ import type { AxiosRequestConfig } from 'axios'
 const setup = (store) => {
   axiosInstance.interceptors.request.use(
     (config: AxiosRequestConfig) => {
-      config.timeout = 5000
-      console.log('request>>>>', config)
+      config.timeout = 2000
       const mainStore = useMainStore()
       mainStore.changeLoadingdataStatus(true)
       const token = 'temp' // TokenService.getLocalAccessToken();
