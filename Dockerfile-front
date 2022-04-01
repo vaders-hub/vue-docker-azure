@@ -16,7 +16,7 @@ RUN rm -rf /usr/share/nginx/html/*
 
 COPY --from=front-builder /usr/src/app/front/dist /usr/share/nginx/html
 
-EXPOSE 8081
+EXPOSE 8082
 
 CMD ["nginx", "-g", "daemon off;"]
 

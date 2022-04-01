@@ -12,7 +12,7 @@
     "test:e2e": "start-server-and-test dev http-get://localhost:3000 cypress",
     "cypress": "cypress run",
     "typecheck": "vue-tsc --noEmit && vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . .eslintrc.cjs --ignore-path .eslintignore"
   },
   "dependencies": {
     "@cypress/vue": "^3.1.0",
@@ -49,6 +49,7 @@
     "@vuedx/typescript-plugin-vue": "^0.7.4",
     "cypress": "9.5.3",
     "eslint": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.2.0",
     "jest": "^27.5.1",
     "jsdom": "^19.0.0",

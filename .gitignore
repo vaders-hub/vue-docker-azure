@@ -17,7 +17,6 @@ coverage
 /server/node_modules
 /front/cypress/videos/
 /front/cypress/screenshots/
-/server/certs
 
 # Editor directories and files
 .vscode/*

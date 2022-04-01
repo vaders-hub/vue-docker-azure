@@ -1,4 +1,4 @@
-FROM node:14.16.1 as server-builder
+FROM node:alpine as server-builder
 
 WORKDIR /usr/src/app
 

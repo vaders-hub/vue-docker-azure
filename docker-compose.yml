@@ -15,7 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile-front
     ports:
-      - "8081:8081"
+      - "8082:8082"
     container_name: vue-ui
     depends_on:
       - nodejs

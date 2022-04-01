@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid'
-import * as faker from 'faker'
 
 export interface Item {
   id: string
@@ -14,8 +13,8 @@ export function generateFakeData(): Item {
   return {
     id: uuidv4(),
     quantity: Math.random(),
-    name: faker.lorem.word(),
-    description: faker.lorem.words(),
+    name: 'temp',
+    description: 'temp',
     createdAt: new Date(),
   }
 }

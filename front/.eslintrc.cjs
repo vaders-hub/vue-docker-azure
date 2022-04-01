@@ -13,7 +13,7 @@ module.exports = {
     'eslint:recommended',
     '@vue/typescript/recommended',
     '@vue/prettier',
-    '@vue/prettier/@typescript-eslint',
+    '@vue/eslint-config-typescript',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -38,6 +38,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 0,
     'no-unused-vars': 0,
     'prettier/prettier': 0,
+    'vue/multi-word-component-names': 0,
   },
   settings: {
     'import/resolver': {
