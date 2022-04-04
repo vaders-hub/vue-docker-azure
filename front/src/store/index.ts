@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 
 export type RootState = {
   layout: ''
-  members: []
+  members: Record<string, unknown>
 }
 
 export const useMainStore = defineStore({
@@ -12,7 +12,7 @@ export const useMainStore = defineStore({
     layout: 'Default',
     loadingData: false,
     loadingPage: false,
-    members: [],
+    members: {},
   }),
   actions: {
     changeLayout(layoutTo) {
@@ -27,18 +27,27 @@ export const useMainStore = defineStore({
     },
     async login(payload) {
       try {
-        const users = await this.api({
+        const user = await this.api({
           method: 'post',
           url: '/api/member',
           data: payload,
         })
-        if (users) return true
+        if (user.data.token) {
+          this.api.defaults.headers['x-access-token'] = user.data.token
+        }
+      } catch (e) {
+        console.warn(e)
+      }
+    },
+    async logout(payload) {
+      try {
+        this.api.defaults.headers['x-access-token'] = ''
       } catch (e) {
         console.warn(e)
       }
     },
   },
   getters: {
-    doubleCount: (state) => state.members.length * 2,
+    doubleCount: (state) => state.members,
   },
 })

@@ -18,7 +18,7 @@ export default defineComponent({
   },
   setup(context) {
     const mainStore = useMainStore();
-    const api = inject("api", (opt) => {}, false);
+    const api = inject("api", (opt) => ({}), false);
     const apiService = inject<ApiService>("apiService");
     const router = useRouter();
 
@@ -30,31 +30,28 @@ export default defineComponent({
     const goAssessment = async () => {
       router.push({ name: "Assessment" });
     };
-    const procLoginStore = async () => {
-      try {
-        mainStore.login(loginInfo);
-      } catch (e) {
-        console.warn(e);
-      }
+    const procLoginStore = () => {
+      mainStore.login(loginInfo);
+    };
+    const procLogoutStore = () => {
+      mainStore.logout(loginInfo);
     };
     const procLoginComponent = async () => {
       try {
-        await api({ methods: "get", url: "/api/member", params: loginInfo });
+        const user = await api({ methods: "get", url: "/api/member", params: loginInfo });
+        console.log("component user", user);
       } catch (e) {
         console.warn(e);
       }
     };
     const procLoginComponentService = async () => {
-      try {
-        await apiService!.login(loginInfo);
-      } catch (e) {
-        console.warn(e);
-      }
+      apiService?.login(loginInfo);
     };
     return {
       goDashboard,
       goAssessment,
       procLoginStore,
+      procLogoutStore,
       procLoginComponent,
       procLoginComponentService,
       loginInfo,
@@ -89,6 +86,13 @@ export default defineComponent({
           type="success"
           styling-mode="outlined"
           @click="procLoginStore()"
+        />
+        <DxButton
+          text="Logout - store"
+          class="btn"
+          type="fail"
+          styling-mode="outlined"
+          @click="procLogoutStore()"
         />
       </div>
       <div>

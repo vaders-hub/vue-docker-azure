@@ -7,5 +7,4 @@ const instance: AxiosInstance = axios.create({
   },
 })
 
-export { axios }
 export default instance

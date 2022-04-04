@@ -9,13 +9,13 @@ const setup = (store) => {
       config.timeout = 2000
       const mainStore = useMainStore()
       mainStore.changeLoadingdataStatus(true)
-      const token = 'temp' // TokenService.getLocalAccessToken();
-      if (token) {
-        config.headers = {
-          'x-access-token': token,
-          // Authorization: 'Bearer ' + token
-        }
-      }
+      // const token = 'temp' // TokenService.getLocalAccessToken();
+      // if (token) {
+      //   config.headers = {
+      //     'x-access-token': token,
+      //     // Authorization: 'Bearer ' + token
+      //   }
+      // }
       return config
     },
     (error) => {
@@ -26,8 +26,8 @@ const setup = (store) => {
     (res) => {
       const mainStore = useMainStore()
       mainStore.changeLoadingdataStatus(false)
-
-      return res
+      console.log('interceptor', res.data)
+      return res.data
     },
     async (err) => {
       const originalConfig = err.config

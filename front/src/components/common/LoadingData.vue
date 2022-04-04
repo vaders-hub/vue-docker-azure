@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
   name: "LoadingData",
