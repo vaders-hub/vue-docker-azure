@@ -1,5 +1,5 @@
 {
-  "name": "ski-front",
+  "name": "ski-lca-front",
   "version": "0.0.1",
   "description": "",
   "keywords": [],
@@ -7,9 +7,9 @@
   "scripts": {
     "dev": "set NODE_ENV=development && vite --host --port 3008",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview --port 5050",
+    "preview": "vite preview --host --port 5050",
     "test:unit": "jest",
-    "test:e2e": "start-server-and-test dev http-get://localhost:3000 cypress",
+    "test:e2e": "start-server-and-test dev http-get://localhost:3008 cypress",
     "cypress": "cypress run",
     "typecheck": "vue-tsc --noEmit && vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . .eslintrc.cjs --ignore-path .eslintignore"
