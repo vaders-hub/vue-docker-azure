@@ -1,4 +1,5 @@
 {
+  "extends": "@vue/tsconfig/tsconfig.web.json",
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -21,9 +22,13 @@
     "noImplicitAny": false,
     "isolatedModules": true
   },
-  "extends": "@vue/tsconfig/tsconfig.web.json",
+
   "include": ["src/**/*.ts", "src/**/*", "src/**/*.vue"],
   "exclude": ["node_modules", "dist"],
   "compileOnSave": false,
-  "references": [{}]
+  "references": [
+    {
+      "path": "./tsconfig.vite-config.json"
+    }
+  ]
 }

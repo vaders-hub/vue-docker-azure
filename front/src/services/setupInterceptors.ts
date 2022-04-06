@@ -26,7 +26,7 @@ const setup = (store) => {
     (res) => {
       const mainStore = useMainStore()
       mainStore.changeLoadingdataStatus(false)
-      console.log('interceptor', res.data)
+
       return res.data
     },
     async (err) => {

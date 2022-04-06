@@ -24,29 +24,19 @@ export default defineComponent({
 
     const loginInfo = reactive({ id: "", pw: "" });
 
-    const goDashboard = async () => {
-      router.push({ name: "Dashboard" });
-    };
-    const goAssessment = async () => {
-      router.push({ name: "Assessment" });
-    };
-    const procLoginStore = () => {
-      mainStore.login(loginInfo);
-    };
-    const procLogoutStore = () => {
-      mainStore.logout(loginInfo);
-    };
+    const goDashboard = async () => router.push({ name: "Dashboard" });
+    const goAssessment = async () => router.push({ name: "Assessment" });
+    const procLoginStore = () => mainStore.login(loginInfo);
+    const procLogoutStore = () => mainStore.logout(loginInfo);
     const procLoginComponent = async () => {
       try {
         const user = await api({ methods: "get", url: "/api/member", params: loginInfo });
-        console.log("component user", user);
       } catch (e) {
         console.warn(e);
       }
     };
-    const procLoginComponentService = async () => {
-      apiService?.login(loginInfo);
-    };
+    const procLoginComponentService = async () => apiService?.login(loginInfo);
+
     return {
       goDashboard,
       goAssessment,
@@ -90,7 +80,7 @@ export default defineComponent({
         <DxButton
           text="Logout - store"
           class="btn"
-          type="fail"
+          type="danger"
           styling-mode="outlined"
           @click="procLogoutStore()"
         />
