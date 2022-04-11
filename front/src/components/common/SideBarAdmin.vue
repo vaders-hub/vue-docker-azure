@@ -13,14 +13,14 @@ export default defineComponent({
     const router = useRouter();
 
     const navigation = [
-      { id: 1, text: "Code", icon: "product" },
-      { id: 2, text: "User", icon: "money" },
+      { id: 1, text: "Code", path: "Code", icon: "product" },
+      { id: 2, text: "User", path: "User", icon: "money" },
     ];
 
     const onClickTree = (e) => {
-      const { text } = e.itemData;
+      const { path } = e.itemData;
 
-      router.push({ name: text });
+      router.push({ name: path });
     };
     return {
       navigation,
@@ -36,14 +36,9 @@ export default defineComponent({
       :active-state-enabled="false"
       :hover-state-enabled="false"
       :focus-state-enabled="false"
+      :width="250"
       class="panel-list"
       @item-click="onClickTree"
     />
   </div>
 </template>
-
-<style lang="scss">
-.panel-list {
-  width: 15rem;
-}
-</style>

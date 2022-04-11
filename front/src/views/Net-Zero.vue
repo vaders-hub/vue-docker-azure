@@ -1,12 +1,9 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, watch } from "vue";
-import Line from "@/components/chart/Line.vue";
 
 export default defineComponent({
-  name: "Dashboard",
-  components: {
-    Line,
-  },
+  name: "Net-Zero",
+  components: {},
   setup(context) {
     return {};
   },
@@ -14,8 +11,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <h2>Dashboard</h2>
-  <div class="chartArea"><Line /></div>
+  <h2>Net-Zero</h2>
 </template>
 
 <style lang="scss">

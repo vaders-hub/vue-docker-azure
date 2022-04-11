@@ -15,10 +15,22 @@ const routes = [
     component: () => import('@/views/Dashboard.vue'),
   },
   {
-    path: '/assessment',
-    name: 'Assessment',
+    path: '/scope_1_2',
+    name: 'Scope_1_2',
     meta: { layout: 'Default' },
-    component: () => import('@/views/Assessment.vue'),
+    component: () => import('@/views/Scope_1_2.vue'),
+  },
+  {
+    path: '/scope_3',
+    name: 'Scope_3',
+    meta: { layout: 'Default' },
+    component: () => import('@/views/Scope_3.vue'),
+  },
+  {
+    path: '/net-zero',
+    name: 'Net-Zero',
+    meta: { layout: 'Default' },
+    component: () => import('@/views/Net-Zero.vue'),
   },
   {
     path: '/admin',

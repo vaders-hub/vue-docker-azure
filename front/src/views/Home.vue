@@ -14,7 +14,7 @@ export default defineComponent({
     DxButton,
   },
   props: {
-    msg: { type: String, default: "SKI infra" },
+    msg: { type: String, default: "SKI LCA infra" },
   },
   setup(context) {
     const mainStore = useMainStore();
@@ -25,8 +25,7 @@ export default defineComponent({
     const loginInfo = reactive({ id: "", pw: "" });
 
     const goDashboard = async () => router.push({ name: "Dashboard" });
-    const goAssessment = async () => router.push({ name: "Assessment" });
-    const goAdmin = async () => router.push({ name: "Admin" });
+    const goAdmin = async () => router.push({ path: "/admin/code" });
     const procLoginStore = () => mainStore.login(loginInfo);
     const procLogoutStore = () => mainStore.logout(loginInfo);
     const procLoginComponent = async () => {
@@ -40,7 +39,6 @@ export default defineComponent({
 
     return {
       goDashboard,
-      goAssessment,
       goAdmin,
       procLoginStore,
       procLogoutStore,
@@ -55,18 +53,11 @@ export default defineComponent({
 <template>
   <div>
     <h2>HOME</h2>
-    <div>{{ msg }}</div>
     <DxButton
       text="Dashboard"
       type="normal"
       styling-mode="outlined"
       @click="goDashboard()"
-    />
-    <DxButton
-      text="Assessment"
-      type="normal"
-      styling-mode="outlined"
-      @click="goAssessment()"
     />
     <DxButton text="Admin" type="normal" styling-mode="outlined" @click="goAdmin()" />
     <div class="loginBox">

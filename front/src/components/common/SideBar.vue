@@ -15,6 +15,7 @@ export default defineComponent({
       {
         ID: "1",
         name: "Dashboard",
+        path: "Dashboard",
         expanded: false,
       },
       {
@@ -31,7 +32,20 @@ export default defineComponent({
       },
       {
         ID: "2",
-        name: "Assessment",
+        name: "Scope 1, 2",
+        path: "Scope_1_2",
+        expanded: false,
+      },
+      {
+        ID: "3",
+        name: "Scope 3",
+        path: "Scope_3",
+        expanded: false,
+      },
+      {
+        ID: "4",
+        name: "Net-Zero",
+        path: "Net-Zero",
         expanded: false,
       },
     ]);
@@ -45,9 +59,9 @@ export default defineComponent({
     ];
 
     const onClickTree = (e) => {
-      const { text } = e.node;
+      const { path } = e.itemData;
 
-      router.push({ name: text });
+      router.push({ name: path });
     };
     return {
       treeData,
@@ -69,7 +83,7 @@ export default defineComponent({
     <TreeView
       id="simple-treeview"
       :items="treeData"
-      :width="300"
+      :width="250"
       data-structure="plain"
       parent-id-expr="categoryId"
       key-expr="ID"
