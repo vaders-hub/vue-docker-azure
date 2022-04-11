@@ -5,8 +5,9 @@ import setupInterceptors from '@/services/setupInterceptors'
 import router from './router'
 import api from '@/plugins/api'
 import App from './App.vue'
-import defaultLayout from '@/layouts/Default.vue'
 import mainLayout from '@/layouts/Main.vue'
+import defaultLayout from '@/layouts/Default.vue'
+import adminLayout from '@/layouts/Admin.vue'
 import 'devextreme/dist/css/dx.light.css'
 
 import type { AxiosInstance } from 'axios'
@@ -26,6 +27,7 @@ app.use(api)
 
 app.component('Default', defaultLayout)
 app.component('Main', mainLayout)
+app.component('Admin', adminLayout)
 
 setupInterceptors(app)
 

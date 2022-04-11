@@ -15,12 +15,9 @@
     "lint": "eslint . .eslintrc.cjs --ignore-path .eslintignore"
   },
   "dependencies": {
-    "@cypress/vue": "^3.1.0",
-    "@cypress/webpack-dev-server": "^1.1.5",
     "axios": "^0.26.0",
     "devextreme": "21.2.6",
     "devextreme-vue": "21.2.6",
-    "html-webpack-plugin": "^4.5.2",
     "pinia": "^2.0.11",
     "uuid": "^8.3.2",
     "vue": "^3.2.29",
@@ -30,6 +27,8 @@
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
+    "@cypress/vue": "^3.1.0",
+    "@cypress/webpack-dev-server": "^1.1.5",
     "@pinia/testing": "^0.0.10",
     "@rushstack/eslint-patch": "^1.1.0",
     "@testing-library/cypress": "^8.0.2",
@@ -51,6 +50,7 @@
     "eslint": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.2.0",
+    "html-webpack-plugin": "^4.5.2",
     "jest": "^27.5.1",
     "jsdom": "^19.0.0",
     "prettier": "^2.5.1",

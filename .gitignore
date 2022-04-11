@@ -14,9 +14,11 @@ coverage
 *.local
 
 /front/node_modules
+/front/cypress/e2e/examples
+/front/cypress/e2e/screenshots
+/front/cypress/e2e/videos
+/front/cypress/videos
 /server/node_modules
-/front/cypress/videos/
-/front/cypress/screenshots/
 
 # Editor directories and files
 .vscode/*

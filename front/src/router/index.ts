@@ -11,12 +11,32 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
+    meta: { layout: 'Default' },
     component: () => import('@/views/Dashboard.vue'),
   },
   {
     path: '/assessment',
     name: 'Assessment',
+    meta: { layout: 'Default' },
     component: () => import('@/views/Assessment.vue'),
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    meta: { layout: 'Admin' },
+    component: () => import('@/views/admin/Index.vue'),
+    children: [
+      {
+        path: 'code',
+        name: 'Code',
+        component: () => import('@/views/admin/CodeManagement.vue'),
+      },
+      {
+        path: 'user',
+        name: 'User',
+        component: () => import('@/views/admin/UserManagement.vue'),
+      },
+    ],
   },
   {
     path: '/:catchAll(.*)',
@@ -33,8 +53,7 @@ router.beforeEach((to, from, next) => {
   const mainStore = useMainStore()
 
   mainStore.changeLoadingpageStatus(true)
-  if (to.name === 'Home') mainStore.changeLayout('Main')
-  if (to.name !== 'Home') mainStore.changeLayout('Default')
+  if (to.meta.layout) mainStore.changeLayout(to.meta.layout)
 
   next()
 })
