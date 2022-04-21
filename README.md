@@ -2,7 +2,7 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Technology Used
+## Technologies Used
 
 Vue3, Vite, Pinia, Devextreme
 Node, Express

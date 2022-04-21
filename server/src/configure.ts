@@ -30,7 +30,7 @@ const PORT: number | string = process.env.PORT || 443
 
 const corsOptions: any = {
   changeOrigin: true,
-  target: 'http://localhost:8081',
+  target: ['http://localhost:3008', 'http://localhost:8081'],
 }
 
 const options = {
