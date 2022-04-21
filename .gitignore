@@ -33,4 +33,3 @@ coverage
 *.mp4
 
 *.env
-*.env.dev

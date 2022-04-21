@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction, Application } from 'express'
+import { Server as ioServer } from 'socket.io'
 import path from 'path'
 import fs from 'fs'
 // import mysql from 'mysql2'
@@ -34,8 +35,8 @@ const corsOptions: any = {
 }
 
 const options = {
-  key: fs.readFileSync(__dirname + '/../certs/key-asdfasdfasd.pem'),
-  cert: fs.readFileSync(__dirname + '/../certs/cert-test-mine.pem'),
+  key: fs.readFileSync(__dirname + `${process.env.KEY_FILE}`),
+  cert: fs.readFileSync(__dirname + `${process.env.CERT_FILE}`),
 }
 
 app.use(cors(corsOptions))
@@ -44,4 +45,4 @@ app.use(cookieParser())
 
 routes(app)
 
-export { app, options, PORT }
+export { app, ioServer, options, PORT }
