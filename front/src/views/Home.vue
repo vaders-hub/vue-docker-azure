@@ -26,6 +26,7 @@ export default defineComponent({
 
     const goDashboard = async () => router.push({ name: "Dashboard" });
     const goAdmin = async () => router.push({ path: "/admin/code" });
+    const goSocket = async () => router.push({ name: "Login" });
     const procLoginStore = () => mainStore.login(loginInfo);
     const procLogoutStore = () => mainStore.logout(loginInfo);
     const procLoginComponent = async () => {
@@ -40,6 +41,7 @@ export default defineComponent({
     return {
       goDashboard,
       goAdmin,
+      goSocket,
       procLoginStore,
       procLogoutStore,
       procLoginComponent,
@@ -60,6 +62,7 @@ export default defineComponent({
       @click="goDashboard()"
     />
     <DxButton text="Admin" type="normal" styling-mode="outlined" @click="goAdmin()" />
+    <DxButton text="Socket" type="normal" styling-mode="outlined" @click="goSocket()" />
     <div class="loginBox">
       <DxTextBox placeholder="id" v-model="loginInfo.id" />
       <DxTextBox placeholder="password" v-model="loginInfo.pw" />

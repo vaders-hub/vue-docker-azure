@@ -42,6 +42,7 @@ export const useMainStore = defineStore({
     async logout(payload) {
       try {
         this.api.defaults.headers['x-access-token'] = ''
+        this.sto.clear()
       } catch (e) {
         console.warn(e)
       }

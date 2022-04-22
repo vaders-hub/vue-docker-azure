@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, inject } from "vue";
-import { io } from 'socket.io-client'
+import { useRouter } from "vue-router";
 import DxButton from "devextreme-vue/button";
 
 export default defineComponent({
@@ -13,11 +13,14 @@ export default defineComponent({
   },
   setup(context) {
     const socket:any = inject("socket");
+    const router = useRouter();
     const testSocket = () => {
-      socket.emit("event", 'abcd');
+      socket.emit("event", new Date().getTime());
     }
+    const goHome = async () => router.push({ name: "Home" });
     return {
-      testSocket
+      testSocket,
+      goHome
     };
   },
 });
@@ -27,10 +30,16 @@ export default defineComponent({
   <div>
     <h2>Login</h2>
     <DxButton
-      text="Dashboard"
+      text="Socket-test"
       type="normal"
       styling-mode="outlined"
       @click="testSocket()"
+    />
+    <DxButton
+      text="home"
+      type="normal"
+      styling-mode="outlined"
+      @click="goHome()"
     />
   </div>
 </template>

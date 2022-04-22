@@ -1,19 +1,37 @@
 # vue-docker-azure
 
-This template should help get you started developing with Vue 3 in Vite.
+Dockerizable Vue 3 template with Pinia associated with Axios
 
 ## Technologies Used
 
-Vue3, Vite, Pinia, Devextreme
+Vue3, Vite, Pinia, Axios, Devextreme
+Typescript
 Node, Express
 Jest, Cypress
 Docker
+Socket
 Nginx
 Azure
 
-1. RUN
-   1. yarn insstall
-   2. npm run dev
-2. Test
-   1. npm run test:unit
-   2. npm run cypress
+#### Front
+
+RUN
+
+1. yarn install
+2. npm run dev
+
+Test
+
+1.  npm run test:unit
+2.  npm run cypress
+
+Docker
+
+1. docker-compose-front up --build
+
+#### Server
+
+RUN
+
+1.  npm i
+2.  npm run dev
