@@ -5,6 +5,10 @@ export interface ApiService {
 export type SessionTimeout = {
   limit: number
   intvObj: number
-  tick: () => void
-  clear: () => void
+  start: () => void
+  reset: () => void
+}
+
+export type InputEvents = {
+  initDetection: () => void
 }
