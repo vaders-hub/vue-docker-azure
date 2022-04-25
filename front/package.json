@@ -13,6 +13,7 @@
     "lint": "eslint . .eslintrc.cjs --ignore-path .eslintignore"
   },
   "dependencies": {
+    "@jest/types": "^27.5.1",
     "axios": "^0.26.0",
     "devextreme": "21.2.6",
     "devextreme-vue": "21.2.6",

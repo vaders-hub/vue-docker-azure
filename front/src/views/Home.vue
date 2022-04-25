@@ -55,6 +55,7 @@ export default defineComponent({
 <template>
   <div>
     <h2>HOME</h2>
+    <p>{{msg}}</p>
     <DxButton
       text="Dashboard"
       type="normal"

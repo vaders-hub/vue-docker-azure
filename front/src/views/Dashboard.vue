@@ -19,7 +19,8 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import "@/assets/base.css";
+@import "@/assets/base.scss";
+@import "@/assets/devextreme.scss";
 .chartArea {
   width: 20rem;
 }

@@ -47,6 +47,9 @@ export const useMainStore = defineStore({
         console.warn(e)
       }
     },
+    showDialog() {
+      console.log('show timeout dialog')
+    },
   },
   getters: {
     doubleCount: (state) => state.members,

@@ -1,3 +1,5 @@
+import { useMainStore } from '@/store/index'
+
 import type { SessionTimeout } from '@/interface/common'
 
 export const sesssionTimeOut: SessionTimeout = (() => {
@@ -10,8 +12,11 @@ export const sesssionTimeOut: SessionTimeout = (() => {
     }, 1000)
   }
   const reset = function (this: SessionTimeout) {
+    const mainStore = useMainStore()
+
     this.limit = 600
     clearInterval(this.intvObj)
+    // mainStore.showDialog()
   }
 
   return {

@@ -4,7 +4,7 @@ import { createTestingPinia } from '@pinia/testing'
 import { useMainStore } from '@/store/index'
 
 const apiService = {}
-const msg = 'new message'
+const msg = 'SKI LCA infra'
 const wrapper = mount(Home, {
   global: {
     plugins: [createTestingPinia()],

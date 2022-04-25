@@ -9,7 +9,7 @@ export default defineComponent({
     DxButton
   },
   props: {
-    msg: { type: String, default: "SKI LCA infra" },
+    iconColor: { type: String, default: "default" },
   },
   setup(context) {
     const socket:any = inject("socket");
