@@ -25,4 +25,16 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      external: ['jquery'],
+      output: {
+        globals: {
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery',
+        },
+      },
+    },
+  },
 })

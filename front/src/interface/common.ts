@@ -4,7 +4,7 @@ export interface ApiService {
 
 export type SessionTimeout = {
   limit: number
-  intvObj: number
+  intvObj: any
   start: (this: SessionTimeout) => void
   reset: (this: SessionTimeout) => void
 }

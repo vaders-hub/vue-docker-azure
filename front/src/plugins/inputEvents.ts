@@ -5,7 +5,7 @@ import type { InputEvents } from '@/interface/common'
 export const inputEvents: InputEvents = (() => {
   const events = ['mousemove', 'keydown']
   const initDetection = function (this: InputEvents) {
-    if (st.intvObj === 0) {
+    if (!st.intvObj) {
       st.start()
     }
     for (const e of events) {

@@ -6,3 +6,9 @@ declare module 'pinia' {
     sto: SessionTimeout
   }
 }
+
+declare global {
+  interface Window {
+    $: any
+  }
+}

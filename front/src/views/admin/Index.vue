@@ -1,12 +1,12 @@
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref } from 'vue'
 export default defineComponent({
-  name: "Admin",
+  name: 'Admin',
 
   setup() {
-    return {};
+    return {}
   },
-});
+})
 </script>
 
 <template>
@@ -14,7 +14,3 @@ export default defineComponent({
   <div>admin page</div>
   <RouterView />
 </template>
-
-<style lang="scss">
-@import "@/assets/base.scss";
-</style>

@@ -1,27 +1,24 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, watch } from "vue";
-import Line from "@/components/chart/Line.vue";
+import { defineComponent, onMounted, reactive, watch } from 'vue'
+import Line from '@/components/chart/Line.vue'
+import DefaultGrid from '@/components/datagrid/DefaultGrid.vue'
 
 export default defineComponent({
-  name: "Dashboard",
+  name: 'Dashboard',
   components: {
     Line,
+    DefaultGrid,
   },
   setup(context) {
-    return {};
+    return {}
   },
-});
+})
 </script>
 
 <template>
   <h2>Dashboard</h2>
-  <div class="chartArea"><Line /></div>
+  <Line idName="chart-demo" />
+  <Line />
+  <br />
+  <DefaultGrid />
 </template>
-
-<style lang="scss">
-@import "@/assets/base.scss";
-@import "@/assets/devextreme.scss";
-.chartArea {
-  width: 20rem;
-}
-</style>

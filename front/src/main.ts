@@ -11,6 +11,7 @@ import App from './App.vue'
 import mainLayout from '@/layouts/Main.vue'
 import defaultLayout from '@/layouts/Default.vue'
 import adminLayout from '@/layouts/Admin.vue'
+import jquery from 'jquery'
 
 import 'devextreme/dist/css/dx.light.css'
 
@@ -38,5 +39,6 @@ app.component('Main', mainLayout)
 app.component('Admin', adminLayout)
 
 setupInterceptors(app)
+window.$ = jquery
 
 app.mount('#app')

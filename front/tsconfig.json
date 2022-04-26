@@ -16,7 +16,7 @@
       "~/*": ["./*"],
       "@/*": ["./src/*"]
     },
-    "types": ["vite/client", "@types/jest", "cypress"],
+    "types": ["vite/client", "@types/jest"],
     "typeRoots": ["./src/types", "./node_modules/@types"],
     "jsx": "preserve",
     "noImplicitAny": false,

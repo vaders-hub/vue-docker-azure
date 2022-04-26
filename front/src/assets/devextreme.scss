@@ -1,8 +1,13 @@
 body {
   #chart-demo {
+    width:50rem;
     g.dxc-series:nth-child(2) .dxc-elements {
-      stroke: rgb(255, 0, 0);
+      stroke: rgb(255, 230, 0);
       stroke-width: 2;
     }
+  }
+
+  #grid-demo{
+    width:50rem;
   }
 }

@@ -4,7 +4,7 @@ import type { SessionTimeout } from '@/interface/common'
 
 export const sesssionTimeOut: SessionTimeout = (() => {
   const limit = 600
-  const intvObj = 0
+  let intvObj
   const start = function (this: SessionTimeout) {
     this.reset()
     this.intvObj = setInterval(() => {

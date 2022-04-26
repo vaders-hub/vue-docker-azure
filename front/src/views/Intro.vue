@@ -1,9 +1,12 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, watch } from 'vue'
+import Test from '@/components/test/Test.vue'
 
 export default defineComponent({
-  name: 'Scope_3',
-  components: {},
+  name: 'Intro',
+  components: {
+    Test,
+  },
   setup(context) {
     return {}
   },
@@ -11,5 +14,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <h2>Scope 3</h2>
+  <h2>Intro</h2>
+  <Test />
 </template>
