@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client'
 
-const socketService = io('https://localhost:443', {
+const socketService = io('https://localhost:6443', {
   reconnection: true,
   reconnectionDelay: 500,
   reconnectionAttempts: 1,

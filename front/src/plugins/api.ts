@@ -1,15 +1,5 @@
-import apiInstance from '@/services/apiInstance'
-
-const commonService = {
-  login: async (payload) => {
-    try {
-      const result = await apiInstance({ method: 'post', url: '/api/member', data: payload })
-      if (result) return result
-    } catch (e) {
-      console.warn(e)
-    }
-  },
-}
+import apiInstance from '@/utils/apiInstance'
+import { commonService } from '@/services/common'
 
 export default {
   install: (app, options) => {

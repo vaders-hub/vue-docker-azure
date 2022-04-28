@@ -18,7 +18,7 @@ try {
 }
 
 const app: Application = express()
-const PORT: number | string = process.env.PORT || 443
+const PORT: number | string = process.env.PORT || 6443
 // const connection: mysql.Connection = mysql.createConnection({
 //   host: process.env.DB_HOST,
 //   user: process.env.DB_USER,

@@ -1,75 +1,32 @@
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
-import { DxDataGrid, DxScrolling, DxPager, DxPaging } from 'devextreme-vue/data-grid'
+import { defineComponent, computed, ref, reactive, onMounted } from 'vue'
+import { useDashboardStore } from '@/store/dashboard'
+import { DxDataGrid, DxPager, DxPaging } from 'devextreme-vue/data-grid'
 import DxSelectBox from 'devextreme-vue/select-box'
 import DxCheckBox from 'devextreme-vue/check-box'
+import DxButton from 'devextreme-vue/button'
+
 export default defineComponent({
   name: 'DefaultGrid',
   components: {
     DxDataGrid,
-    DxScrolling,
     DxPager,
     DxPaging,
     DxCheckBox,
     DxSelectBox,
+    DxButton,
   },
   setup() {
-    let s = 123456789
-    const random = () => {
-      s = (1103515245 * s + 12345) % 2147483647
-      return s % (10 - 1)
+    const dashboardStore = useDashboardStore()
+    const loadedData = ref([])
+    const loadData = async () => {
+      await dashboardStore.loadTableData('')
+      loadedData.value = []
+      loadedData.value = loadedData.value.concat(dashboardStore.tableData)
     }
 
-    const generateData = (count) => {
-      const surnames = [
-        'Smith',
-        'Johnson',
-        'Brown',
-        'Taylor',
-        'Anderson',
-        'Harris',
-        'Clark',
-        'Allen',
-        'Scott',
-        'Carter',
-      ]
-      const names = [
-        'James',
-        'John',
-        'Robert',
-        'Christopher',
-        'George',
-        'Mary',
-        'Nancy',
-        'Sandra',
-        'Michelle',
-        'Betty',
-      ]
-      const gender = ['Male', 'Female']
-      const items: Record<string, unknown>[] = []
-      const startBirthDate = Date.parse('1/1/1975')
-      const endBirthDate = Date.parse('1/1/1992')
+    const gridContainer = ref(null)
 
-      for (let i = 0; i < count; i += 1) {
-        const birthDate = new Date(
-          startBirthDate + Math.floor((random() * (endBirthDate - startBirthDate)) / 10),
-        )
-        birthDate.setHours(12)
-
-        const nameIndex = random()
-        const item = {
-          id: i + 1,
-          firstName: names[nameIndex],
-          lastName: surnames[random()],
-          gender: gender[Math.floor(nameIndex / 5)],
-          birthDate,
-        }
-        items.push(item)
-      }
-      return items
-    }
-
-    const dataSource = generateData(100000)
     const displayModes = [
       { text: "Display Mode 'full'", value: 'full' },
       { text: "Display Mode 'compact'", value: 'compact' },
@@ -84,9 +41,14 @@ export default defineComponent({
       columns[0].width = 70
     }
 
+    onMounted(() => {
+      loadData()
+    })
+
     return {
-      generateData,
-      dataSource,
+      loadData,
+      loadedData,
+      gridContainer,
       displayModes,
       displayMode,
       pageSizes,
@@ -101,14 +63,18 @@ export default defineComponent({
 </script>
 <template>
   <div id="grid-demo">
+    <div>
+      <DxButton text="Load data" type="normal" styling-mode="outlined" @click="loadData()" />
+    </div>
+    <!-- <p>:customize-columns="customizeColumns"</p> -->
     <DxDataGrid
       id="gridContainer"
-      :customize-columns="customizeColumns"
-      :data-source="dataSource"
+      ref="gridContainer"
+      :data-source="loadedData"
+      :column-auto-width="true"
       key-expr="id"
       :show-borders="true"
     >
-      <DxScrolling row-rendering-mode="virtual" />
       <DxPaging :page-size="10" />
       <DxPager
         :visible="true"

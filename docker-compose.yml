@@ -5,7 +5,7 @@ services:
   #     context: .
   #     dockerfile: Dockerfile-server
   #   ports:
-  #     - "443:443"
+  #     - "6443:6443"
   #   container_name: nodejs
   #   volumes:
   #     - ./server:/usr/src/app/server

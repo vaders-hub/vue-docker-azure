@@ -24,7 +24,7 @@ RUN
 2. yarn install
 3. npm run dev
 
-Test
+TEST
 
 1.  npm run test:unit
 
