@@ -35,7 +35,6 @@ export default defineComponent({
     DxTooltip,
   },
   setup(context) {
-    console.log('context', context)
     const energySources = [
       { value: 'hydro', name: 'Hydro-electric' },
       { value: 'oil', name: 'Oil' },

@@ -18,7 +18,6 @@ export default defineComponent({
 <template>
   <h2>Dashboard</h2>
   <Line idName="chart-demo" />
-  <Line />
   <br />
   <DefaultGrid />
 </template>
