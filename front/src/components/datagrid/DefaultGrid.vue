@@ -21,11 +21,8 @@ export default defineComponent({
     const loadedData = ref([])
     const loadData = async () => {
       await dashboardStore.loadTableData('')
-      loadedData.value = []
-      loadedData.value = loadedData.value.concat(dashboardStore.tableData)
+      loadedData.value = dashboardStore.tableData
     }
-
-    const gridContainer = ref(null)
 
     const displayModes = [
       { text: "Display Mode 'full'", value: 'full' },
@@ -38,7 +35,7 @@ export default defineComponent({
     const showNavButtons = ref(true)
     const isCompactMode = computed(() => (displayMode.value !== 'full' ? true : false))
     const customizeColumns = (columns) => {
-      columns[0].width = 70
+      if (columns.length > 0) columns[0].width = 70
     }
 
     onMounted(() => {
@@ -48,7 +45,6 @@ export default defineComponent({
     return {
       loadData,
       loadedData,
-      gridContainer,
       displayModes,
       displayMode,
       pageSizes,
@@ -72,6 +68,8 @@ export default defineComponent({
       ref="gridContainer"
       :data-source="loadedData"
       :column-auto-width="true"
+      :remote-operations="true"
+      :customize-columns="customizeColumns"
       key-expr="id"
       :show-borders="true"
     >

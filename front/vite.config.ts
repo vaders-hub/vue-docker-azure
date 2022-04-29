@@ -1,3 +1,4 @@
+import legacy from '@vitejs/plugin-legacy'
 import { fileURLToPath, URL } from 'url'
 
 import { defineConfig } from 'vite'
@@ -5,7 +6,14 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
+  plugins: [
+    vue(),
+    vueJsx(),
+    // legacy({
+    //   targets: ['ie >= 11'],
+    //   additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
+    // }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -26,15 +34,15 @@ export default defineConfig({
     },
   },
   build: {
-    rollupOptions: {
-      external: ['jquery'],
-      output: {
-        globals: {
-          $: 'jquery',
-          jQuery: 'jquery',
-          'window.jQuery': 'jquery',
-        },
-      },
-    },
+    // rollupOptions: {
+    //   external: ['jquery'],
+    //   output: {
+    //     globals: {
+    //       $: 'jquery',
+    //       jQuery: 'jquery',
+    //       'window.jQuery': 'jquery',
+    //     },
+    //   },
+    // },
   },
 })

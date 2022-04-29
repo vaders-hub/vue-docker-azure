@@ -1,6 +1,6 @@
 # vue-docker-azure
 
-Dockerizable Vue 3 template with Pinia associated with Axios
+Dockerizable Vue 3 framework on Nginx which can be deployed to Cloud like Azure.
 
 ### Technologies Used
 
