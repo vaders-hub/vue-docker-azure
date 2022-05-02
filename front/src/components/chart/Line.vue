@@ -109,8 +109,9 @@ export default defineComponent({
   <div :id="idName">
     <DxChart id="chart" :data-source="dataSource" palette="Violet">
       <DxCommonSeriesSettings :type="type" argument-field="country" />
+      <DxSeries name="oil" value-field="oil" type="bar" color="#fac29a" />
       <DxSeries
-        v-for="energy in energySources"
+        v-for="energy in energySources.filter((v) => v.value !== 'oil')"
         :key="energy.value"
         :value-field="energy.value"
         :name="energy.name"
@@ -130,7 +131,7 @@ export default defineComponent({
       </DxTitle> -->
       <DxTooltip :enabled="true" />
     </DxChart>
-    <div class="options">
+    <div class="options" style="display: none">
       <div class="caption">Options</div>
       <div class="option">
         <span>Series Type</span>

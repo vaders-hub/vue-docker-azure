@@ -1,5 +1,7 @@
 body {
   #chart-demo {
+    display: inline-block;
+    vertical-align: top;
     width: 25rem;
     g.dxc-series:nth-child(2) .dxc-elements {
       stroke: rgb(255, 230, 0);
