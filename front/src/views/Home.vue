@@ -1,42 +1,43 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, inject } from "vue";
-import { useMainStore } from "@/store/index";
-import { useRouter } from "vue-router";
-import DxTextBox from "devextreme-vue/text-box";
-import DxButton from "devextreme-vue/button";
+import { defineComponent, onMounted, computed, reactive, ref, inject } from 'vue'
+import { useMainStore } from '@/store/index'
+import { useRouter } from 'vue-router'
+import DxTextBox from 'devextreme-vue/text-box'
+import DxButton from 'devextreme-vue/button'
 
-import type { ApiService } from "@/interface/common";
+import type { ApiService } from '@/interface/common'
 
 export default defineComponent({
-  name: "Home",
+  name: 'Home',
   components: {
     DxTextBox,
     DxButton,
   },
   props: {
-    msg: { type: String, default: "SKI LCA infra" },
+    msg: { type: String, default: 'SKI LCA infra' },
   },
   setup(context) {
-    const mainStore = useMainStore();
-    const api = inject("api", (opt) => ({}), false);
-    const apiService = inject<ApiService>("apiService");
-    const router = useRouter();
+    const mainStore = useMainStore()
+    const api = inject('api', (opt) => ({}), false)
+    const apiService = inject<ApiService>('apiService')
+    const router = useRouter()
 
-    const loginInfo = reactive({ id: "", pw: "" });
-
-    const goDashboard = async () => router.push({ name: "Dashboard" });
-    const goAdmin = async () => router.push({ path: "/admin/code" });
-    const goSocket = async () => router.push({ name: "Login" });
-    const procLoginStore = () => mainStore.login(loginInfo);
-    const procLogoutStore = () => mainStore.logout(loginInfo);
+    const loginInfo = reactive({ id: '', pw: '' })
+    const isLoggedIn = computed(() => (mainStore.members.login ? true : false))
+    const goDashboard = async () => router.push({ name: 'Dashboard' })
+    const goAdmin = async () => router.push({ path: '/admin/code' })
+    const goSocket = async () => router.push({ name: 'Login' })
+    const procLoginStore = () => mainStore.login(loginInfo)
+    const procLogoutStore = () => mainStore.logout(loginInfo)
     const procLoginComponent = async () => {
       try {
-        const user = await api({ methods: "get", url: "/api/member", params: loginInfo });
+        const user = await api({ methods: 'get', url: '/api/member', params: loginInfo })
       } catch (e) {
-        console.warn(e);
+        console.warn(e)
       }
-    };
-    const procLoginComponentService = async () => apiService?.login(loginInfo);
+    }
+    const procLoginComponentService = async () => apiService?.login(loginInfo)
+    const procLogout = () => mainStore.logout()
 
     return {
       goDashboard,
@@ -46,25 +47,22 @@ export default defineComponent({
       procLogoutStore,
       procLoginComponent,
       procLoginComponentService,
+      procLogout,
       loginInfo,
-    };
+      isLoggedIn,
+    }
   },
-});
+})
 </script>
 
 <template>
   <div>
     <h2>HOME</h2>
-    <p>{{msg}}</p>
-    <DxButton
-      text="Dashboard"
-      type="normal"
-      styling-mode="outlined"
-      @click="goDashboard()"
-    />
+    <p>{{ msg }}</p>
+    <DxButton text="Dashboard" type="normal" styling-mode="outlined" @click="goDashboard()" />
     <DxButton text="Admin" type="normal" styling-mode="outlined" @click="goAdmin()" />
     <DxButton text="Socket" type="normal" styling-mode="outlined" @click="goSocket()" />
-    <div class="loginBox">
+    <div class="loginBox" v-if="!isLoggedIn">
       <DxTextBox placeholder="id" v-model="loginInfo.id" />
       <DxTextBox placeholder="password" v-model="loginInfo.pw" />
       <div>
@@ -99,6 +97,15 @@ export default defineComponent({
           @click="procLoginComponentService()"
         />
       </div>
+    </div>
+    <div v-else>
+      <DxButton
+        text="Logout"
+        class="btn"
+        type="success"
+        styling-mode="outlined"
+        @click="procLogout()"
+      />
     </div>
   </div>
 </template>

@@ -12,7 +12,9 @@ export const useMainStore = defineStore({
     layout: 'Default',
     loadingData: false,
     loadingPage: false,
-    members: {},
+    members: {
+      login: false,
+    },
   }),
   actions: {
     changeLayout(layoutTo) {
@@ -33,15 +35,17 @@ export const useMainStore = defineStore({
           data: payload,
         })
         if (user.data.token) {
+          this.members.login = true
           this.api.defaults.headers['x-access-token'] = user.data.token
         }
       } catch (e) {
         console.warn(e)
       }
     },
-    async logout(payload) {
+    async logout() {
       try {
         this.api.defaults.headers['x-access-token'] = ''
+        this.members.login = false
         this.sto.reset()
       } catch (e) {
         console.warn(e)
