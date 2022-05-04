@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, reactive, defineProps } from 'vue'
+import { defineComponent, ref, reactive } from 'vue'
 import {
   DxChart,
   DxSeries,
@@ -17,6 +17,10 @@ import {
   DxConstantLine,
 } from 'devextreme-vue/chart'
 import DxSelectBox from 'devextreme-vue/select-box'
+
+import type { PropType } from 'vue'
+import type { LineOptions } from '@/interface/common'
+
 export default defineComponent({
   name: 'Line',
   props: {
@@ -25,18 +29,8 @@ export default defineComponent({
       default: '',
     },
     Options: {
-      type: Object,
+      type: Object as PropType<LineOptions>,
       default: () => ({}),
-      loadedData: {
-        type: Array,
-        required: false,
-        default: [],
-      },
-      series: {
-        type: Array,
-        required: false,
-        default: [{ value: '', name: '' }],
-      },
     },
   },
   components: {

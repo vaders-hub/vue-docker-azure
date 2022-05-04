@@ -12,3 +12,13 @@ export type SessionTimeout = {
 export type InputEvents = {
   initDetection: () => void
 }
+
+interface Series {
+  value: string
+  name: string
+}
+
+export interface LineOptions {
+  loadedData: []
+  series: Series[]
+}

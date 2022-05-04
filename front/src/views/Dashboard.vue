@@ -5,6 +5,8 @@ import Line from '@/components/chart/Line.vue'
 import Pareto from '@/components/chart/Pareto.vue'
 import DefaultGrid from '@/components/datagrid/DefaultGrid.vue'
 
+import type { LineOptions } from '@/interface/common'
+
 export default defineComponent({
   name: 'Dashboard',
   components: {
@@ -17,8 +19,7 @@ export default defineComponent({
       pager: true,
       loadedData: [],
     })
-    const lineOptions = reactive({
-      pager: true,
+    const lineOptions = reactive<LineOptions>({
       series: [
         { value: 'hydro', name: 'Hydro-electric' },
         { value: 'oil', name: 'Oil' },
