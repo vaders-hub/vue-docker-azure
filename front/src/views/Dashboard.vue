@@ -20,6 +20,7 @@ export default defineComponent({
       loadedData: [],
     })
     const lineOptions = reactive<LineOptions>({
+      idName: 'chart-demo',
       series: [
         { value: 'hydro', name: 'Hydro-electric' },
         { value: 'oil', name: 'Oil' },

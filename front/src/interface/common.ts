@@ -19,6 +19,7 @@ interface Series {
 }
 
 export interface LineOptions {
+  idName: string
   loadedData: []
   series: Series[]
 }

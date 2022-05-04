@@ -2,7 +2,7 @@ body {
   #chart-demo {
     display: inline-block;
     vertical-align: top;
-    width: 25rem;
+    width: 50rem;
     g.dxc-series:nth-child(2) .dxc-elements {
       stroke: rgb(255, 230, 0);
       stroke-width: 2;
@@ -10,6 +10,10 @@ body {
   }
 
   #grid-demo {
+    width: 50rem;
+  }
+
+  #spider-demo {
     width: 50rem;
   }
 }

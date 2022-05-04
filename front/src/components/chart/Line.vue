@@ -24,10 +24,6 @@ import type { LineOptions } from '@/interface/common'
 export default defineComponent({
   name: 'Line',
   props: {
-    idName: {
-      type: String,
-      default: '',
-    },
     Options: {
       type: Object as PropType<LineOptions>,
       default: () => ({}),
@@ -49,7 +45,7 @@ export default defineComponent({
     DxValueAxis,
     DxConstantLine,
   },
-  setup(context): any {
+  setup(context) {
     const type = ref('line')
     const types = ['line', 'stackedline', 'fullstackedline']
 
@@ -71,16 +67,16 @@ export default defineComponent({
 })
 </script>
 <template>
-  <div :id="idName">
-    <DxChart id="chart" :data-source="Options?.loadedData" palette="Violet">
+  <div :id="Options.idName">
+    <DxChart id="chart" :data-source="Options.loadedData" palette="Violet">
       <DxCommonSeriesSettings :type="type" argument-field="energyDate" />
       <DxSeries name="oil" value-field="oil" type="bar" color="#fac29a" />
       <DxSeries
-        v-for="energy in Options?.series.filter((v, i) => v.value !== 'oil')"
+        v-for="energy in Options.series.filter((v, i) => v.value !== 'oil')"
         :key="energy.value"
         :value-field="energy.value"
         :name="energy.name"
-        :axis="energy.name === 'Hydro-electric' ? 'Hydro-electric' : ''"
+        :axis="energy.value === 'hydro' ? 'hydro' : ''"
       />
       <DxMargin :bottom="20" />
       <DxValueAxis :tick-interval="300" name="oil" position="left" />
@@ -89,7 +85,7 @@ export default defineComponent({
         :tick-interval="20"
         :show-zero="true"
         :value-margins-enabled="false"
-        name="Hydro-electric"
+        name="hydro"
         position="right"
       >
         <DxLabel />
@@ -123,28 +119,4 @@ export default defineComponent({
     </div>
   </div>
 </template>
-<style lang="scss">
-.options {
-  padding: 20px;
-  background-color: rgba(191, 191, 191, 0.15);
-  margin-top: 20px;
-}
-
-.option {
-  margin-top: 10px;
-}
-
-.caption {
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.option > span {
-  margin-right: 14px;
-}
-
-.option > .dx-widget {
-  display: inline-block;
-  vertical-align: middle;
-}
-</style>
+<style lang="scss"></style>

@@ -71,12 +71,16 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-/* test */
-
-.dx-drawer-content {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: row;
+  .dx-drawer-content {
+    #simple-treeview {
+      display: inline-block;
+      width: 15%;
+      vertical-align: top;
+    }
+    .dx-scrollview {
+      display: inline-block;
+      width: calc(100% - 250px);
+    }
+  }
 }
