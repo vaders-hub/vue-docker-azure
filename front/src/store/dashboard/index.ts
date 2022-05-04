@@ -3,18 +3,21 @@ import { defineStore } from 'pinia'
 export const useDashboardStore = defineStore({
   id: 'dashboardStore',
   state: (): any => ({
+    dataSet: {
+      table: [],
+      line: [],
+    },
     tableData: [],
   }),
   actions: {
-    async loadTableData(payload) {
+    async loadData(payload) {
       try {
         const data = await this.api({
           method: 'get',
-          url: '/api/data/table',
-          data: payload,
+          url: `/api/data/${payload}`,
         })
         if (data) {
-          this.tableData = this.tableData.concat(data.data.people)
+          this.dataSet[payload] = this.dataSet[payload].concat(data.data.rows)
         }
       } catch (e) {
         console.warn(e)

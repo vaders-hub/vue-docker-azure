@@ -17,23 +17,40 @@ export default defineComponent({
       pager: true,
       loadedData: [],
     })
-    const loadData = async () => {
-      await dashboardStore.loadTableData('')
-      gridOptions.loadedData = dashboardStore.tableData
+    const lineOptions = reactive({
+      pager: true,
+      series: [
+        { value: 'hydro', name: 'Hydro-electric' },
+        { value: 'oil', name: 'Oil' },
+        { value: 'gas', name: 'Natural gas' },
+        { value: 'coal', name: 'Coal' },
+      ],
+      loadedData: [],
+    })
+    const loadDatas = async () => {
+      try {
+        await dashboardStore.loadData('table')
+        await dashboardStore.loadData('line')
+
+        gridOptions.loadedData = dashboardStore.dataSet.table
+        lineOptions.loadedData = dashboardStore.dataSet.line
+      } catch (e) {
+        console.warn(e)
+      }
     }
 
     onMounted(() => {
-      loadData()
+      loadDatas()
     })
 
-    return { gridOptions }
+    return { lineOptions, gridOptions }
   },
 })
 </script>
 
 <template>
   <h2>Dashboard</h2>
-  <Line />
+  <Line :Options="lineOptions" />
   <br />
-  <DefaultGrid :gridOptions="gridOptions" />
+  <DefaultGrid :Options="gridOptions" />
 </template>

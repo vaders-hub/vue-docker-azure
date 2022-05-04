@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express'
 import tableData from '../raw/table'
+import lineData from '../raw/line'
 
 const router = express.Router()
 
@@ -12,7 +13,11 @@ router.post('/member', async (req: Request, res: Response): Promise<any> => {
 })
 
 router.get('/data/table', async (req: Request, res: Response): Promise<any> => {
-  res.status(201).json({ data: { code: '0000', people: tableData } })
+  res.status(201).json({ data: { code: '0000', rows: tableData } })
+})
+
+router.get('/data/line', async (req: Request, res: Response): Promise<any> => {
+  res.status(201).json({ data: { code: '0000', rows: lineData } })
 })
 
 export { router as indexRouter }

@@ -17,7 +17,7 @@ export default defineComponent({
     DxButton,
   },
   props: {
-    gridOptions: {
+    Options: {
       type: Object,
       default: () => ({}),
     },
@@ -72,7 +72,7 @@ export default defineComponent({
     <DxDataGrid
       id="gridContainer"
       ref="gridContainer"
-      :data-source="gridOptions.loadedData"
+      :data-source="Options.loadedData"
       :column-auto-width="true"
       :remote-operations="true"
       :customize-columns="customizeColumns"
@@ -81,7 +81,7 @@ export default defineComponent({
     >
       <DxPaging :page-size="10" />
       <DxPager
-        :visible="gridOptions.pager"
+        :visible="Options.pager"
         :allowed-page-sizes="pageSizes"
         :display-mode="displayMode"
         :show-page-size-selector="showPageSizeSelector"
