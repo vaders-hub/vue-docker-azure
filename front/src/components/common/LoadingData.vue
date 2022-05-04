@@ -1,8 +1,8 @@
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, ref, watch } from 'vue'
 
 export default defineComponent({
-  name: "LoadingData",
+  name: 'LoadingData',
   props: {
     visible: {
       type: Boolean,
@@ -11,17 +11,17 @@ export default defineComponent({
   },
   components: {},
   setup(props) {
-    const divClass = ref("dataLoaderWrap hidden");
+    const divClass = ref('dataLoaderWrap hidden')
 
     watch(
       () => props.visible,
       (newVal, oldVal) => {
-        divClass.value = newVal === false ? "dataLoaderWrap hidden" : "dataLoaderWrap";
-      }
-    );
-    return { divClass };
+        divClass.value = newVal === false ? 'dataLoaderWrap hidden' : 'dataLoaderWrap'
+      },
+    )
+    return { divClass }
   },
-});
+})
 </script>
 <template>
   <div :class="divClass">

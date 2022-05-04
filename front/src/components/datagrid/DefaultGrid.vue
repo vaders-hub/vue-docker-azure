@@ -16,12 +16,18 @@ export default defineComponent({
     DxSelectBox,
     DxButton,
   },
+  props: {
+    gridOptions: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
   setup() {
     const dashboardStore = useDashboardStore()
     const loadedData = ref([])
     const loadData = async () => {
-      await dashboardStore.loadTableData('')
-      loadedData.value = dashboardStore.tableData
+      // await dashboardStore.loadTableData('')
+      // loadedData.value = dashboardStore.tableData
     }
 
     const displayModes = [
@@ -66,7 +72,7 @@ export default defineComponent({
     <DxDataGrid
       id="gridContainer"
       ref="gridContainer"
-      :data-source="loadedData"
+      :data-source="gridOptions.loadedData"
       :column-auto-width="true"
       :remote-operations="true"
       :customize-columns="customizeColumns"
@@ -75,7 +81,7 @@ export default defineComponent({
     >
       <DxPaging :page-size="10" />
       <DxPager
-        :visible="true"
+        :visible="gridOptions.pager"
         :allowed-page-sizes="pageSizes"
         :display-mode="displayMode"
         :show-page-size-selector="showPageSizeSelector"
