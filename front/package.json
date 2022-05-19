@@ -26,7 +26,8 @@
     "vue": "^3.2.29",
     "vue-loader": "^17.0.0",
     "vue-router": "^4.0.12",
-    "whatwg-fetch": "^3.6.2"
+    "gsap": "^3.10.4",
+    "swiper": "^4.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

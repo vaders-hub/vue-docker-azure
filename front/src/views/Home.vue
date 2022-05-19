@@ -24,7 +24,9 @@ export default defineComponent({
 
     const loginInfo = reactive({ id: '', pw: '' })
     const isLoggedIn = computed(() => (mainStore.members.login ? true : false))
+    const goGate = async () => router.push({ name: 'Gate' })
     const goDashboard = async () => router.push({ name: 'Dashboard' })
+    const goAssessment = async () => router.push({ name: 'Assessment' })
     const goAdmin = async () => router.push({ path: '/admin/code' })
     const goSocket = async () => router.push({ name: 'Login' })
     const procLoginStore = () => mainStore.login(loginInfo)
@@ -40,7 +42,9 @@ export default defineComponent({
     const procLogout = () => mainStore.logout()
 
     return {
+      goGate,
       goDashboard,
+      goAssessment,
       goAdmin,
       goSocket,
       procLoginStore,
@@ -59,7 +63,9 @@ export default defineComponent({
   <div>
     <h2>HOME</h2>
     <p>{{ msg }}</p>
+    <DxButton text="Gate" type="normal" styling-mode="outlined" @click="goGate()" />
     <DxButton text="Dashboard" type="normal" styling-mode="outlined" @click="goDashboard()" />
+    <DxButton text="Assessment" type="normal" styling-mode="outlined" @click="goAssessment()" />
     <DxButton text="Admin" type="normal" styling-mode="outlined" @click="goAdmin()" />
     <DxButton text="Socket" type="normal" styling-mode="outlined" @click="goSocket()" />
     <div class="loginBox" v-if="!isLoggedIn">

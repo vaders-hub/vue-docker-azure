@@ -23,3 +23,21 @@ export interface LineOptions {
   loadedData: []
   series: Series[]
 }
+
+export interface BarOptions {
+  idName: string
+  loadedData: []
+  series: Series[]
+}
+
+export interface SiteOptions {
+  idName: string
+  loadedData: []
+  series: Series[]
+}
+
+export interface PieOptions {
+  idName: string
+  loadedData: []
+  series: Series[]
+}

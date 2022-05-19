@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: lcafrontend 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lcafrontend
+  template:
+    metadata:
+      labels:
+        app: lcafrontend 
+    spec:
+      containers:
+        - name: lcafrontend 
+          image: sklcaclusterdregistry.azurecr.io/lcafrontend
+          ports:
+          - containerPort: 80

@@ -9,6 +9,12 @@ const routes = [
     component: () => import('@/views/Home.vue'),
   },
   {
+    path: '/gate',
+    name: 'Gate',
+    meta: { layout: 'Main' },
+    component: () => import('@/views/Gate.vue'),
+  },
+  {
     path: '/intro',
     name: 'Intro',
     meta: { layout: 'Main' },
@@ -21,10 +27,22 @@ const routes = [
     component: () => import('@/views/Login.vue'),
   },
   {
+    path: '/assessment',
+    name: 'Assessment',
+    meta: { layout: 'Default' },
+    component: () => import('@/views/Assessment.vue'),
+  },
+  {
     path: '/dashboard',
     name: 'Dashboard',
     meta: { layout: 'Default' },
     component: () => import('@/views/Dashboard.vue'),
+  },
+  {
+    path: '/dashboardDev',
+    name: 'DashboardDev',
+    meta: { layout: 'Default' },
+    component: () => import('@/views/DashboardDev.vue'),
   },
   {
     path: '/scope_1_2',

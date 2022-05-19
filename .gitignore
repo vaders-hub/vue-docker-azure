@@ -13,8 +13,6 @@ dist-ssr
 coverage
 *.local
 
-yarn.lock
-
 /front/node_modules
 /front/cypress/e2e/examples
 /front/cypress/e2e/screenshots
@@ -34,3 +32,5 @@ yarn.lock
 *.mp4
 
 *.env
+*.env.dev
+/front/yarn.lock

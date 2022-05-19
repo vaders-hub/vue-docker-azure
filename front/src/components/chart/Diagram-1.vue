@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted, inject } from 'vue'
+import { defineComponent, ref, reactive, onMounted, onUnmounted, inject } from 'vue'
 import {
   DxDiagram,
   DxToolbox,
@@ -12,20 +12,13 @@ import {
   DxGroup,
   DxTab,
 } from 'devextreme-vue/diagram'
-import 'whatwg-fetch'
-import service from './data.js'
 
 import type { PropType } from 'vue'
-import type { LineOptions } from '@/interface/common'
+// import type { LineOptions } from '@/interface/common'
 
 export default defineComponent({
-  name: 'Line',
-  props: {
-    Options: {
-      type: Object as PropType<LineOptions>,
-      default: () => ({}),
-    },
-  },
+  name: 'Diagram-1',
+  props: {},
   components: {
     DxDiagram,
     DxToolbox,
@@ -42,8 +35,10 @@ export default defineComponent({
 
     onMounted(async () => {
       const diagramData: any = await api({ methods: 'get', url: '/api/data/diagram', params: {} })
-      diagramInstance = diagram.value.instance
-      diagramInstance.import(JSON.stringify(diagramData.data.rows))
+      if (diagram.value) {
+        diagramInstance = diagram.value.instance
+        diagramInstance.import(JSON.stringify(diagramData.data.rows))
+      }
     })
 
     const onContentReady = (e) => {

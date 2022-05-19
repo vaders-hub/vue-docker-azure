@@ -1,0 +1,47 @@
+#trigger: 
+#- dev
+
+variables:
+  dockerRegistryServiceConnection: 'sklcaclusterdregistry'
+  imageRepository: 'lcafrontend'
+  containerRegistry: 'sklcaclusterdregistry.azurecr.io'
+  tag: '$(Build.BuildId)'
+  imagePullSecret: 'sklcaclusterdregistry18005fbe-auth'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+#- stage: Deploy
+#  displayName: Deploy stage
+#  dependsOn: Build
+
+jobs:
+- deployment: Deployment
+  displayName: Deploy
+  pool:
+    vmImage: $(vmImageName)
+  environment: 'LCAFRONTEND_DEV.default'
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - checkout: self
+        - task: KubernetesManifest@0
+          displayName: Create imagePullSecret
+          inputs:
+            action: createSecret
+            secretName: $(imagePullSecret)
+            dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+        - task: KubernetesManifest@0
+          displayName: Deploy to Kubernetes cluster
+          inputs:
+            action: deploy
+            kubernetesServiceConnection: 'sk-lca-dev-cluster'
+            manifests: |               
+              $(Build.SourcesDirectory)/manifests/deployment.yml
+              $(Build.SourcesDirectory)/manifests/service.yml
+              $(Build.SourcesDirectory)/manifests/ingress.yml
+            imagePullSecrets: |
+              $(imagePullSecret)
+            containers: |
+              $(containerRegistry)/$(imageRepository):$(tag)

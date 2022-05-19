@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY server/ ./server/
 RUN cd server && npm i && npm run build
 
-EXPOSE 6443
+EXPOSE 443
 
 CMD ["node", "./server/dist/main.js"]
 

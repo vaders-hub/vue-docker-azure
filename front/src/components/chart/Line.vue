@@ -33,25 +33,25 @@ export default defineComponent({
     DxSelectBox,
     DxChart,
     DxSeries,
-    DxArgumentAxis,
+   // DxArgumentAxis,
     DxValueAxis,
     DxCommonSeriesSettings,
     DxExport,
-    DxGrid,
+   // DxGrid,
     DxMargin,
     DxLegend,
     DxLabel,
     DxTooltip,
-    DxValueAxis,
-    DxConstantLine,
+   // DxValueAxis,
+   // DxConstantLine,
   },
-  emit: ['testEmit'],
   setup(context) {
     const type = ref('line')
     const types = ['line', 'stackedline', 'fullstackedline']
 
     const customizeTooltip = (text) => {
-      const { seriesName: title, value: body } = text
+      const title = text.seriesName
+      const body = text.value
 
       return {
         html: `<div><p>${title}</p><p>${body}</p></div>`,
@@ -68,7 +68,7 @@ export default defineComponent({
 </script>
 <template>
   <div :id="Options.idName">
-    <DxChart id="chart" :data-source="Options.loadedData" palette="Violet">
+    <DxChart id="line_chart" :data-source="Options.loadedData" palette="Violet">
       <DxCommonSeriesSettings :type="type" argument-field="energyDate" />
       <DxSeries name="oil" value-field="oil" type="bar" color="#fac29a" />
       <DxSeries
@@ -117,7 +117,11 @@ export default defineComponent({
         <DxSelectBox :data-source="types" v-model:value="type" />
       </div>
     </div>
-    <button @click="$emit('testEmit')">emit test</button>
   </div>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+  #line_chart {
+    height: 450px;
+    width: 659px;
+  }
+</style>

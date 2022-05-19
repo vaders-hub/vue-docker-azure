@@ -1,5 +1,5 @@
 body {
-  #chart-demo {
+  #line-demo {
     display: inline-block;
     vertical-align: top;
     width: 50rem;
@@ -8,6 +8,24 @@ body {
       stroke-width: 2;
     }
   }
+  
+  .tooltip-header {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #c5c5c5;
+  }
+  .tooltip-body {
+    display: inline-block;
+    font-family: "suit";
+    opacity: 0.6;
+    line-height: 1.5;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    width: 150px;
+  }
 
   #grid-demo {
     width: 50rem;
@@ -15,5 +33,25 @@ body {
 
   #spider-demo {
     width: 50rem;
+  }
+
+  #Scope_1_2 {
+    height: 336px;
+    width: 660px;
+  }
+
+  #Scope_3 {
+    height: 336px;
+    width: 660px;
+  }
+
+  #Site {
+    height: 414px;
+    width: 400px;
+  }
+
+  #Cate {
+    height: 414px;
+    width: 400px;
   }
 }
