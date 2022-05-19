@@ -34,5 +34,6 @@ export default defineComponent({
 </template>
 <style lang="scss">
 @import '@/assets/base.scss';
+@import '@/assets/dx-diagram.css';
 @import '@/assets/devextreme.scss';
 </style>

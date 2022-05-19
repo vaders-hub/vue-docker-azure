@@ -3,6 +3,8 @@ import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { useDashboardStore } from '@/store/dashboard'
 import Line from '@/components/chart/Line.vue'
 import Pareto from '@/components/chart/Pareto.vue'
+import Diagram1 from '@/components/chart/Diagram-1.vue'
+import Diagram2 from '@/components/chart/Diagram-2.vue'
 import DefaultGrid from '@/components/datagrid/DefaultGrid.vue'
 
 import type { LineOptions } from '@/interface/common'
@@ -12,6 +14,8 @@ export default defineComponent({
   components: {
     Line,
     DefaultGrid,
+    Diagram1,
+    Diagram2,
   },
   setup(context) {
     const dashboardStore = useDashboardStore()
@@ -45,14 +49,19 @@ export default defineComponent({
       loadDatas()
     })
 
-    return { lineOptions, gridOptions }
+    const testEmit = () => {
+      console.log('test emit')
+    }
+
+    return { lineOptions, gridOptions, testEmit }
   },
 })
 </script>
 
 <template>
   <h2>Dashboard</h2>
-  <Line :Options="lineOptions" />
+  <Diagram1 />
+  <!-- <Line :Options="lineOptions" @testEmit="testEmit" />
   <br />
-  <DefaultGrid :Options="gridOptions" />
+  <DefaultGrid :Options="gridOptions" /> -->
 </template>

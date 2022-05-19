@@ -28,7 +28,7 @@ export default defineComponent({
     const goAdmin = async () => router.push({ path: '/admin/code' })
     const goSocket = async () => router.push({ name: 'Login' })
     const procLoginStore = () => mainStore.login(loginInfo)
-    const procLogoutStore = () => mainStore.logout(loginInfo)
+    const procLogoutStore = () => mainStore.logout()
     const procLoginComponent = async () => {
       try {
         const user = await api({ methods: 'get', url: '/api/member', params: loginInfo })

@@ -25,7 +25,8 @@
     "uuid": "^8.3.2",
     "vue": "^3.2.29",
     "vue-loader": "^17.0.0",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

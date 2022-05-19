@@ -1,0 +1,673 @@
+{
+  "page": {
+    "width": 11906,
+    "height": 8391,
+    "pageColor": -1,
+    "pageWidth": 11906,
+    "pageHeight": 8391,
+    "pageLandscape": false
+  },
+  "connectors": [
+    {
+      "key": "149",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 1440,
+          "y": 3060
+        },
+        {
+          "x": 2340,
+          "y": 3960
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "139",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "142",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "150",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 1440,
+          "y": 3960
+        },
+        {
+          "x": 2340,
+          "y": 3960
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "140",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "142",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "151",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 1440,
+          "y": 4860
+        },
+        {
+          "x": 2340,
+          "y": 3960
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "141",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "142",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "153",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 3420,
+          "y": 3960
+        },
+        {
+          "x": 3780,
+          "y": 3960
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "142",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "144",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "155",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 5040,
+          "y": 3960
+        },
+        {
+          "x": 5400,
+          "y": 3960
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "144",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "154",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "159",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 6660,
+          "y": 3960
+        },
+        {
+          "x": 7020,
+          "y": 3960
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "154",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "156",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "160",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 8460,
+          "y": 5760
+        },
+        {
+          "x": 7740,
+          "y": 1800
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "157",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "158",
+      "endConnectionPointIndex": 0
+    },
+    {
+      "key": "161",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7740,
+          "y": 3600
+        },
+        {
+          "x": 6030,
+          "y": 3420
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "156",
+      "beginConnectionPointIndex": 0,
+      "endItemKey": "154",
+      "endConnectionPointIndex": 0
+    },
+    {
+      "key": "162",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7740,
+          "y": 5400
+        },
+        {
+          "x": 7740,
+          "y": 4320
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "157",
+      "beginConnectionPointIndex": 0,
+      "endItemKey": "156",
+      "endConnectionPointIndex": 2
+    },
+    {
+      "key": "163",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 6030,
+          "y": 4500
+        },
+        {
+          "x": 7020,
+          "y": 5760
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "154",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "157",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "172",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 2880,
+          "y": 5580
+        },
+        {
+          "x": 3780,
+          "y": 7020
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "142",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "171",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "173",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 5040,
+          "y": 7020
+        },
+        {
+          "x": 9900,
+          "y": 7560
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "171",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "169",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "177",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 5040,
+          "y": 1440
+        },
+        {
+          "x": 9900,
+          "y": 900
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "170",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "164",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "178",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 5040,
+          "y": 7020
+        },
+        {
+          "x": 9900,
+          "y": 6300
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "171",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "168",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "179",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 8460,
+          "y": 3960
+        },
+        {
+          "x": 9900,
+          "y": 5040
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "156",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "167",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "180",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 8460,
+          "y": 2160
+        },
+        {
+          "x": 9900,
+          "y": 2160
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "158",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "165",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "181",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 8460,
+          "y": 2160
+        },
+        {
+          "x": 9900,
+          "y": 3420
+        }
+      ],
+      "style": {
+        "stroke": "#a3e7ff"
+      },
+      "beginItemKey": "158",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "166",
+      "endConnectionPointIndex": 3
+    }
+  ],
+  "shapes": [
+    {
+      "key": "139",
+      "locked": false,
+      "zIndex": 0,
+      "type": "text",
+      "text": "FRN",
+      "x": 0,
+      "y": 2700,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "140",
+      "locked": false,
+      "zIndex": 0,
+      "type": "text",
+      "text": "Condy",
+      "x": 0,
+      "y": 3600,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "141",
+      "locked": false,
+      "zIndex": 0,
+      "type": "text",
+      "text": "Crude Oil",
+      "x": 0,
+      "y": 4500,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "142",
+      "locked": false,
+      "zIndex": 0,
+      "type": "database",
+      "text": "CDU",
+      "x": 2340,
+      "y": 2340,
+      "width": 1080,
+      "height": 3240,
+      "style": {
+        "fill": "#33a7ff",
+        "stroke": "#3087ff"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "144",
+      "locked": false,
+      "zIndex": 0,
+      "type": "rectangle",
+      "text": "NSU3",
+      "x": 3780,
+      "y": 3420,
+      "width": 1260,
+      "height": 1080,
+      "style": {
+        "fill": "#33a7ff",
+        "stroke": "#3087ff"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "154",
+      "locked": false,
+      "zIndex": 0,
+      "type": "rectangle",
+      "text": "REF3",
+      "x": 5400,
+      "y": 3420,
+      "width": 1260,
+      "height": 1080,
+      "style": {
+        "fill": "#33a7ff",
+        "stroke": "#3087ff"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "156",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "TAT",
+      "x": 7020,
+      "y": 3600,
+      "width": 1440,
+      "height": 720,
+      "style": {
+        "fill": "#59a9ff",
+        "stroke": "#0061c9"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "157",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "XFU",
+      "x": 7020,
+      "y": 5400,
+      "width": 1440,
+      "height": 720,
+      "style": {
+        "fill": "#59a9ff",
+        "stroke": "#0061c9"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "158",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "PX",
+      "x": 7020,
+      "y": 1800,
+      "width": 1440,
+      "height": 720,
+      "style": {
+        "fill": "#59a9ff",
+        "stroke": "#0061c9"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "164",
+      "locked": false,
+      "zIndex": 0,
+      "type": "delay",
+      "text": "LPG",
+      "x": 9900,
+      "y": 360,
+      "width": 1080,
+      "height": 1080,
+      "style": {
+        "fill": "#009dff",
+        "stroke": "#0056cf"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "165",
+      "locked": false,
+      "zIndex": 0,
+      "type": "delay",
+      "text": "LSR",
+      "x": 9900,
+      "y": 1620,
+      "width": 1080,
+      "height": 1080,
+      "style": {
+        "fill": "#009dff",
+        "stroke": "#0056cf"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "166",
+      "locked": false,
+      "zIndex": 0,
+      "type": "delay",
+      "text": "Gasoline",
+      "x": 9900,
+      "y": 2880,
+      "width": 1080,
+      "height": 1080,
+      "style": {
+        "fill": "#009dff",
+        "stroke": "#0056cf"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "167",
+      "locked": false,
+      "zIndex": 0,
+      "type": "delay",
+      "text": "Jet",
+      "x": 9900,
+      "y": 4500,
+      "width": 1080,
+      "height": 1080,
+      "style": {
+        "fill": "#009dff",
+        "stroke": "#0056cf"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "168",
+      "locked": false,
+      "zIndex": 0,
+      "type": "delay",
+      "text": "Diesel",
+      "x": 9900,
+      "y": 5760,
+      "width": 1080,
+      "height": 1080,
+      "style": {
+        "fill": "#009dff",
+        "stroke": "#0056cf"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "169",
+      "locked": false,
+      "zIndex": 0,
+      "type": "delay",
+      "text": "FO",
+      "x": 9900,
+      "y": 7020,
+      "width": 1080,
+      "height": 1080,
+      "style": {
+        "fill": "#009dff",
+        "stroke": "#0056cf"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "170",
+      "locked": false,
+      "zIndex": 0,
+      "type": "rectangle",
+      "text": "LMT",
+      "x": 3780,
+      "y": 900,
+      "width": 1260,
+      "height": 1080,
+      "style": {
+        "fill": "#33a7ff",
+        "stroke": "#3087ff"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "key": "171",
+      "locked": false,
+      "zIndex": 0,
+      "type": "rectangle",
+      "text": "KGHT",
+      "x": 3780,
+      "y": 6480,
+      "width": 1260,
+      "height": 1080,
+      "style": {
+        "fill": "#33a7ff",
+        "stroke": "#3087ff"
+      },
+      "styleText": {
+        "fill": "#ffffff"
+      }
+    }
+  ]
+}

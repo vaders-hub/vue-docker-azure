@@ -45,13 +45,13 @@ export default defineComponent({
     DxValueAxis,
     DxConstantLine,
   },
+  emit: ['testEmit'],
   setup(context) {
     const type = ref('line')
     const types = ['line', 'stackedline', 'fullstackedline']
 
     const customizeTooltip = (text) => {
-      const title = text.seriesName
-      const body = text.value
+      const { seriesName: title, value: body } = text
 
       return {
         html: `<div><p>${title}</p><p>${body}</p></div>`,
@@ -117,6 +117,7 @@ export default defineComponent({
         <DxSelectBox :data-source="types" v-model:value="type" />
       </div>
     </div>
+    <button @click="$emit('testEmit')">emit test</button>
   </div>
 </template>
 <style lang="scss"></style>
