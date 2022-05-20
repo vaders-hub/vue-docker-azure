@@ -17,6 +17,32 @@ import {
   DxGroup,
   DxTab,
 } from 'devextreme-vue/diagram'
+// import { ShapeFlags } from '@vue/shared'
+
+type ShapeType = {
+  key: string
+  locked: boolean
+  zIndex: number
+  type: string
+  text: string
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+type DiagramType = {
+  page?: {
+    width: number
+    height: number
+    pageColor: number
+    pageWidth: number
+    pageHeight: number
+    pageLandscape: boolean
+  }
+  connectors?: Record<string, unknown>[]
+  shapes?: ShapeType[]
+}
 
 export default defineComponent({
   name: 'Diagram-1',
@@ -37,44 +63,72 @@ export default defineComponent({
   emit: [],
   setup(context) {
     const api = inject('api', (opt) => ({}), false)
-    const diagram: any = ref(null)
-
-    let diagramInstance
+    const diagram = ref<any>(null)
     let dComp = reactive({})
+    let diagramData = reactive<DiagramType>({})
+    let diagramInstance
 
     onMounted(async () => {
-      const diagramData: any = await api({ methods: 'get', url: '/api/data/diagram', params: {} })
-      if (diagram.value) {
-        diagramInstance = diagram.value.instance
-        diagramInstance.import(JSON.stringify(diagramData.data.rows))
-      }
+      loadItem()
     })
 
-    const onContentReady = (e) => {
-      const diagramInner = e.component
+    const loadItem = async () => {
+      const {
+        data: { rows },
+      }: any = await api({ methods: 'get', url: '/api/data/diagram', params: {} })
+
+      diagramData = rows
+      if (diagram.value) {
+        diagramInstance = diagram.value.instance
+        diagramInstance.import(JSON.stringify(diagramData))
+      }
     }
 
-    let selectedItemNames = ref('Nobody has been selected')
+    const onContentReady = (e) => {
+      dComp = e.component
+    }
 
     const onSelectionChanged = ({ items }) => {
-      selectedItemNames.value = 'Nobody has been selected'
-
       if (items.length > 0) {
         const [{ id, text, type }] = items
         if (type && type !== 'text') {
           alert(`${id} : ${text} : ${type}`)
         }
       }
-      // const filteredItems = items
-      //   .filter((item) => item.itemType === 'shape')
-      //   .map((item) => item.text)
-
-      // if (filteredItems.length > 0) {
-      //   selectedItemNames = filteredItems.join(', ')
-      // }
     }
 
     const onLayoutChanged = (e) => (dComp = e.component)
+
+    const changeDiagram = async () => {
+      let targetIdx = 0
+      const changed = {
+        key: '164',
+        locked: false,
+        zIndex: 0,
+        type: 'delay',
+        text: 'LPG',
+        x: 9900,
+        y: 360,
+        width: 1080,
+        height: 1080,
+        style: {
+          fill: 'red',
+          stroke: '#0056cf',
+        },
+        styleText: {
+          fill: '#ffffff',
+        },
+      }
+
+      if (diagramData.shapes) {
+        for (const [i, value] of Object.entries(diagramData.shapes)) {
+          let sel = value
+          if (changed.key === sel.key) targetIdx = parseInt(i)
+        }
+        diagramData.shapes[targetIdx] = changed
+        diagramInstance.import(JSON.stringify(diagramData))
+      }
+    }
 
     const saveDiagram = async () => {
       const changed = await diagramInstance.export(dComp)
@@ -87,12 +141,17 @@ export default defineComponent({
       onContentReady,
       onSelectionChanged,
       onLayoutChanged,
+      changeDiagram,
       saveDiagram,
     }
   },
 })
 </script>
 <template>
+  <div>
+    <button @click="changeDiagram">change</button>
+    <button @click="saveDiagram">save</button>
+  </div>
   <div>
     <!-- @request-edit-operation="onLayoutChanged" -->
     <!-- @selection-changed="onSelectionChanged" -->
@@ -150,7 +209,6 @@ export default defineComponent({
       <DxToolbox :visibility="'disabled'" />
       <!-- <DxPageSize :width="100" :height="100" /> -->
     </DxDiagram>
-    <button @click="saveDiagram">save</button>
   </div>
 </template>
 <style scoped>
