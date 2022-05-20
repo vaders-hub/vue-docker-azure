@@ -5,6 +5,11 @@ import {
   DxToolbox,
   DxMainToolbar,
   DxCommand,
+  DxContextMenu,
+  DxContextToolbox,
+  DxViewToolbar,
+  DxHistoryToolbar,
+  DxToolboxGroup,
   DxPageSize,
   DxZoomLevel,
   DxAutoLayout,
@@ -13,17 +18,21 @@ import {
   DxTab,
 } from 'devextreme-vue/diagram'
 
-import type { PropType } from 'vue'
-// import type { LineOptions } from '@/interface/common'
-
 export default defineComponent({
   name: 'Diagram-1',
-  props: {},
   components: {
     DxDiagram,
     DxToolbox,
     DxMainToolbar,
     DxCommand,
+    DxContextMenu,
+    DxContextToolbox,
+    DxPropertiesPanel,
+    DxViewToolbar,
+    DxHistoryToolbar,
+    DxToolboxGroup,
+    DxGroup,
+    DxTab,
   },
   emit: [],
   setup(context) {
@@ -50,13 +59,19 @@ export default defineComponent({
     const onSelectionChanged = ({ items }) => {
       selectedItemNames.value = 'Nobody has been selected'
 
-      const filteredItems = items
-        .filter((item) => item.itemType === 'shape')
-        .map((item) => item.text)
-
-      if (filteredItems.length > 0) {
-        selectedItemNames = filteredItems.join(', ')
+      if (items.length > 0) {
+        const [{ id, text, type }] = items
+        if (type && type !== 'text') {
+          alert(`${id} : ${text} : ${type}`)
+        }
       }
+      // const filteredItems = items
+      //   .filter((item) => item.itemType === 'shape')
+      //   .map((item) => item.text)
+
+      // if (filteredItems.length > 0) {
+      //   selectedItemNames = filteredItems.join(', ')
+      // }
     }
 
     const onLayoutChanged = (e) => (dComp = e.component)
@@ -79,14 +94,43 @@ export default defineComponent({
 </script>
 <template>
   <div>
+    <!-- @request-edit-operation="onLayoutChanged" -->
+    <!-- @selection-changed="onSelectionChanged" -->
+    <!-- <DxZoomLevel :value="1" /> -->
     <DxDiagram
       id="diagram"
       ref="diagram"
+      @selection-changed="onSelectionChanged"
       @request-edit-operation="onLayoutChanged"
       @content-ready="onContentReady"
+      :readOnly="true"
       :autoZoomMode="'fitContent'"
+      :showGrid="false"
     >
-      <DxMainToolbar :visible="true">
+      <DxToolboxGroup :visible="false" />
+      <DxContextMenu
+        :visible="false"
+        :enabled="false"
+        :commands="['bringToFront', 'sendToBack', 'lock', 'unlock']"
+      />
+      <DxContextToolbox
+        :visible="false"
+        :enabled="false"
+        :category="'flowchart'"
+        :shape-icons-per-row="5"
+        :width="200"
+      />
+      <DxPropertiesPanel :visibility="'disabled'">
+        <DxTab>
+          <DxGroup
+            :title="'Page Properties'"
+            :commands="['pageSize', 'pageOrientation', 'pageColor']"
+          />
+        </DxTab>
+      </DxPropertiesPanel>
+      <DxHistoryToolbar :visible="false" />
+      <DxViewToolbar :visible="false" />
+      <DxMainToolbar :visible="false">
         <DxCommand :name="'undo'" />
         <DxCommand :name="'redo'" />
         <DxCommand :name="'separator'" />
@@ -103,10 +147,7 @@ export default defineComponent({
         <DxCommand :name="'separator'" />
         <DxCommand :name="'clear'" :icon="'clearsquare'" :text="'Clear Diagram'" />
       </DxMainToolbar>
-      <!-- @request-edit-operation="onLayoutChanged" -->
-      <!-- @selection-changed="onSelectionChanged" -->
-      <!-- <DxZoomLevel :value="1" /> -->
-      <DxToolbox :visibility="'visible'" />
+      <DxToolbox :visibility="'disabled'" />
       <!-- <DxPageSize :width="100" :height="100" /> -->
     </DxDiagram>
     <button @click="saveDiagram">save</button>
