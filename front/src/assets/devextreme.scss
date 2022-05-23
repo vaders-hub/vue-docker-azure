@@ -8,7 +8,7 @@ body {
       stroke-width: 2;
     }
   }
-  
+
   .tooltip-header {
     margin-bottom: 5px;
     font-size: 16px;
@@ -18,7 +18,7 @@ body {
   }
   .tooltip-body {
     display: inline-block;
-    font-family: "suit";
+    font-family: 'suit';
     opacity: 0.6;
     line-height: 1.5;
     color: #000;
@@ -35,23 +35,109 @@ body {
     width: 50rem;
   }
 
-  #Scope_1_2 {
+  #scope_1_2 {
     height: 336px;
     width: 660px;
   }
 
-  #Scope_3 {
+  #scope_3 {
     height: 336px;
     width: 660px;
   }
 
-  #Site {
+  #site {
     height: 414px;
     width: 400px;
+    g.dxc-series-group g.dxc-markers {
+      path:nth-child(1) {
+        fill: #d9745f;
+      }
+      path:nth-child(2) {
+        fill: #d9895f;
+      }
+      path:nth-child(3) {
+        fill: #e69b50;
+      }
+      path:nth-child(4) {
+        fill: #e9b150;
+      }
+      path:nth-child(5) {
+        fill: #f3c848;
+      }
+      path:nth-child(6) {
+        fill: #d1cead;
+      }
+      path:nth-child(7) {
+        fill: #e8e5d3;
+      }
+      path:nth-child(8) {
+        fill: #c0d4c2;
+      }
+    }
+    g.dxc-item {
+      g:nth-child(1) > .dxl-marker rect {
+        fill: #d9745f;
+      }
+      g:nth-child(2) > .dxl-marker rect {
+        fill: #d9895f;
+      }
+      g:nth-child(3) > .dxl-marker rect {
+        fill: #e69b50;
+      }
+      g:nth-child(4) > .dxl-marker rect {
+        fill: #e9b150;
+      }
+      g:nth-child(5) > .dxl-marker rect {
+        fill: #f3c848;
+      }
+      g:nth-child(6) > .dxl-marker rect {
+        fill: #d1cead;
+      }
+      g:nth-child(7) > .dxl-marker rect {
+        fill: #e8e5d3;
+      }
+      g:nth-child(8) > .dxl-marker rect {
+        fill: #c0d4c2;
+      }
+    }
   }
 
-  #Cate {
+  #cate {
     height: 414px;
     width: 400px;
+    g.dxc-series-group g.dxc-markers {
+      path:nth-child(1) {
+        fill: #d9745f;
+      }
+      path:nth-child(2) {
+        fill: #d9895f;
+      }
+      path:nth-child(3) {
+        fill: #e69b50;
+      }
+      path:nth-child(4) {
+        fill: #e9b150;
+      }
+      path:nth-child(5) {
+        fill: #f3c848;
+      }
+    }
+    g.dxc-item {
+      g:nth-child(1) > .dxl-marker rect {
+        fill: #d9745f;
+      }
+      g:nth-child(2) > .dxl-marker rect {
+        fill: #d9895f;
+      }
+      g:nth-child(3) > .dxl-marker rect {
+        fill: #e69b50;
+      }
+      g:nth-child(4) > .dxl-marker rect {
+        fill: #e9b150;
+      }
+      g:nth-child(5) > .dxl-marker rect {
+        fill: #f3c848;
+      }
+    }
   }
 }

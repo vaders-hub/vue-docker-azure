@@ -11,7 +11,7 @@ import {
   DxLegend,
   // DxExport,
   DxTooltip,
-} from 'devextreme-vue/chart';
+} from 'devextreme-vue/chart'
 
 import type { PropType } from 'vue'
 import type { BarOptions } from '@/interface/common'
@@ -44,11 +44,11 @@ export default defineComponent({
       /* if (data.value > TrendLine) {
         return { color: '#ff7c7c', hoverStyle: { color: 'grey' } };
       } */
-      return { hoverStyle: { color: 'grey' } };
+      return { hoverStyle: { color: 'grey' } }
     }
 
     const customizeLabel = (data) => {
-    /*  Bar 라벨
+      /*  Bar 라벨
         if (data.value > TrendLine) {
         return {
           visible: true,
@@ -58,11 +58,11 @@ export default defineComponent({
           }
         }
       } */
-      return null; 
+      return null
     }
 
     const customizeText = (valueText) => {
-      return `${valueText.value}`; //&#176F;`
+      return `${valueText.value}` //&#176F;`
     }
 
     const customizeTooltip = (data) => {
@@ -93,26 +93,36 @@ export default defineComponent({
 </script>
 <template>
   <div :id="Options.idName">
-    <DxChart id="Scope_3" :customize-point="customizePoint" :customize-label="customizeLabel" :data-source="Options.loadedData" title="">
-      <DxSeries argument-field="baseDt" value-field=value name="Scope3" type="bar" color="#E69B50" />
+    <DxChart
+      id="scope_3_chart"
+      :customize-point="customizePoint"
+      :customize-label="customizeLabel"
+      :data-source="Options.loadedData"
+      title=""
+    >
+      <DxSeries
+        argument-field="baseDt"
+        value-field="value"
+        name="Scope3"
+        type="bar"
+        color="#E69B50"
+      />
       <DxValueAxis :max-value-margin="0.01">
         <DxVisualRange :start-value="0" />
         <DxLabel :customize-text="customizeText" />
         <DxConstantLine :width="2" :value="TrendLine" color="#FF7A00" dash-style="dash">
           <DxLabel text="Trend" horizontal-alignment="right">
-            <DxFont :size="14" color="#FF7A00" weight="normal" family="suit" />
+            <DxFont :size="14" color="#FF7A00" family="suit" />
           </DxLabel>
         </DxConstantLine>
       </DxValueAxis>
       <DxLegend
-          vertical-alignment="top"
-          horizontal-alignment="center"
-          item-text-position="bottom"
+        vertical-alignment="top"
+        horizontal-alignment="center"
+        item-text-position="bottom"
       />
-      <DxExport :enabled="true" />
       <DxTooltip :enabled="true" :shared="true" :customize-tooltip="customizeTooltip" />
     </DxChart>
   </div>
 </template>
-<style lang="scss">
-</style>
+<style lang="scss"></style>

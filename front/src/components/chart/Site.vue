@@ -34,9 +34,12 @@ export default defineComponent({
   },
   setup(context) {
     const customizeTooltip = (data) => {
-      console.log(data)
       const site = data.argument
       const value = data.value
+
+      // let test = document.getElementById('pie_chart');
+      // let test = document.getElementById('pie_chart')?.firstChild?.childNodes[3].firstChild?.firstChild?.firstChild
+      // if(test != null) test.style.opacity = "0.0";
 
       return {
         html: `<div>
@@ -47,7 +50,6 @@ export default defineComponent({
               </div>`,
       }
     }
-
     return {
       customizeTooltip,
     }
@@ -57,15 +59,13 @@ export default defineComponent({
 <template>
   <div :id="Options.idName">
     <DxPieChart
-      id="pie"
+      id="pie_chart"
       :data-source="Options.loadedData"
       type="doughnut"
       title=""
       palette="Soft Pastel"
     >
       <DxSeries argument-field="CompNm" value-field="Val" />
-      <DxSmallValueGrouping :top-count="3" mode="topN" />
-      <DxExport :enabled="true" />
       <DxLegend :margin="20" horizontal-alignment="center" vertical-alignment="top" />
       <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip" />
     </DxPieChart>

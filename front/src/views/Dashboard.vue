@@ -3,8 +3,6 @@ import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { hander } from '@/lib/index'
 import { useDashboardStore } from '@/store/dashboard'
 import Line from '@/components/chart/Line.vue'
-import Pareto from '@/components/chart/Pareto.vue'
-import Pie from '@/components/chart/Pie.vue'
 import Scope_1_2 from '@/components/chart/Scope_1_2.vue'
 import Scope_3 from '@/components/chart/Scope_3.vue'
 import Site from '@/components/chart/Site.vue'
@@ -15,22 +13,21 @@ import type { SiteOptions } from '@/interface/common'
 import type { PieOptions } from '@/interface/common'
 
 import 'devextreme/dist/css/dx.light.css'
-import Doughnut from '../components/chart/Doughnut.vue'
+import WorldMap from '../components/chart/WorldMap.vue'
 
 export default defineComponent({
   name: 'Dashboard',
   components: {
     Line,
-    Pie,
-    Doughnut,
     Scope_1_2,
     Scope_3,
     Site,
     Cate,
+    WorldMap,
   },
   data() {
     return {
-      std_year: "2022",
+      std_year: '2022',
     }
   },
   setup(context) {
@@ -45,8 +42,8 @@ export default defineComponent({
       ],
       loadedData: [],
     })
-  const scope_1_2_data = reactive<BarOptions>({
-      idName: 'bar-demo',
+    const scope_1_2_data = reactive<BarOptions>({
+      idName: 'scope_1_2',
       series: [
         { value: 'scope1', name: 'Scope1' },
         { value: 'scope2', name: 'Scope2' },
@@ -54,34 +51,28 @@ export default defineComponent({
       loadedData: [],
     })
     const scope_3_data = reactive<BarOptions>({
-      idName: 'bar-demo',
-      series: [
-        { value: 'scope3', name: 'Scope3' },
-      ],
+      idName: 'scope_3',
+      series: [{ value: 'scope3', name: 'Scope3' }],
       loadedData: [],
     })
     const site_data = reactive<SiteOptions>({
-      idName: 'pie-demo',
-      series: [
-        { value: 'compNm', name: 'compNm' },
-      ],
+      idName: 'site',
+      series: [{ value: 'compNm', name: 'compNm' }],
       loadedData: [],
     })
     const cate_data = reactive<PieOptions>({
-      idName: 'pie-demo',
-      series: [
-        { value: 'scope3', name: 'Scope3' },
-      ],
+      idName: 'cate',
+      series: [{ value: 'scope3', name: 'Scope3' }],
       loadedData: [],
     })
-    
+
     const loadDatas = async () => {
       try {
         await dashboardStore.loadData('line')
         lineOptions.loadedData = dashboardStore.dataSet.line
 
         await dashboardStore.loadData('scope_1_2_data')
-        scope_1_2_data.loadedData = dashboardStore.dataSet.scope_1_2_data  
+        scope_1_2_data.loadedData = dashboardStore.dataSet.scope_1_2_data
 
         await dashboardStore.loadData('scope_3_data')
         scope_3_data.loadedData = dashboardStore.dataSet.scope_3_data
@@ -101,7 +92,7 @@ export default defineComponent({
       loadDatas()
     })
 
-    return { lineOptions, scope_1_2_data, scope_3_data, site_data, cate_data, }
+    return { lineOptions, scope_1_2_data, scope_3_data, site_data, cate_data }
   },
 })
 </script>
@@ -248,7 +239,7 @@ export default defineComponent({
           <span class="lca-chart__unit">(단위 : MWh)</span>
         </div>
         <div class="lca-chart__area">
-          <img src="@/assets/images/dummy-chart-1440x710.gif" alt="" />
+          <WorldMap />
           <!-- <img src="@/assets/images/.gif" alt=""> -->
         </div>
       </div>
@@ -274,16 +265,14 @@ export default defineComponent({
                 <span class="lca-chart__unit">(단위 : MWh)</span>
               </div>
               <div class="lca-chart__area">
-                <Site :Options="site_data"/>
+                <Site :Options="site_data" />
               </div>
             </div>
             <div class="lca-chart">
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">배출활동별 배출현황</h3>
               </div>
-              <div class="lca-chart__area">
-                <Doughnut />
-              </div>
+              <div class="lca-chart__area"></div>
             </div>
             <div class="lca-chart">
               <div class="lca-chart__title-wrap">
@@ -414,7 +403,7 @@ export default defineComponent({
                 </li>
               </ul>
               <div class="lca-chart__area">
-                  <Scope_3 :Options="scope_3_data" />
+                <Scope_3 :Options="scope_3_data" />
               </div>
             </div>
           </div>
@@ -545,17 +534,13 @@ export default defineComponent({
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">배출활동별 배출현황</h3>
               </div>
-              <Pie />
-              <div class="lca-chart__area">
-              </div>
+              <div class="lca-chart__area"></div>
             </div>
             <div class="lca-chart">
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">카테고리별 배출현황</h3>
               </div>
-              <Pie />
-              <div class="lca-chart__area">
-              </div>
+              <div class="lca-chart__area"></div>
             </div>
           </div>
           <div class="swiper-slide">
@@ -563,17 +548,13 @@ export default defineComponent({
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">배출활동별 배출현황</h3>
               </div>
-              <Pie />
-              <div class="lca-chart__area">
-              </div>
+              <div class="lca-chart__area"></div>
             </div>
             <div class="lca-chart">
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">카테고리별 배출현황</h3>
               </div>
-              <Pie />
-              <div class="lca-chart__area">
-              </div>
+              <div class="lca-chart__area"></div>
             </div>
           </div>
           <div class="swiper-slide">
@@ -581,17 +562,13 @@ export default defineComponent({
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">배출활동별 배출현황</h3>
               </div>
-              <Pie />
-              <div class="lca-chart__area">
-              </div>
+              <div class="lca-chart__area"></div>
             </div>
             <div class="lca-chart">
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">카테고리별 배출현황</h3>
               </div>
-              <Pie />
-              <div class="lca-chart__area">
-              </div>
+              <div class="lca-chart__area"></div>
             </div>
           </div>
         </div>

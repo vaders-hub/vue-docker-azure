@@ -56,15 +56,13 @@ export default defineComponent({
 <template>
   <div :id="Options.idName">
     <DxPieChart
-      id="pie"
+      id="cate_chart"
       :data-source="Options.loadedData"
       type="doughnut"
       title=""
       palette="Soft Pastel"
     >
       <DxSeries argument-field="Category" value-field="Val" />
-      <DxSmallValueGrouping :top-count="3" mode="topN" />
-      <DxExport :enabled="true" />
       <DxLegend :margin="20" horizontal-alignment="center" vertical-alignment="top" />
       <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip" />
     </DxPieChart>
