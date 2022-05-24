@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref, defineProps } from 'vue'
-import * as mapsData from 'devextreme/dist/js/vectormap-data/world.js';
+import * as mapsData from 'devextreme/dist/js/vectormap-data/world.js'
 import {
   DxVectorMap,
   DxLayer,
@@ -8,7 +8,7 @@ import {
   DxTooltip,
   DxBorder,
   DxFont,
-} from 'devextreme-vue/vector-map';
+} from 'devextreme-vue/vector-map'
 
 export const countries = {
   Russia: { totalArea: 17.12, color: '#1E90FF' },
@@ -24,9 +24,9 @@ export const countries = {
 
   'Trinidad and Tobago': { totalArea: 2.38, color: 'black' },
   'Papua New Guinea': { totalArea: 2.38, color: 'red' },
-  'Côte d\'Ivoire': { totalArea: 2.38, color: 'red' },
+  "Côte d'Ivoire": { totalArea: 2.38, color: 'red' },
   'Dem. Rep. Korea': { totalArea: 2.38, color: 'red' },
-};
+}
 
 export default {
   components: {
@@ -41,70 +41,60 @@ export default {
     return {
       worldData: mapsData.world,
       bounds: [-180, 85, 180, -60],
-    };
+    }
   },
   methods: {
     customizeTooltip(info) {
-      const name = info.attribute('name');
-      const country = countries[name];
+      const name = info.attribute('name')
+      const country = countries[name]
       if (country) {
         return {
           text: `${name}: ${country.totalArea}M km&#178`,
           color: country.color,
-        };
+        }
       }
-      return null;
+      return null
     },
 
     click({ target }) {
-      let mapNm = ""
-      mapsData.world.features.forEach(i => {
-        mapNm += i.properties.name + ",";
-      });
-      console.log(mapNm);
-      var test = document.getElementsByClassName('dxm-control-bar');
+      let mapNm = ''
+      mapsData.world.features.forEach((i) => {
+        mapNm += i.properties.name + ','
+      })
+      console.log(mapNm)
+      var test = document.getElementsByClassName('dxm-control-bar')
 
       if (target && countries[target.attribute('name')]) {
-        target.selected(!target.selected());
+        target.selected(!target.selected())
       }
     },
 
     customizeLayer(elements) {
       elements.forEach((element) => {
-        const country = countries[element.attribute('name')];
+        const country = countries[element.attribute('name')]
         if (country) {
           element.applySettings({
             color: country.color,
             hoveredColor: '#e0e000',
             selectedColor: '#008f00',
-          });
+          })
         }
-      });
+      })
     },
-  }, 
-};
+  },
+}
 </script>
 <template>
-  <DxVectorMap
-    id="vector-map"
-    :bounds="bounds"
-    @click="click"
-  >
-    <DxLayer
-      :data-source="worldData"
-      :customize="customizeLayer"
-    />
-    <DxTooltip
-      :enabled="true"
-      :customize-tooltip="customizeTooltip"
-    >
-      <DxBorder :visible="true"/>
-      <DxFont color="#fff"/>
+  <DxVectorMap id="vector-map" :bounds="bounds" @click="click">
+    <DxLayer :data-source="worldData" :customize="customizeLayer" />
+    <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip">
+      <DxBorder :visible="true" />
+      <DxFont color="#fff" />
     </DxTooltip>
   </DxVectorMap>
 </template>
 <style lang="scss">
-  #vector-map {
+#vector-map {
   height: 710px;
   width: 1440px;
 }

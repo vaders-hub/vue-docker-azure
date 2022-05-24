@@ -17,7 +17,7 @@ export default defineComponent({
     msg: { type: String, default: 'SKI LCA infra' },
   },
   setup(context) {
-    const mainStore = useMainStore()
+    const mainStore: any = useMainStore()
     const api = inject('api', (opt) => ({}), false)
     const apiService = inject<ApiService>('apiService')
     const router = useRouter()
@@ -26,11 +26,11 @@ export default defineComponent({
     const isLoggedIn = computed(() => (mainStore.members.login ? true : false))
     const goGate = async () => router.push({ name: 'Gate' })
     const goDashboard = async () => router.push({ name: 'Dashboard' })
-    const goAssessment = async () => router.push({ name: 'Assessment' })
+    const goAssessment = async () => router.push({ name: 'ASSESSMENT' })
     const goAdmin = async () => router.push({ path: '/admin/code' })
     const goSocket = async () => router.push({ name: 'Login' })
     const procLoginStore = () => mainStore.login(loginInfo)
-    const procLogoutStore = () => mainStore.logout()
+    const procLogoutStore = () => mainStore.logout(false)
     const procLoginComponent = async () => {
       try {
         const user = await api({ methods: 'get', url: '/api/member', params: loginInfo })
@@ -39,7 +39,7 @@ export default defineComponent({
       }
     }
     const procLoginComponentService = async () => apiService?.login(loginInfo)
-    const procLogout = () => mainStore.logout()
+    const procLogout = () => mainStore.logout(false)
 
     return {
       goGate,

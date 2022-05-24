@@ -1,15 +1,25 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { hander } from '@/lib/index'
 
 export default defineComponent({
   name: 'Scope_3',
   components: {},
   setup(context) {
+    const router = useRouter()
+
     onMounted(() => {
       hander.contentReady()
     })
-    return {}
+
+    const onClickMenu = async (e, url) => {
+      e.preventDefault()
+      router.push({ path: `/${url}` })
+    }
+    return {
+      onClickMenu,
+    }
   },
 })
 </script>
@@ -35,7 +45,11 @@ export default defineComponent({
     <div class="gateway bg-full">
       <div class="gateway__menu">
         <!-- (js) default class 추가 없음,  hover 시 .expand 추가, 나머지 a.gateway__link .reduce 추가 -->
-        <a href="#" class="gateway__link gateway__link--monitoring">
+        <a
+          href="#"
+          class="gateway__link gateway__link--monitoring"
+          @click="onClickMenu($event, 'storyline')"
+        >
           <span class="gateway__txt">
             <span class="gateway__desc"
               >우리가 배출하는 온실가스 뿐만 아니라 <br />Net Zero를 추구하고자 합니다.</span
@@ -43,7 +57,11 @@ export default defineComponent({
             <strong class="gateway__tit">MONITORING</strong>
           </span>
         </a>
-        <a href="#" class="gateway__link gateway__link--assessment">
+        <a
+          href="#"
+          class="gateway__link gateway__link--assessment"
+          @click="onClickMenu($event, 'assessment')"
+        >
           <span class="gateway__txt"
             ><span class="gateway__desc"
               >'기후변화'에 적극적으로 대응하기 위한 <br />자체 평가를 실시합니다.</span
@@ -54,3 +72,8 @@ export default defineComponent({
     </div>
   </div>
 </template>
+<style scoped>
+.header__inner {
+  background: none !important;
+}
+</style>

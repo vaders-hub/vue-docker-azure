@@ -1,22 +1,22 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, watch } from "vue";
-import Header from "@/components/common/Header.vue";
-import Footer from "@/components/common/Footer.vue";
+import { defineComponent, defineAsyncComponent, onMounted, reactive, watch } from 'vue'
+import Header from '@/components/common/Header.vue'
+import Footer from '@/components/common/Footer.vue'
 
 export default defineComponent({
-  name: "Default",
+  name: 'Default',
   components: {
     Header,
-    Footer
+    Footer,
   },
   setup(context) {
-    return {};
+    return {}
   },
-});
+})
 </script>
 
 <template>
-  <Header/>
+  <Header />
   <RouterView />
-  <Footer/>
+  <Footer />
 </template>

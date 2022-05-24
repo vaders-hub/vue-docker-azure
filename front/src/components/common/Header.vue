@@ -26,7 +26,7 @@ export default defineComponent({
 
     const goHome = async () => {
       // await mainStore.login();
-      router.push({ name: 'Home' })
+      router.push({ path: '/' })
     }
 
     return {
@@ -39,7 +39,7 @@ export default defineComponent({
 <template>
   <header class="header">
     <div class="header__inner">
-      <strong class="lca-logo">
+      <strong class="lca-logo" @click="goHome">
         <span class="lca-logo__image"><span class="hidden">SK 이노베이션</span></span>
         <span class="lca-logo__txt">LCA Infra</span>
       </strong>

@@ -4,16 +4,16 @@ import { useMainStore } from '@/store/index'
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    meta: { layout: 'Main' },
-    component: () => import('@/views/Home.vue'),
-  },
-  {
-    path: '/gate',
     name: 'Gate',
     meta: { layout: 'Main' },
     component: () => import('@/views/Gate.vue'),
   },
+  // {
+  //   path: '/gate',
+  //   name: 'Gate',
+  //   meta: { layout: 'Main' },
+  //   component: () => import('@/views/Gate.vue'),
+  // },
   {
     path: '/intro',
     name: 'Intro',
@@ -27,9 +27,15 @@ const routes = [
     component: () => import('@/views/Login.vue'),
   },
   {
+    path: '/storyline',
+    name: 'Storyline',
+    meta: { layout: 'Main' },
+    component: () => import('@/views/StoryLine.vue'),
+  },
+  {
     path: '/assessment',
     name: 'Assessment',
-    meta: { layout: 'Default' },
+    meta: { layout: 'Main' },
     component: () => import('@/views/Assessment.vue'),
   },
   {
@@ -91,11 +97,11 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const mainStore = useMainStore()
 
-  mainStore.changeLoadingpageStatus(true)
-  if (to.meta.layout) mainStore.changeLayout(to.meta.layout)
+  await mainStore.changeLoadingpageStatus(true)
+  if (to.meta.layout) await mainStore.changeLayout(to.meta.layout)
 
   next()
 })
