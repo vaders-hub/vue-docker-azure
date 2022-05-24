@@ -42,6 +42,7 @@ class Gnb {
         el.target.classList.remove('is-active');
         el.gnbBtn.setAttribute('aria-expanded', false);
         el.menu.setAttribute('aria-hidden', true);
+        el.gnbBtn.focus();
       },
       setActiveMenu: (evt) => {
         [...el.menuDepth1].forEach(element => {

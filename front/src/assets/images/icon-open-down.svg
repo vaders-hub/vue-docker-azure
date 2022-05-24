@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="container" width="20" height="20" fill="rgba(255,0,0,0.29)" opacity="0"/>
+    </clipPath>
+  </defs>
+  <g id="ico" clip-path="url(#clip-path)">
+    <path id="ico-2" data-name="ico" d="M0,0H10V10" transform="translate(17.142 6.429) rotate(135)" fill="#fff"/>
+    <path id="ico_-_윤곽선" data-name="ico - 윤곽선" d="M11,10H9V1H0V-1H11Z" transform="translate(17.142 6.429) rotate(135)"/>
+  </g>
+</svg>

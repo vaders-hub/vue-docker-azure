@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72.317" height="50" viewBox="0 0 72.317 50">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="mask" width="71.701" height="43.021" fill="red" opacity="0.1"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <circle id="타원_15" data-name="타원 15" cx="7.17" cy="7.17" r="7.17" fill="#eeca1a"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="사각형_863" data-name="사각형 863" width="42.895" height="42.895" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="ico_80_SKG_on" transform="translate(0 3.763)">
+    <rect id="container" width="72" height="50" transform="translate(0.317 -3.763)" fill="none" opacity="0.1"/>
+    <g id="꾸밈요소" clip-path="url(#clip-path)">
+      <circle id="타원_14" data-name="타원 14" cx="10.755" cy="10.755" r="10.755" transform="translate(1.509 21.51)" fill="#d1ad1c" opacity="0.2"/>
+      <circle id="타원_16" data-name="타원 16" cx="5.378" cy="5.378" r="5.378" transform="translate(0 17.925)" fill="#e3913f" opacity="0.2"/>
+      <g id="마스크_그룹_1" data-name="마스크 그룹 1" transform="translate(64.543 25.723) rotate(45)" clip-path="url(#clip-path-2)">
+        <g id="합치기_4" data-name="합치기 4" transform="translate(0 -1.793)">
+          <path id="패스_1858" data-name="패스 1858" d="M8.067,16.133h0V0h0ZM0,16.133H0V0H0Z" transform="translate(5.825 0.448)" fill="#fff"/>
+          <path id="패스_1859" data-name="패스 1859" d="M17.029,17.029h-.9V0h.9Zm-2.689,0h-.9V0h.9Zm-2.689,0h-.9V0h.9Zm-2.689,0h-.9V0h.9Zm-2.689,0h-.9V0h.9Zm-2.689,0h-.9V0h.9Zm-2.689,0H0V0H.9Z" fill="#f2df64"/>
+        </g>
+      </g>
+    </g>
+    <g id="icon" transform="translate(14.34)">
+      <g id="그룹_1069" data-name="그룹 1069" clip-path="url(#clip-path-3)">
+        <path id="패스_2084" data-name="패스 2084" d="M28.456,35.979A14.691,14.691,0,0,1,21.949,43.8H7.331A14.651,14.651,0,0,1,9.76,17.3V8.76h1.461V17.3a1.457,1.457,0,0,1-.977,1.38A13.17,13.17,0,0,0,1.551,29.491c2.554-.663,8.756-1.712,14.2,1.658,5.575,3.451,10.854.287,12.064-.547a13.185,13.185,0,0,0-8.774-11.92,1.457,1.457,0,0,1-.977-1.38V8.76h1.461V17.3a14.639,14.639,0,0,1,8.936,18.678" transform="translate(0 -0.909)" fill="#bac8a6"/>
+        <path id="패스_2085" data-name="패스 2085" d="M22.323,5.331v.977a1.9,1.9,0,0,1-1.891,1.9h-9.76a1.893,1.893,0,0,1-1.891-1.9V5.331A1.891,1.891,0,0,1,10.671,3.44h9.76a1.9,1.9,0,0,1,1.891,1.891" transform="translate(-0.911 -0.357)" fill="#667c68"/>
+        <path id="패스_2086" data-name="패스 2086" d="M42.52,17.15h4.786V15.77H42.52Zm0,8.792h4.786V24.553H42.52Zm0-4.4h4.786v-1.38H42.52Z" transform="translate(-4.411 -1.636)" fill="#bac8a6"/>
+        <path id="패스_2087" data-name="패스 2087" d="M41.845,14.943v1.38h4.786v3.011H41.845v1.38h4.786v3.011H41.845v1.389h4.786v13.22a5.31,5.31,0,0,1-10.621,0V7.8H46.631v7.143Z" transform="translate(-3.736 -0.809)" fill="#bac8a6"/>
+        <rect id="사각형_860" data-name="사각형 860" width="4.786" height="1.389" transform="translate(38.109 22.917)" fill="#39393a"/>
+        <rect id="사각형_861" data-name="사각형 861" width="4.786" height="1.38" transform="translate(38.109 14.134)" fill="#39393a"/>
+        <rect id="사각형_862" data-name="사각형 862" width="4.786" height="1.38" transform="translate(38.109 18.526)" fill="#39393a"/>
+        <path id="패스_2088" data-name="패스 2088" d="M37.386,2.868A2.868,2.868,0,1,1,34.518,0a2.871,2.871,0,0,1,2.868,2.868" transform="translate(-3.283 0)" fill="#667c68"/>
+        <path id="패스_2089" data-name="패스 2089" d="M30.968,10A2.384,2.384,0,1,1,28.584,7.62,2.381,2.381,0,0,1,30.968,10" transform="translate(-2.718 -0.79)" fill="#667c68"/>
+        <path id="패스_2090" data-name="패스 2090" d="M19.216,18.682a1.457,1.457,0,0,1-.977-1.38V8.76H11.4V17.3a1.457,1.457,0,0,1-.977,1.38A13.17,13.17,0,0,0,1.73,29.491c2.554-.663,8.756-1.712,14.2,1.658C21.5,34.6,26.78,31.435,27.99,30.6a13.185,13.185,0,0,0-8.774-11.92m-8.792,8.461a2.38,2.38,0,1,1,2.384-2.375,2.379,2.379,0,0,1-2.384,2.375" transform="translate(-0.179 -0.909)" fill="#39393a"/>
+        <path id="패스_2091" data-name="패스 2091" d="M13.539,26.344a2.38,2.38,0,1,1-2.384-2.384,2.381,2.381,0,0,1,2.384,2.384" transform="translate(-0.911 -2.486)" fill="#667c68"/>
+      </g>
+    </g>
+  </g>
+</svg>

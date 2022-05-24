@@ -26,7 +26,7 @@ class Popup {
       btnClose: '.popup-close',
       btnConfirm: '.popup-btn > .btn',
       layerPopWrap: 'div',
-      focus: 'a, input, button, [tabindex]'
+      focus: 'a, input, button, .popup'
     };
 
     const setProperty = () => {

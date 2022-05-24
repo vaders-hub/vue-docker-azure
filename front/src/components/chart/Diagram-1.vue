@@ -68,6 +68,12 @@ export default defineComponent({
     let diagramData = reactive<DiagramType>({})
     let diagramInstance
 
+    const checks = [
+      { name: 'check-a', value: 'a' },
+      { name: 'check-b', value: 'b' },
+      { name: 'check-c', value: 'c' },
+    ]
+
     onMounted(async () => {
       loadItem()
     })
@@ -122,8 +128,7 @@ export default defineComponent({
 
       if (diagramData.shapes) {
         for (const [i, value] of Object.entries(diagramData.shapes)) {
-          let sel = value
-          if (changed.key === sel.key) targetIdx = parseInt(i)
+          if (changed.key === value.key) targetIdx = parseInt(i)
         }
         diagramData.shapes[targetIdx] = changed
         diagramInstance.import(JSON.stringify(diagramData))
@@ -143,6 +148,7 @@ export default defineComponent({
       onLayoutChanged,
       changeDiagram,
       saveDiagram,
+      checks,
     }
   },
 })
@@ -151,6 +157,12 @@ export default defineComponent({
   <div>
     <button @click="changeDiagram">change</button>
     <button @click="saveDiagram">save</button>
+  </div>
+  <div>
+    <span v-for="(item, index) in checks" :key="index">
+      <input type="checkbox" :vaule="item.value" :id="`${item.value}ck`" />
+      <label :for="`${item.value}ck`">{{ item.name }}</label>
+    </span>
   </div>
   <div>
     <!-- @request-edit-operation="onLayoutChanged" -->
@@ -225,5 +237,9 @@ export default defineComponent({
 .selected-data .caption {
   font-weight: bold;
   font-size: 115%;
+}
+
+input {
+  -webkit-appearance: auto;
 }
 </style>

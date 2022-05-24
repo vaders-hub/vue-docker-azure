@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="area" width="20" height="20" transform="translate(555 442)" stroke="#ddd" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="on" transform="translate(-20 -11)">
+    <g id="off" transform="translate(20 11)" fill="#fff" stroke="#000" stroke-width="2">
+      <rect width="20" height="20" stroke="none"/>
+      <rect x="1" y="1" width="18" height="18" fill="none"/>
+    </g>
+    <g id="check" transform="translate(-535 -431)" clip-path="url(#clip-path)">
+      <path id="ico" d="M11886.357-11755.918v-5.012h-14.014v-2h16v.035h.035v6.976Z" transform="translate(653.093 -16267.223) rotate(135)"/>
+    </g>
+  </g>
+</svg>

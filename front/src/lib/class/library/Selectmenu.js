@@ -135,7 +135,11 @@ class Selectmenu {
 
       unbind();
 
-      el.select.removeChild(el.select.querySelector('[hidden]'));
+      const hidden = el.select.querySelector('[hidden]');
+      if (hidden) {
+        el.select.removeChild(hidden);
+      }
+
       el.container.removeChild(el.container.querySelector(`.${className.button}`));
       el.container.removeChild(el.container.querySelector(`.${className.listWrap}`));
 
@@ -163,7 +167,7 @@ class Selectmenu {
 
         // button
         el.button = document.createElement('button');
-        el.button.className = "2022년";
+        el.button.className = className.button;
         utils.setAttributes(el.button, {
           'tabindex': 0,
           'role': 'combobox',
@@ -241,6 +245,14 @@ class Selectmenu {
       },
 
       createOptions: () => {
+        const sel = el.select.querySelector('option[selected]');
+        if (sel) {
+          el.select.activeIndex = utils.getIndex(sel);
+          // console.log(el.select.activeIndex);
+        } else {
+          el.select.activeIndex = 0;
+        }
+
         if (datasetOpt.msg) {
           const op = document.createElement('option');
           op.textContent = datasetOpt.msg;
@@ -250,22 +262,20 @@ class Selectmenu {
           });
 
           el.select.insertAdjacentElement('afterbegin', op);
-          el.titleSpan.textContent = datasetOpt.msg;
-          activeIndex = 1;
-          el.select.activeIndex = 1;
-          firstActive = 1;
-        } else {
-          const sel = el.select.querySelector('option[selected]');
-          if (sel) {
-            el.select.activeIndex = sel.index;
-          } else {
+
+          if (!sel) {
+            el.titleSpan.textContent = datasetOpt.msg;
+            activeIndex = 0;
             el.select.activeIndex = 0;
+            firstActive = 1;
+          } else {
+            el.select.activeIndex = el.select.activeIndex + 1;
           }
         }
 
         const list = el.select.options;
-
         // console.log(el.select.activeIndex);
+        
 
         for (let i = 0; i < list.length; i++) {
           const li = document.createElement('li');
@@ -286,7 +296,7 @@ class Selectmenu {
 
           li.classList.add(className.listItem);
 
-          // console.log(option, 'selected xxx ', option.selected);
+          // console.log(option, 'selected xxx ', el.select.activeIndex);
           if (el.select.activeIndex === i) {
             if (datasetOpt.multiText) {
               method.changeMultiText(option, el.titleSpan);
@@ -328,7 +338,6 @@ class Selectmenu {
 
       change: (idx) => {
         const option = el.options[idx];
-        console.log(idx, ' : ', option,' ', el.options.length);
 
         if (datasetOpt.multiText) {
           method.changeMultiText(option, el.titleSpan);
