@@ -44,7 +44,7 @@ export default defineComponent({
   overflow: hidden;
   z-index: 101;
   pointer-events: none;
-  background-color: rgba(0, 217, 255, 0.5);
+  background-color: rgba(0, 217, 255, 0);
   p {
     display: table-cell;
     text-align: center;

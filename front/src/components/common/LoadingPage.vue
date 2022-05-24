@@ -25,7 +25,7 @@ export default defineComponent({
 </script>
 <template>
   <div :class="divClass">
-    <p>page loading</p>
+    <p></p>
   </div>
 </template>
 <style lang="scss" scoped>
