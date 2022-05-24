@@ -12,7 +12,7 @@ httpsServer.listen(PORT, (): void => {
 
 const io = new ioServer(httpsServer, {
   cors: {
-    origin: ['http://localhost:3008'],
+    origin: ['http://localhost:3008', 'http://localhost:8081'],
     allowedHeaders: ['my-custom-header'],
     credentials: true,
   },

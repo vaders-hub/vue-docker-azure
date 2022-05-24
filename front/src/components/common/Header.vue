@@ -29,8 +29,15 @@ export default defineComponent({
       router.push({ path: '/' })
     }
 
+    const onClickMenu = async (e) => {
+      e.preventDefault()
+      // await mainStore.login();
+      router.push({ path: '/dashboard' })
+    }
+
     return {
       goHome,
+      onClickMenu,
       router,
     }
   },
@@ -63,7 +70,11 @@ export default defineComponent({
             <ul role="menubar">
               <li role="presentation">
                 <!-- (js) 메뉴 활성화 시 .is-active 추가 -->
-                <a class="menu__depth1 menu__depth1--dashboard" href="#" role="menuitem"
+                <a
+                  @click="onClickMenu($event)"
+                  class="menu__depth1 menu__depth1--dashboard"
+                  href="#"
+                  role="menuitem"
                   >Dashboard</a
                 >
                 <ul class="menu__depth2" role="menu">

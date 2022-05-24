@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
+import { DxLoadIndicator } from 'devextreme-vue/load-indicator'
 
 export default defineComponent({
   name: 'LoadingData',
@@ -9,7 +10,9 @@ export default defineComponent({
       default: () => false,
     },
   },
-  components: {},
+  components: {
+    DxLoadIndicator,
+  },
   setup(props) {
     const divClass = ref('dataLoaderWrap hidden')
 
@@ -25,7 +28,9 @@ export default defineComponent({
 </script>
 <template>
   <div :class="divClass">
-    <p>data loading</p>
+    <p>
+      <DxLoadIndicator id="large-indicator" :height="60" :width="60" />
+    </p>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -44,6 +49,8 @@ export default defineComponent({
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+    width: 60px;
+    height: 60px;
   }
 }
 div.dataLoaderWrap.hidden {
