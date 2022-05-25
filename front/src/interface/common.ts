@@ -16,6 +16,7 @@ export type InputEvents = {
 interface Series {
   value: string
   name: string
+  color?: string
 }
 
 export interface LineOptions {

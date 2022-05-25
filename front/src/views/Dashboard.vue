@@ -3,13 +3,10 @@ import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { hander } from '@/lib/index'
 import { useDashboardStore } from '@/store/dashboard'
 import Line from '@/components/chart/Line.vue'
-import Scope_1_2 from '@/components/chart/Scope_1_2.vue'
-import Scope_3 from '@/components/chart/Scope_3.vue'
-import Site from '@/components/chart/Site.vue'
-import Cate from '@/components/chart/Cate.vue'
+import Bar from '@/components/chart/Bar.vue'
+import Pie from '@/components/chart/Pie.vue'
 import type { LineOptions } from '@/interface/common'
 import type { BarOptions } from '@/interface/common'
-import type { SiteOptions } from '@/interface/common'
 import type { PieOptions } from '@/interface/common'
 
 import 'devextreme/dist/css/dx.light.css'
@@ -19,15 +16,27 @@ export default defineComponent({
   name: 'Dashboard',
   components: {
     Line,
-    Scope_1_2,
-    Scope_3,
-    Site,
-    Cate,
+    Bar,
+    Pie,
     WorldMap,
   },
   data() {
     return {
-      std_year: '2022',
+      std_year: '2021',
+      yearList: [
+        {
+          year: '2022년',
+          value: '2022',
+        },
+        {
+          year: '2021년',
+          value: '2021',
+        },
+        {
+          year: '2020년',
+          value: '2020',
+        },
+      ],
     }
   },
   setup(context) {
@@ -35,27 +44,27 @@ export default defineComponent({
     const lineOptions = reactive<LineOptions>({
       idName: 'line-demo',
       series: [
-        { value: 'hydro', name: 'Hydro-electric' },
-        { value: 'oil', name: 'Oil' },
-        { value: 'gas', name: 'Natural gas' },
-        { value: 'coal', name: 'Coal' },
+        { value: 'hydro', name: 'Hydro-electric', color: 'red' },
+        { value: 'oil', name: 'Oil', color: 'black' },
+        { value: 'gas', name: 'Natural gas', color: 'grey' },
+        { value: 'coal', name: 'Coal', color: 'blue' },
       ],
       loadedData: [],
     })
     const scope_1_2_data = reactive<BarOptions>({
       idName: 'scope_1_2',
       series: [
-        { value: 'scope1', name: 'Scope1' },
-        { value: 'scope2', name: 'Scope2' },
+        { value: 'scope1', name: 'scope1', color: '#E8E5D3' },
+        { value: 'scope2', name: 'scope2', color: '#F3C848' },
       ],
       loadedData: [],
     })
     const scope_3_data = reactive<BarOptions>({
       idName: 'scope_3',
-      series: [{ value: 'scope3', name: 'Scope3' }],
+      series: [{ value: 'scope3', name: 'scope3', color: '#E8E5D3' }],
       loadedData: [],
     })
-    const site_data = reactive<SiteOptions>({
+    const site_data = reactive<PieOptions>({
       idName: 'site',
       series: [{ value: 'compNm', name: 'compNm' }],
       loadedData: [],
@@ -107,16 +116,10 @@ export default defineComponent({
       <div class="view-options">
         <div class="view-options-wrap">
           <div class="view-options__year select-wrap">
-            <select
-              v-model="std_year"
-              data-options='{
-              "maxHeight": "226",
-              "msg": "년도"
-              }'
-            >
-              <option value="2020">2020년</option>
-              <option value="2021">2021년</option>
-              <option value="2022">2022년</option>
+            <select v-model="std_year">
+              <option :key="i" v-for="(data, i) in yearList" :value="data.value">
+                {{ data.year }}
+              </option>
             </select>
           </div>
           <div class="view-options__month select-wrap">
@@ -265,21 +268,23 @@ export default defineComponent({
                 <span class="lca-chart__unit">(단위 : MWh)</span>
               </div>
               <div class="lca-chart__area">
-                <Site :Options="site_data" />
+                <Pie :Options="site_data" />
               </div>
             </div>
             <div class="lca-chart">
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">배출활동별 배출현황</h3>
               </div>
-              <div class="lca-chart__area"></div>
+              <div class="lca-chart__area">
+                <Pie :Options="site_data" />
+              </div>
             </div>
             <div class="lca-chart">
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">카테고리별 배출현황</h3>
               </div>
               <div class="lca-chart__area">
-                <Cate :Options="cate_data" />
+                <Pie :Options="cate_data" />
               </div>
             </div>
           </div>
@@ -378,7 +383,7 @@ export default defineComponent({
                 </li>
               </ul>
               <div class="lca-chart__area">
-                <Scope_1_2 :Options="scope_1_2_data" />
+                <Bar :Options="scope_1_2_data" />
               </div>
             </div>
             <div class="lca-chart">
@@ -403,7 +408,7 @@ export default defineComponent({
                 </li>
               </ul>
               <div class="lca-chart__area">
-                <Scope_3 :Options="scope_3_data" />
+                <Bar :Options="scope_3_data" />
               </div>
             </div>
           </div>

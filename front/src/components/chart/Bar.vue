@@ -11,13 +11,14 @@ import {
   DxLegend,
   // DxExport,
   DxTooltip,
+  DxCommonSeriesSettings,
 } from 'devextreme-vue/chart'
 
 import type { PropType } from 'vue'
 import type { BarOptions } from '@/interface/common'
 
 export default defineComponent({
-  name: 'Scope_3',
+  name: 'Scope_1_2',
   props: {
     Options: {
       type: Object as PropType<BarOptions>,
@@ -35,9 +36,11 @@ export default defineComponent({
     DxFont,
     // DxExport,
     DxTooltip,
+    DxCommonSeriesSettings,
   },
 
   setup(context) {
+    const type = ref('bar')
     const TrendLine = 130
 
     const customizePoint = (data) => {
@@ -87,6 +90,7 @@ export default defineComponent({
       customizeLabel,
       TrendLine,
       customizeTooltip,
+      type,
     }
   },
 })
@@ -94,18 +98,19 @@ export default defineComponent({
 <template>
   <div :id="Options.idName">
     <DxChart
-      id="scope_3_chart"
+      id="bar_chart"
       :customize-point="customizePoint"
       :customize-label="customizeLabel"
       :data-source="Options.loadedData"
       title=""
     >
+      <DxCommonSeriesSettings :type="type" argument-field="baseDt" />
       <DxSeries
-        argument-field="baseDt"
-        value-field="value"
-        name="Scope3"
-        type="bar"
-        color="#E69B50"
+        v-for="series in Options.series.filter((v, i) => v.value.substring(0, 5) === 'scope')"
+        :key="series.value"
+        :value-field="series.value"
+        :name="series.name"
+        :color="series.color"
       />
       <DxValueAxis :max-value-margin="0.01">
         <DxVisualRange :start-value="0" />

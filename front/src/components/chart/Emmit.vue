@@ -15,7 +15,7 @@ import type { PropType } from 'vue'
 import type { PieOptions } from '@/interface/common'
 
 export default defineComponent({
-  name: 'Cate',
+  name: 'Emmit',
   props: {
     Options: {
       type: Object as PropType<PieOptions>,

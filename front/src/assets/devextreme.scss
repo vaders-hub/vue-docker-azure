@@ -35,17 +35,12 @@ body {
     width: 50rem;
   }
 
-  #scope_1_2 {
-    height: 336px;
+  #bar_chart {
+    height: 436px;
     width: 660px;
   }
 
-  #scope_3 {
-    height: 336px;
-    width: 660px;
-  }
-
-  #site {
+  #pie_chart {
     height: 414px;
     width: 400px;
     g.dxc-series-group g.dxc-markers {
@@ -73,6 +68,12 @@ body {
       path:nth-child(8) {
         fill: #c0d4c2;
       }
+      path:nth-child(9) {
+        fill: #97afac;
+      }
+      path:nth-child(10) {
+        fill: #a29183;
+      }
     }
     g.dxc-item {
       g:nth-child(1) > .dxl-marker rect {
@@ -98,45 +99,6 @@ body {
       }
       g:nth-child(8) > .dxl-marker rect {
         fill: #c0d4c2;
-      }
-    }
-  }
-
-  #cate {
-    height: 414px;
-    width: 400px;
-    g.dxc-series-group g.dxc-markers {
-      path:nth-child(1) {
-        fill: #d9745f;
-      }
-      path:nth-child(2) {
-        fill: #d9895f;
-      }
-      path:nth-child(3) {
-        fill: #e69b50;
-      }
-      path:nth-child(4) {
-        fill: #e9b150;
-      }
-      path:nth-child(5) {
-        fill: #f3c848;
-      }
-    }
-    g.dxc-item {
-      g:nth-child(1) > .dxl-marker rect {
-        fill: #d9745f;
-      }
-      g:nth-child(2) > .dxl-marker rect {
-        fill: #d9895f;
-      }
-      g:nth-child(3) > .dxl-marker rect {
-        fill: #e69b50;
-      }
-      g:nth-child(4) > .dxl-marker rect {
-        fill: #e9b150;
-      }
-      g:nth-child(5) > .dxl-marker rect {
-        fill: #f3c848;
       }
     }
   }

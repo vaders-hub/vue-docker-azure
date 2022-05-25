@@ -33,17 +33,17 @@ export default defineComponent({
     DxSelectBox,
     DxChart,
     DxSeries,
-   // DxArgumentAxis,
+    // DxArgumentAxis,
     DxValueAxis,
     DxCommonSeriesSettings,
     DxExport,
-   // DxGrid,
+    // DxGrid,
     DxMargin,
     DxLegend,
     DxLabel,
     DxTooltip,
-   // DxValueAxis,
-   // DxConstantLine,
+    // DxValueAxis,
+    // DxConstantLine,
   },
   setup(context) {
     const type = ref('line')
@@ -76,6 +76,7 @@ export default defineComponent({
         :key="energy.value"
         :value-field="energy.value"
         :name="energy.name"
+        :color="energy.color"
         :axis="energy.value === 'hydro' ? 'hydro' : ''"
       />
       <DxMargin :bottom="20" />
@@ -120,8 +121,8 @@ export default defineComponent({
   </div>
 </template>
 <style lang="scss">
-  #line_chart {
-    height: 450px;
-    width: 659px;
-  }
+#line_chart {
+  height: 450px;
+  width: 659px;
+}
 </style>
