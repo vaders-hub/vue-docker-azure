@@ -106,12 +106,10 @@ router.beforeEach(async (to, from, next) => {
   next()
 })
 
-router.beforeResolve((to, from, next) => {
+router.afterEach((to, from, next) => {
   const mainStore = useMainStore()
 
   mainStore.changeLoadingpageStatus(false)
-
-  next()
 })
 
 export default router

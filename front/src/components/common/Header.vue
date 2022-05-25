@@ -72,7 +72,7 @@ export default defineComponent({
                 <!-- (js) 메뉴 활성화 시 .is-active 추가 -->
                 <a
                   @click="onClickMenu($event)"
-                  class="menu__depth1 menu__depth1--dashboard"
+                  class="menu__depth1 menu__depth1--dashboard is-active"
                   href="#"
                   role="menuitem"
                   >Dashboard</a
@@ -122,13 +122,11 @@ export default defineComponent({
                 </ul>
               </li>
               <li role="presentation">
-                <a class="menu__depth1 menu__depth1--scope12 is-active" href="#" role="menuitem"
-                  >Scope 1/2</a
-                >
+                <a class="menu__depth1 menu__depth1--scope12" href="#" role="menuitem">Scope 1/2</a>
                 <ul class="menu__depth2" role="menu">
                   <li role="presentation">
                     <!-- (D) 메뉴 활성화 시 .is-active 추가 -->
-                    <a class="icon-company icon-company--ski is-active" href="#" role="menuitem"
+                    <a class="icon-company icon-company--ski" href="#" role="menuitem"
                       ><span>SKI</span></a
                     >
                   </li>
