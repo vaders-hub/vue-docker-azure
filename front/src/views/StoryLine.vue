@@ -1,7 +1,10 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
 import Header from '@/components/common/Header.vue'
 import Footer from '@/components/common/Footer.vue'
+import StoryScope12 from '@/components/story/StoryScope_1_2.vue'
+import StoryScope3 from '@/components/story/StoryScope_3.vue'
+import StoryNetZero from '@/components/story/StoryNetZero.vue'
 
 import type { LineOptions } from '@/interface/common'
 
@@ -10,20 +13,62 @@ export default defineComponent({
   components: {
     Header,
     Footer,
+    StoryScope12,
+    StoryScope3,
+    StoryNetZero,
   },
+
   setup(context) {
+    const compName = ref('StoryScope12')
+
     const Tabs = reactive([
-      { name: 'Scope 1/2', active: true },
-      { name: 'Scope 3', active: false },
-      { name: 'Net Zero', active: false },
+      { name: 'Scope 1/2', active: true, value: 'StoryScope12' },
+      { name: 'Scope 3', active: false, value: 'StoryScope3' },
+      { name: 'Net Zero', active: false, value: 'StoryNetZero' },
     ])
     const onClickTab = (idx) => {
+      Icons.forEach((v, i) => {
+        v.active = ''
+        if (i === 0) {
+          v.active = 'is-active'
+        }
+      })
       Tabs.forEach((v, i) => {
         v.active = false
-        if (idx === i) Tabs[idx].active = true
+        if (idx === i) {
+          v.active = true
+          compName.value = v.value
+        }
       })
     }
-    return { Tabs, onClickTab }
+
+    const Icons = reactive([
+      { name: 'SKI', active: 'is-active', class: 'ski' },
+      { name: 'SKE(w/TI)', active: '', class: 'ske' },
+      { name: 'SKGC', active: '', class: 'skgc' },
+      { name: 'SKO', active: '', class: 'sko' },
+      { name: 'SKL', active: '', class: 'skl' },
+      { name: 'SKIPC', active: '', class: 'skipc' },
+      { name: 'SKIET', active: '', class: 'skiet' },
+      { name: 'SKEO', active: '', class: 'skeo' },
+    ])
+
+    const onClickIcon = (e, idx) => {
+      e.preventDefault()
+      Icons.forEach((v, i) => {
+        v.active = ''
+        if (idx === i) {
+          v.active = 'is-active'
+        }
+      })
+    }
+
+    const activeIcon = computed(() => {
+      const icon = Icons.filter((v) => v.active === 'is-active')
+      return icon
+    })
+
+    return { compName, Tabs, onClickTab, Icons, onClickIcon, activeIcon }
   },
 })
 </script>
@@ -60,171 +105,21 @@ export default defineComponent({
       <div class="icon-tab">
         <div class="icon-tab__inner">
           <ul>
-            <li>
-              <!-- (D) 활성화 탭 is-active 클래스 추가 및 div.storyline__chart > h3.hidden의 텍스트를 선택된 탭명으로 변경 -->
-              <a class="icon-company icon-company--ski is-active" href="#"><span>SKI</span></a>
+            <li v-for="(item, index) in Icons" :key="index">
+              <a
+                :class="`icon-company icon-company--${item.class} ${item.active}`"
+                href="#"
+                @click="onClickIcon($event, index)"
+                ><span>{{ item.name }}</span></a
+              >
             </li>
-            <li>
-              <a class="icon-company icon-company--ske" href="#"><span>SKE(w/TI)</span></a>
-            </li>
-            <li>
-              <a class="icon-company icon-company--skgc" href="#"><span>SKGC</span></a>
-            </li>
-            <li>
-              <a class="icon-company icon-company--sko" href="#"><span>SKO</span></a>
-            </li>
-            <li>
-              <a class="icon-company icon-company--skl" href="#"><span>SKL</span></a>
-            </li>
-            <li>
-              <a class="icon-company icon-company--skipc" href="#"><span>SKIPC</span></a>
-            </li>
-            <li>
-              <a class="icon-company icon-company--skiet" href="#"><span>SKIET</span></a>
-            </li>
-            <li>
-              <a class="icon-company icon-company--skeo" href="#"><span>SKEO</span></a>
-            </li>
+            <!-- (D) 활성화 탭 is-active 클래스 추가 및 div.storyline__chart > h3.hidden의 텍스트를 선택된 탭명으로 변경 -->
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- scope 1-2 -->
-    <div class="storyline__chart" v-if="Tabs && Tabs[0].active">
-      <h3 class="hidden">SKI</h3>
-      <div class="contents">
-        <!-- div.swiper-slide 개수가 2개 이상일 경우 .swiper 클래스 추가 -->
-        <div
-          class="lca-chart-grid"
-          data-options='{
-          "autoplay": "0",
-          "pagination": "bullet"
-        }'
-        >
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <!-- Slides -->
-              <div class="swiper-slide">
-                <div class="lca-chart lca-chart--wide">
-                  <div class="lca-chart__title-wrap">
-                    <h4 class="lca-chart__title">Scope 1/2 계획 vs 배출량</h4>
-                  </div>
-                  <div class="lca-chart__area">
-                    <img src="@/assets/images/dummy-chart-920x416.png" alt="" />
-                  </div>
-                </div>
-                <!-- (D) 주요공정 차트가 없는 OC 아래 영역 삭제 (SK이노베이션, SK온, SK아이이테크놀로지) -->
-                <div class="lca-chart">
-                  <div class="lca-chart__title-wrap">
-                    <h4 class="lca-chart__title">2022년 주요 공정</h4>
-                  </div>
-                  <div class="lca-chart__area">
-                    <img src="@/assets/images/dummy-chart-400x416.png" alt="" />
-                  </div>
-                </div>
-                <!--// (D) 주요공정 차트가 없는 OC 아래 영역 삭제 (SK이노베이션, SK온, SK아이이테크놀로지) -->
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-      <div class="scroll-icon motion-item">SCROLL</div>
-    </div>
-    <!-- scope 1-2 -->
-    <!-- scope 3 -->
-    <div class="storyline__chart storyline__chart--scope3" v-if="Tabs && Tabs[1].active">
-      <h3 class="hidden">SKI</h3>
-      <div class="contents">
-        <!-- div.swiper-slide 개수가 2개 이상일 경우 .swiper 클래스 추가 -->
-        <div
-          class="lca-chart-grid"
-          data-options='{
-          "autoplay": "0",
-          "pagination": "bullet"
-        }'
-        >
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <!-- Slides -->
-              <div class="swiper-slide">
-                <div class="lca-chart lca-chart--wide">
-                  <div class="lca-chart__title-wrap">
-                    <h4 class="lca-chart__title">Scope 3 계획 vs 배출량</h4>
-                  </div>
-                  <div class="lca-chart__area">
-                    <img src="@/assets/images/dummy-chart-920x416.png" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-      <div class="scroll-icon motion-item">SCROLL</div>
-    </div>
-    <!-- scope 3 -->
-    <!-- net-zero -->
-    <div class="storyline__chart storyline__chart--net-zero" v-if="Tabs && Tabs[2].active">
-      <h3 class="hidden">SKI</h3>
-      <div class="contents">
-        <!-- div.swiper-slide 개수가 2개 이상일 경우 .swiper 클래스 추가 -->
-        <div
-          class="lca-chart-grid swiper"
-          data-options='{
-          "autoplay": "0",
-          "pagination": "bullet"
-        }'
-        >
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <!-- Slides -->
-              <div class="swiper-slide">
-                <div class="lca-chart">
-                  <div class="lca-chart__title-wrap">
-                    <h4 class="lca-chart__title">Scope 1/2 감축 현황</h4>
-                  </div>
-                  <div class="lca-chart__area">
-                    <img src="@/assets/images/dummy-chart-660x440-l.png" alt="" />
-                  </div>
-                </div>
-                <div class="lca-chart">
-                  <div class="lca-chart__title-wrap">
-                    <h4 class="lca-chart__title">Scope 1/2 Roadmap</h4>
-                  </div>
-                  <div class="lca-chart__area">
-                    <img src="@/assets/images/dummy-chart-660x440-r.png" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="lca-chart">
-                  <div class="lca-chart__title-wrap">
-                    <h4 class="lca-chart__title">Scope 3 감축 현황</h4>
-                  </div>
-                  <div class="lca-chart__area">
-                    <img src="@/assets/images/dummy-chart-660x440-l.png" alt="" />
-                  </div>
-                </div>
-                <div class="lca-chart">
-                  <div class="lca-chart__title-wrap">
-                    <h4 class="lca-chart__title">Scope 3 Roadmap</h4>
-                  </div>
-                  <div class="lca-chart__area">
-                    <img src="@/assets/images/dummy-chart-660x440-r.png" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-      <div class="scroll-icon motion-item">SCROLL</div>
-    </div>
-    <!-- net-zero -->
+    <component :is="compName" keep-alive :current="activeIcon" />
   </section>
   <Footer />
 </template>
