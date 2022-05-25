@@ -74,7 +74,6 @@ export default defineComponent({
       <div class="inner" :style="styles"></div>
     </div>
   </div>
-  <!-- v-show="show" -->
 </template>
 <style lang="scss" scoped>
 .pageLoaderWrap.visible {

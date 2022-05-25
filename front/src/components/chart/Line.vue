@@ -68,7 +68,12 @@ export default defineComponent({
 </script>
 <template>
   <div :id="Options.idName">
-    <DxChart id="line_chart" :data-source="Options.loadedData" palette="Violet">
+    <DxChart
+      id="line_chart"
+      :data-source="Options.loadedData"
+      palette="Violet"
+      :style="Options.style"
+    >
       <DxCommonSeriesSettings :type="type" argument-field="energyDate" />
       <DxSeries name="oil" value-field="oil" type="bar" color="#fac29a" />
       <DxSeries
@@ -101,7 +106,7 @@ export default defineComponent({
         <DxGrid :visible="true" />
       </DxArgumentAxis> -->
       <DxLegend
-        vertical-alignment="bottom"
+        vertical-alignment="top"
         horizontal-alignment="center"
         item-text-position="bottom"
       />
@@ -124,5 +129,13 @@ export default defineComponent({
 #line_chart {
   height: 450px;
   width: 659px;
+
+  .dxc-legend {
+    .dxc-item {
+      rect {
+        rx: 12;
+      }
+    }
+  }
 }
 </style>

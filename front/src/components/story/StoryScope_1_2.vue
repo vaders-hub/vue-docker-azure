@@ -1,5 +1,9 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import { useDashboardStore } from '@/store/dashboard'
+import Line from '@/components/chart/Line.vue'
+
+import type { LineOptions } from '@/interface/common'
 
 export default defineComponent({
   name: 'Scope12',
@@ -9,14 +13,32 @@ export default defineComponent({
       default: () => ({}),
     },
   },
-  components: {},
+  components: {
+    Line,
+  },
   setup(props) {
     let chartData = reactive(props.current)
     const loadChartData = async () => {
       await console.log('loadChartData', JSON.parse(JSON.stringify(chartData))[0])
-    }
 
-    loadChartData()
+      await dashboardStore.loadData('line')
+      lineOptions.loadedData = dashboardStore.dataSet.line
+    }
+    const dashboardStore = useDashboardStore()
+    const lineOptions = reactive<LineOptions>({
+      idName: 'chart-demo',
+      series: [
+        { value: 'hydro', name: 'Hydro-electric' },
+        { value: 'oil', name: 'Oil' },
+        { value: 'gas', name: 'Natural gas' },
+        { value: 'coal', name: 'Coal' },
+      ],
+      loadedData: [],
+      style: {
+        width: '920px',
+        height: '416px',
+      },
+    })
 
     watch(
       () => props.current,
@@ -27,7 +49,12 @@ export default defineComponent({
         }
       },
     )
-    return {}
+
+    onMounted(() => {
+      loadChartData()
+    })
+
+    return { lineOptions }
   },
 })
 </script>
@@ -52,7 +79,8 @@ export default defineComponent({
                   <h4 class="lca-chart__title">Scope 1/2 계획 vs 배출량</h4>
                 </div>
                 <div class="lca-chart__area">
-                  <img src="@/assets/images/dummy-chart-920x416.png" alt="" />
+                  <Line :Options="lineOptions" />
+                  <!-- <img src="@/assets/images/dummy-chart-920x416.png" alt="" /> -->
                 </div>
               </div>
               <!-- (D) 주요공정 차트가 없는 OC 아래 영역 삭제 (SK이노베이션, SK온, SK아이이테크놀로지) -->

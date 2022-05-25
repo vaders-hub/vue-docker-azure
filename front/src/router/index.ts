@@ -98,12 +98,11 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  if (to.path !== from.path) {
-    const mainStore = useMainStore()
+  const mainStore = useMainStore()
 
-    await mainStore.changeLoadingpageStatus(true)
-    if (to.meta.layout) await mainStore.changeLayout(to.meta.layout)
-  }
+  await mainStore.changeLoadingpageStatus(true)
+  if (to.meta.layout) await mainStore.changeLayout(to.meta.layout)
+
   next()
 })
 
