@@ -1,46 +1,36 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, inject } from "vue";
-import { useRouter } from "vue-router";
-import DxButton from "devextreme-vue/button";
+import { defineComponent, onMounted, reactive, inject } from 'vue'
+import { useRouter } from 'vue-router'
+import DxButton from 'devextreme-vue/button'
 
 export default defineComponent({
-  name: "Login",
+  name: 'Login',
   components: {
-    DxButton
+    DxButton,
   },
   props: {
-    iconColor: { type: String, default: "default" },
+    iconColor: { type: String, default: 'default' },
   },
   setup(context) {
-    const socket:any = inject("socket");
-    const router = useRouter();
+    // const socket:any = inject("socket");
+    const router = useRouter()
     const testSocket = () => {
-      socket.emit("event", new Date().getTime());
+      // socket.emit("event", new Date().getTime());
     }
-    const goHome = async () => router.push({ name: "Home" });
+    const goHome = async () => router.push({ name: 'Home' })
     return {
       testSocket,
-      goHome
-    };
+      goHome,
+    }
   },
-});
+})
 </script>
 
 <template>
   <div>
     <h2>Login</h2>
-    <DxButton
-      text="Socket-test"
-      type="normal"
-      styling-mode="outlined"
-      @click="testSocket()"
-    />
-    <DxButton
-      text="home"
-      type="normal"
-      styling-mode="outlined"
-      @click="goHome()"
-    />
+    <DxButton text="Socket-test" type="normal" styling-mode="outlined" @click="testSocket()" />
+    <DxButton text="home" type="normal" styling-mode="outlined" @click="goHome()" />
   </div>
 </template>
 <style lang="scss">

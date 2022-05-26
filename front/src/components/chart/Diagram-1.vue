@@ -17,7 +17,7 @@ import {
   DxGroup,
   DxTab,
 } from 'devextreme-vue/diagram'
-// import { ShapeFlags } from '@vue/shared'
+import rows from '@/store/assessment/diagram.json'
 
 type ShapeType = {
   key: string
@@ -79,9 +79,9 @@ export default defineComponent({
     })
 
     const loadItem = async () => {
-      const {
-        data: { rows },
-      }: any = await api({ methods: 'get', url: '/api/data/diagram', params: {} })
+      // const {
+      //   data: { rows },
+      // }: any = await api({ methods: 'get', url: '/api/data/diagram', params: {} })
 
       diagramData = rows
       if (diagram.value) {

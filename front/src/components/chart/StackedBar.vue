@@ -32,6 +32,13 @@ export default defineComponent({
   },
   setup(context) {
     // write
+    const customizeText = (valueText) => {
+      return `${valueText.value}` //&#176F;`
+    }
+
+    return {
+      customizeText,
+    }
   },
 })
 </script>

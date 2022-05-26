@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import lineDatas from './line'
 
 export const useDashboardStore = defineStore({
   id: 'dashboardStore',
@@ -19,12 +20,13 @@ export const useDashboardStore = defineStore({
     async loadData(payload) {
       try {
         let lineData
-        if (`${payload}` == 'line') {
-          lineData = await this.api({
-            method: 'get',
-            url: `/api/data/${payload}`,
-          })
-        }
+        // 시연용 주석 처리
+        // if (`${payload}` == 'line') {
+        //   lineData = await this.api({
+        //     method: 'get',
+        //     url: `/api/data/${payload}`,
+        //   })
+        // }
 
         const scope_1_2_data = [
           {
@@ -263,7 +265,8 @@ export const useDashboardStore = defineStore({
 
         if (payload) {
           if (payload == 'line') {
-            this.dataSet[payload] = this.dataSet[payload].concat(lineData.data.rows)
+            // this.dataSet[payload] = this.dataSet[payload].concat(lineData.data.rows)
+            this.dataSet[payload] = this.dataSet[payload].concat(lineDatas)
           }
           if (payload == 'scope_1_2_data') {
             this.dataSet[payload] = this.dataSet[payload].concat(scope_1_2_data)

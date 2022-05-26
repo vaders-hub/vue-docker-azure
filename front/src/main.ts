@@ -4,7 +4,7 @@ import apiInstance from '@/utils/apiInstance'
 import setupInterceptors from '@/utils/setupInterceptors'
 import router from './router'
 import api from '@/plugins/api'
-import socket from '@/plugins/socket'
+// import socket from '@/plugins/socket'
 import timer, { sesssionTimeOut } from '@/plugins/timer'
 import inputEvents from '@/plugins/inputEvents'
 import App from './App.vue'
@@ -12,6 +12,7 @@ import mainLayout from '@/layouts/Main.vue'
 import defaultLayout from '@/layouts/Default.vue'
 import adminLayout from '@/layouts/Admin.vue'
 import jquery from 'jquery'
+import { gsap } from 'gsap'
 
 import 'devextreme/dist/css/dx.light.css'
 
@@ -30,9 +31,10 @@ Pinia.use(myPiniaPlugin)
 app.use(Pinia)
 app.use(router)
 app.use(api)
-app.use(socket)
+// app.use(socket)
 app.use(timer)
 app.use(inputEvents)
+app.use(gsap)
 
 app.component('Default', defaultLayout)
 app.component('Main', mainLayout)

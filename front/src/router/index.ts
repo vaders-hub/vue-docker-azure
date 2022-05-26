@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useMainStore } from '@/store/index'
 
+import Dashboard from '@/views/Dashboard.vue'
+import Assessment from '@/views/Assessment.vue'
+
 const routes = [
   {
     path: '/',
@@ -36,13 +39,13 @@ const routes = [
     path: '/assessment',
     name: 'Assessment',
     meta: { layout: 'Main' },
-    component: () => import('@/views/Assessment.vue'),
+    component: Assessment,
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
     meta: { layout: 'Default' },
-    component: () => import('@/views/Dashboard.vue'),
+    component: Dashboard,
   },
   {
     path: '/dashboardDev',

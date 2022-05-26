@@ -85,9 +85,8 @@ export default defineComponent({
   height: 100%;
   overflow: hidden;
   z-index: 1000;
-  opacity: 1;
   background-color: rgba(255, 255, 255, 0);
-  transition: opacity 0.5s;
+  transition: all 0.5s linear;
   p {
     display: table-cell;
     text-align: center;
@@ -116,7 +115,7 @@ export default defineComponent({
   }
 }
 .pageLoaderWrap.hidden {
-  opacity: 0;
+  display: none;
 }
 
 .on-success {

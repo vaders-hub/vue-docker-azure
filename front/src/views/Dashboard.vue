@@ -272,8 +272,8 @@ export default defineComponent({
           <span class="lca-chart__unit">(단위 : MWh)</span>
         </div>
         <div class="lca-chart__area">
-          <WorldMap />
-          <!-- <img src="@/assets/images/.gif" alt=""> -->
+          <!-- <WorldMap /> -->
+          <img src="@/assets/images/dummy-chart-1440x710.gif" alt="" />
         </div>
       </div>
     </div>

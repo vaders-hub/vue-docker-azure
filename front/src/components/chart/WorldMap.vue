@@ -1,6 +1,7 @@
 <script lang="ts">
-import { defineComponent, ref, defineProps } from 'vue'
+import { defineComponent, onMounted, ref, defineProps } from 'vue'
 import * as mapsData from 'devextreme/dist/js/vectormap-data/world.js'
+
 import {
   DxVectorMap,
   DxLayer,
@@ -28,7 +29,7 @@ export const countries = {
   'Dem. Rep. Korea': { totalArea: 2.38, color: 'red' },
 }
 
-export default {
+export default defineComponent({
   components: {
     DxVectorMap,
     DxLayer,
@@ -37,14 +38,12 @@ export default {
     DxBorder,
     DxFont,
   },
-  data() {
-    return {
-      worldData: mapsData.world,
-      bounds: [-180, 85, 180, -60],
-    }
-  },
-  methods: {
-    customizeTooltip(info) {
+  setup() {
+    let worldData = mapsData.world
+
+    const bounds = [-180, 85, 180, -60]
+
+    const customizeTooltip = (info) => {
       const name = info.attribute('name')
       const country = countries[name]
       if (country) {
@@ -54,9 +53,9 @@ export default {
         }
       }
       return null
-    },
+    }
 
-    click({ target }) {
+    const click = ({ target }) => {
       let mapNm = ''
       mapsData.world.features.forEach((i) => {
         mapNm += i.properties.name + ','
@@ -67,9 +66,9 @@ export default {
       if (target && countries[target.attribute('name')]) {
         target.selected(!target.selected())
       }
-    },
+    }
 
-    customizeLayer(elements) {
+    const customizeLayer = (elements) => {
       elements.forEach((element) => {
         const country = countries[element.attribute('name')]
         if (country) {
@@ -80,9 +79,13 @@ export default {
           })
         }
       })
-    },
+    }
+
+    return { worldData, bounds, customizeTooltip, click, customizeLayer }
   },
-}
+
+  methods: {},
+})
 </script>
 <template>
   <DxVectorMap id="vector-map" :bounds="bounds" @click="click">
