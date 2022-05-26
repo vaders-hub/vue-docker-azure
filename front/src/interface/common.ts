@@ -45,3 +45,9 @@ export interface PieOptions {
   loadedData: []
   series: Series[]
 }
+
+export interface WorldMapOptions {
+  idName: string
+  loadedData: []
+  series: Series[]
+}

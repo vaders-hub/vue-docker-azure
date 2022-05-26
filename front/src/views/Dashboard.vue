@@ -120,6 +120,7 @@ export default defineComponent({
 
     onMounted(() => {
       hander.contentReady()
+
       loadDatas()
     })
 

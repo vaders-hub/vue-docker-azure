@@ -48,7 +48,6 @@ export default defineComponent({
       <DxCommonSeriesSettings argument-field="item" type="stackedbar" />
       <DxValueAxis position="left">
         <DxTitle text="" />
-        <DxLabel :customize-text="customizeText" />
       </DxValueAxis>
       <DxSeries
         v-for="series in Options.series"
