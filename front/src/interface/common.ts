@@ -1,3 +1,5 @@
+import type { Color } from 'csstype'
+
 export interface ApiService {
   [key: string]: (payload: Record<string, unknown>) => void
 }
@@ -32,7 +34,7 @@ export interface BarOptions {
   series: Series[]
 }
 
-export interface SiteOptions {
+export interface StackedBarOptions {
   idName: string
   loadedData: []
   series: Series[]

@@ -10,15 +10,14 @@ import {
   DxExport,
   DxTooltip,
 } from 'devextreme-vue/chart'
-
 import type { PropType } from 'vue'
-import type { LineOptions } from '@/interface/common'
+import type { StackedBarOptions } from '@/interface/common'
 
 export default defineComponent({
   name: 'StackedBar',
   props: {
     Options: {
-      type: Object as PropType<LineOptions>,
+      type: Object as PropType<StackedBarOptions>,
       default: () => ({}),
     },
   },
@@ -29,62 +28,33 @@ export default defineComponent({
     DxValueAxis,
     DxTitle,
     DxLegend,
-    DxExport,
     DxTooltip,
   },
   setup(context) {
-    const maleAgeData = [
-      {
-        state: 'Germany',
-        young: 5.3,
-        middle: 26,
-        older: 8,
-      },
-      {
-        state: 'Japan',
-        young: 6.45,
-        middle: 30.5,
-        older: 11.22,
-      },
-      {
-        state: 'Russia',
-        young: 12.56,
-        middle: 45.5,
-        older: 6.5,
-      },
-      {
-        state: 'USA',
-        young: 32,
-        middle: 87,
-        older: 15,
-      },
-    ]
-    const getMaleAgeData = computed(() => {
-      return maleAgeData
-    })
-
-    return {
-      getMaleAgeData,
-    }
+    // write
   },
 })
 </script>
 <template>
-  <div id="spider-demo">
-    <DxChart id="chart" :data-source="getMaleAgeData" title="Male Age Structure">
-      <DxCommonSeriesSettings argument-field="state" type="stackedbar" />
-      <DxValueAxis position="right">
-        <DxTitle text="millions" />
+  <div :id="Options.idName">
+    <DxChart id="stackedBar_chart" :data-source="Options.loadedData" title="">
+      <DxCommonSeriesSettings argument-field="item" type="stackedbar" />
+      <DxValueAxis position="left">
+        <DxTitle text="" />
+        <DxLabel :customize-text="customizeText" />
       </DxValueAxis>
-      <DxSeries value-field="young" name="0-14" />
-      <DxSeries value-field="middle" name="15-64" />
-      <DxSeries value-field="older" name="65 and older" />
+      <DxSeries
+        v-for="series in Options.series"
+        :key="series.value"
+        :value-field="series.value"
+        :name="series.name"
+        :color="series.color"
+      />
       <DxLegend
         vertical-alignment="bottom"
         horizontal-alignment="center"
         item-text-position="top"
       />
-      <DxExport :enabled="true" />
       <DxTooltip :enabled="true" location="edge" />
     </DxChart>
   </div>

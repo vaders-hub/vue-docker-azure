@@ -5,12 +5,11 @@ import { useDashboardStore } from '@/store/dashboard'
 import Line from '@/components/chart/Line.vue'
 import Bar from '@/components/chart/Bar.vue'
 import Pie from '@/components/chart/Pie.vue'
-import type { LineOptions } from '@/interface/common'
-import type { BarOptions } from '@/interface/common'
-import type { PieOptions } from '@/interface/common'
+import WorldMap from '@/components/chart/WorldMap.vue'
+import StackedBar from '@/components/chart/StackedBar.vue'
+import type { LineOptions, BarOptions, PieOptions, StackedBarOptions } from '@/interface/common'
 
 import 'devextreme/dist/css/dx.light.css'
-import WorldMap from '../components/chart/WorldMap.vue'
 
 export default defineComponent({
   name: 'Dashboard',
@@ -19,6 +18,7 @@ export default defineComponent({
     Bar,
     Pie,
     WorldMap,
+    StackedBar,
   },
   data() {
     return {
@@ -74,6 +74,22 @@ export default defineComponent({
       series: [{ value: 'scope3', name: 'Scope3' }],
       loadedData: [],
     })
+    const stacked1_data = reactive<StackedBarOptions>({
+      idName: 'stack',
+      series: [
+        { value: 'scope12', name: 'scope12', color: '#E69B50' },
+        { value: 'scope3', name: 'scope3', color: '#F3C848' },
+      ],
+      loadedData: [],
+    })
+    const stacked2_data = reactive<StackedBarOptions>({
+      idName: 'stack',
+      series: [
+        { value: 'scope12', name: 'scope12', color: '#E69B50' },
+        { value: 'scope3', name: 'scope3', color: '#F3C848' },
+      ],
+      loadedData: [],
+    })
 
     const loadDatas = async () => {
       try {
@@ -91,6 +107,12 @@ export default defineComponent({
 
         await dashboardStore.loadData('cate_data')
         cate_data.loadedData = dashboardStore.dataSet.cate_data
+
+        await dashboardStore.loadData('stacked1_data')
+        stacked1_data.loadedData = dashboardStore.dataSet.stacked1_data
+
+        await dashboardStore.loadData('stacked2_data')
+        stacked2_data.loadedData = dashboardStore.dataSet.stacked2_data
       } catch (e) {
         console.warn(e)
       }
@@ -101,7 +123,15 @@ export default defineComponent({
       loadDatas()
     })
 
-    return { lineOptions, scope_1_2_data, scope_3_data, site_data, cate_data }
+    return {
+      lineOptions,
+      scope_1_2_data,
+      scope_3_data,
+      site_data,
+      cate_data,
+      stacked1_data,
+      stacked2_data,
+    }
   },
 })
 </script>
@@ -315,36 +345,9 @@ export default defineComponent({
               </div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">사업장/Site별 배출현황</h3>
-                <span class="lca-chart__unit">(단위 : MWh)</span>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
-              </div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">배출활동별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
-              </div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">카테고리별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-      <div class="swiper-pagination"></div>
+      <!-- <div class="swiper-pagination"></div> -->
     </div>
     <!--// Chart Grid -->
 
@@ -518,13 +521,13 @@ export default defineComponent({
           </div>
         </div>
       </div>
-      <div class="swiper-pagination"></div>
+      <!-- <div class="swiper-pagination"></div> -->
     </div>
     <!--// Chart Grid -->
 
     <!-- Chart Grid -->
     <!-- div.swiper-slide 개수가 1개 일 경우 .swiper 클래스 삭제 -->
-    <div
+    <!-- <div
       class="lca-chart-grid swiper"
       data-options='{
       "autoplay": "0",
@@ -533,7 +536,6 @@ export default defineComponent({
     >
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <!-- Slides -->
           <div class="swiper-slide">
             <div class="lca-chart">
               <div class="lca-chart__title-wrap">
@@ -579,7 +581,7 @@ export default defineComponent({
         </div>
       </div>
       <div class="swiper-pagination"></div>
-    </div>
+    </div> -->
     <!--// Chart Grid -->
 
     <!-- Chart Grid -->
@@ -600,11 +602,11 @@ export default defineComponent({
                 <h3 class="lca-chart__title">Avoided Emission</h3>
               </div>
               <div class="lca-chart__area-wrap">
-                <div class="lca-chart__area">
-                  <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
+                <div class="lca-chart__area" style="float: left">
+                  <StackedBar :Options="stacked1_data" />
                 </div>
-                <div class="lca-chart__area">
-                  <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
+                <div class="lca-chart__area" style="float: left; padding-left: 50px">
+                  <StackedBar :Options="stacked2_data" />
                 </div>
               </div>
             </div>
@@ -612,9 +614,24 @@ export default defineComponent({
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">주요 가격 트렌드</h3>
               </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-400x414-2.gif" alt="" />
+              <div class="lca-chart__area"></div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="lca-chart lca-chart--wide">
+              <div class="lca-chart__title-wrap">
+                <h3 class="lca-chart__title">Avoided Emission</h3>
               </div>
+              <div class="lca-chart__area-wrap">
+                <div class="lca-chart__area"></div>
+                <div class="lca-chart__area"></div>
+              </div>
+            </div>
+            <div class="lca-chart">
+              <div class="lca-chart__title-wrap">
+                <h3 class="lca-chart__title">주요 가격 트렌드</h3>
+              </div>
+              <div class="lca-chart__area"></div>
             </div>
           </div>
           <div class="swiper-slide">
@@ -624,10 +641,10 @@ export default defineComponent({
               </div>
               <div class="lca-chart__area-wrap">
                 <div class="lca-chart__area">
-                  <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
+                  <!-- <img src="@/assets/images/dummy-chart-400x414.gif" alt="" /> -->
                 </div>
                 <div class="lca-chart__area">
-                  <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
+                  <!-- <img src="@/assets/images/dummy-chart-400x414.gif" alt="" /> -->
                 </div>
               </div>
             </div>
@@ -636,36 +653,13 @@ export default defineComponent({
                 <h3 class="lca-chart__title">주요 가격 트렌드</h3>
               </div>
               <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-400x414-2.gif" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="lca-chart lca-chart--wide">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Avoided Emission</h3>
-              </div>
-              <div class="lca-chart__area-wrap">
-                <div class="lca-chart__area">
-                  <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
-                </div>
-                <div class="lca-chart__area">
-                  <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
-                </div>
-              </div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">주요 가격 트렌드</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-400x414-2.gif" alt="" />
+                <!-- <img src="@/assets/images/dummy-chart-400x414-2.gif" alt="" /> -->
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="swiper-pagination"></div>
+      <!-- <div class="swiper-pagination"></div> -->
     </div>
     <!--// Chart Grid -->
   </section>

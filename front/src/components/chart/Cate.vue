@@ -15,7 +15,7 @@ import type { PropType } from 'vue'
 import type { PieOptions } from '@/interface/common'
 
 export default defineComponent({
-  name: 'Pie',
+  name: 'Cate',
   props: {
     Options: {
       type: Object as PropType<PieOptions>,
@@ -34,22 +34,19 @@ export default defineComponent({
   },
   setup(context) {
     const customizeTooltip = (data) => {
-      const site = data.argument
+      const cate = data.argument
       const value = data.value
-
-      // let test = document.getElementById('pie_chart');
-      // let test = document.getElementById('pie_chart')?.firstChild?.childNodes[3].firstChild?.firstChild?.firstChild
-      // if(test != null) test.style.opacity = "0.0";
 
       return {
         html: `<div>
-                <div class='tooltip-header'>SITE: ${site}</div>
+                <div class='tooltip-header'>카테고리: ${cate}</div>
                 <div class='tooltip-body'>
                   <div class='tooltip-value'>배출량: ${value}</div>
                 </div>
               </div>`,
       }
     }
+
     return {
       customizeTooltip,
     }
@@ -59,13 +56,13 @@ export default defineComponent({
 <template>
   <div :id="Options.idName">
     <DxPieChart
-      id="pie_chart"
+      id="cate_chart"
       :data-source="Options.loadedData"
       type="doughnut"
       title=""
       palette="Soft Pastel"
     >
-      <DxSeries argument-field="item" value-field="value" />
+      <DxSeries argument-field="Category" value-field="Val" />
       <DxLegend :margin="20" horizontal-alignment="center" vertical-alignment="top" />
       <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip" />
     </DxPieChart>

@@ -1,33 +1,32 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, watch } from "vue";
-import { useRouter } from "vue-router";
-import TreeView from "devextreme-vue/tree-view";
-import { DxList } from "devextreme-vue/list";
+import { defineComponent, onMounted, reactive, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import TreeView from 'devextreme-vue/tree-view'
+import { DxList } from 'devextreme-vue/list'
 
 export default defineComponent({
   components: {
-    TreeView,
     DxList,
   },
   setup(context) {
-    const router = useRouter();
+    const router = useRouter()
 
     const navigation = [
-      { id: 1, text: "Code", path: "Code", icon: "product" },
-      { id: 2, text: "User", path: "User", icon: "money" },
-    ];
+      { id: 1, text: 'Code', path: 'Code', icon: 'product' },
+      { id: 2, text: 'User', path: 'User', icon: 'money' },
+    ]
 
     const onClickTree = (e) => {
-      const { path } = e.itemData;
+      const { path } = e.itemData
 
-      router.push({ name: path });
-    };
+      router.push({ name: path })
+    }
     return {
       navigation,
       onClickTree,
-    };
+    }
   },
-});
+})
 </script>
 <template>
   <div>

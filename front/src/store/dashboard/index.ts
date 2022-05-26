@@ -10,6 +10,8 @@ export const useDashboardStore = defineStore({
       scope_3_data: [],
       site_data: [],
       cate_data: [],
+      stacked1_data: [],
+      stacked2_data: [],
     },
     tableData: [],
   }),
@@ -233,10 +235,35 @@ export const useDashboardStore = defineStore({
           },
         ]
 
+        const stacked1_data = [
+          {
+            item: 'base',
+            scope12: 1180,
+            scope3: 990,
+          },
+          {
+            item: 'item',
+            scope12: 920,
+            scope3: 1070,
+          },
+        ]
+
+        const stacked2_data = [
+          {
+            item: 'base',
+            scope12: 1280,
+            scope3: 1090,
+          },
+          {
+            item: 'item',
+            scope12: 920,
+            scope3: 770,
+          },
+        ]
+
         if (payload) {
           if (payload == 'line') {
             this.dataSet[payload] = this.dataSet[payload].concat(lineData.data.rows)
-            console.log(this.dataSet[payload])
           }
           if (payload == 'scope_1_2_data') {
             this.dataSet[payload] = this.dataSet[payload].concat(scope_1_2_data)
@@ -249,6 +276,12 @@ export const useDashboardStore = defineStore({
           }
           if (payload == 'cate_data') {
             this.dataSet[payload] = this.dataSet[payload].concat(cate_data)
+          }
+          if (payload == 'stacked1_data') {
+            this.dataSet[payload] = this.dataSet[payload].concat(stacked1_data)
+          }
+          if (payload == 'stacked2_data') {
+            this.dataSet[payload] = this.dataSet[payload].concat(stacked2_data)
           }
         }
       } catch (e) {
