@@ -2,8 +2,9 @@
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { useDashboardStore } from '@/store/dashboard'
 import Line from '@/components/chart/Line.vue'
+import Bar from '@/components/chart/Bar.vue'
 
-import type { LineOptions } from '@/interface/common'
+import type { LineOptions, BarOptions } from '@/interface/common'
 
 export default defineComponent({
   name: 'Scope12',
@@ -15,29 +16,41 @@ export default defineComponent({
   },
   components: {
     Line,
+    Bar,
   },
   setup(props) {
     let chartData = reactive(props.current)
     const loadChartData = async () => {
-      await console.log('loadChartData', JSON.parse(JSON.stringify(chartData))[0])
+      const param = JSON.parse(JSON.stringify(chartData))[0]
 
-      await dashboardStore.loadData('line')
-      lineOptions.loadedData = dashboardStore.dataSet.line
+      try {
+        await dashboardStore.loadData('line')
+        lineOptions.loadedData = dashboardStore.dataSet.line
+
+        await dashboardStore.loadData('scope_1_2_data')
+        barOptions.loadedData = dashboardStore.dataSet.scope_1_2_data
+      } catch (e) {
+        console.warn(e)
+      }
     }
     const dashboardStore = useDashboardStore()
     const lineOptions = reactive<LineOptions>({
-      idName: 'chart-demo',
+      idName: 'chart-demo-story',
       series: [
-        { value: 'hydro', name: 'Hydro-electric' },
-        { value: 'oil', name: 'Oil' },
-        { value: 'gas', name: 'Natural gas' },
-        { value: 'coal', name: 'Coal' },
+        { value: 'hydro', name: 'Net Zero Target' },
+        { value: 'oil', name: '월별 배출량 ' },
+        { value: 'gas', name: '할당 배출량' },
+        { value: 'coal', name: '누적 배출량' },
       ],
       loadedData: [],
-      style: {
-        width: '920px',
-        height: '416px',
-      },
+    })
+    const barOptions = reactive<BarOptions>({
+      idName: 'scope_1_2',
+      series: [
+        { value: 'scope1', name: 'scope1', color: '#E8E5D3' },
+        { value: 'scope2', name: 'scope2', color: '#F3C848' },
+      ],
+      loadedData: [],
     })
 
     watch(
@@ -54,7 +67,7 @@ export default defineComponent({
       loadChartData()
     })
 
-    return { lineOptions }
+    return { lineOptions, barOptions }
   },
 })
 </script>
@@ -89,7 +102,8 @@ export default defineComponent({
                   <h4 class="lca-chart__title">2022년 주요 공정</h4>
                 </div>
                 <div class="lca-chart__area">
-                  <img src="@/assets/images/dummy-chart-400x416.png" alt="" />
+                  <Bar :Options="barOptions" />
+                  <!-- <img src="@/assets/images/dummy-chart-400x416.png" alt="" /> -->
                 </div>
               </div>
               <!--// (D) 주요공정 차트가 없는 OC 아래 영역 삭제 (SK이노베이션, SK온, SK아이이테크놀로지) -->

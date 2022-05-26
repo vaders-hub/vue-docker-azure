@@ -1,6 +1,6 @@
 export default [
   {
-    energyDate: '2022/01',
+    energyDate: '1월',
     hydro: 59.8,
     oil: 937.6,
     gas: 582,
@@ -8,7 +8,7 @@ export default [
     nuclear: 187.9,
   },
   {
-    energyDate: '2022/02',
+    energyDate: '2월',
     hydro: 74.2,
     oil: 308.6,
     gas: 35.1,
@@ -16,7 +16,7 @@ export default [
     nuclear: 11.3,
   },
   {
-    energyDate: '2022/03',
+    energyDate: '3월',
     hydro: 40,
     oil: 128.5,
     gas: 361.8,
@@ -24,7 +24,7 @@ export default [
     nuclear: 32.4,
   },
   {
-    energyDate: '2022/04',
+    energyDate: '4월',
     hydro: 22.6,
     oil: 241.5,
     gas: 64.9,
@@ -32,7 +32,7 @@ export default [
     nuclear: 64.8,
   },
   {
-    energyDate: '2022/05',
+    energyDate: '5월',
     hydro: 19,
     oil: 119.3,
     gas: 28.9,
@@ -40,7 +40,7 @@ export default [
     nuclear: 3.8,
   },
   {
-    energyDate: '2022/06',
+    energyDate: '6월',
     hydro: 6.1,
     oil: 123.6,
     gas: 77.3,
@@ -48,7 +48,7 @@ export default [
     nuclear: 37.8,
   },
   {
-    energyDate: '2022/07',
+    energyDate: '7월',
     hydro: 59.8,
     oil: 937.6,
     gas: 582,
@@ -56,7 +56,7 @@ export default [
     nuclear: 187.9,
   },
   {
-    energyDate: '2022/08',
+    energyDate: '8월',
     hydro: 74.2,
     oil: 308.6,
     gas: 35.1,
@@ -64,7 +64,7 @@ export default [
     nuclear: 11.3,
   },
   {
-    energyDate: '2022/09',
+    energyDate: '9월',
     hydro: 40,
     oil: 128.5,
     gas: 361.8,
@@ -72,7 +72,7 @@ export default [
     nuclear: 32.4,
   },
   {
-    energyDate: '2022/10',
+    energyDate: '10월',
     hydro: 22.6,
     oil: 241.5,
     gas: 64.9,
@@ -80,7 +80,7 @@ export default [
     nuclear: 64.8,
   },
   {
-    energyDate: '2022/11',
+    energyDate: '11월',
     hydro: 19,
     oil: 119.3,
     gas: 28.9,
@@ -88,7 +88,7 @@ export default [
     nuclear: 3.8,
   },
   {
-    energyDate: '2022/12',
+    energyDate: '12월',
     hydro: 6.1,
     oil: 123.6,
     gas: 77.3,

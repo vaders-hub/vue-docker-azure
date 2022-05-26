@@ -31,8 +31,12 @@ export default defineComponent({
 
     const onClickMenu = async (e) => {
       e.preventDefault()
+
+      const { innerText } = e.target
+      const tgtRoute = innerText.toLowerCase()
+      console.log('e', tgtRoute)
       // await mainStore.login();
-      router.push({ path: '/dashboard' })
+      router.push({ path: `/${tgtRoute}` })
     }
 
     return {
@@ -210,7 +214,7 @@ export default defineComponent({
               </li>
             </ul>
             <div class="menu__assessment">
-              <a href="#">Assessment</a>
+              <a @click="onClickMenu($event)" href="#">Assessment</a>
             </div>
           </nav>
           <button class="menu__close" type="button"><span class="hidden">menu close</span></button>

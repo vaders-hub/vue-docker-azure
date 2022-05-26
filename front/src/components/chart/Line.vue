@@ -68,14 +68,9 @@ export default defineComponent({
 </script>
 <template>
   <div :id="Options.idName">
-    <DxChart
-      id="line_chart"
-      :data-source="Options.loadedData"
-      palette="Violet"
-      :style="Options.style"
-    >
+    <DxChart id="line_chart" :data-source="Options.loadedData" palette="Violet">
       <DxCommonSeriesSettings :type="type" argument-field="energyDate" />
-      <DxSeries name="oil" value-field="oil" type="bar" color="#fac29a" />
+      <DxSeries name="월별배출량" value-field="oil" type="bar" color="#fac29a" />
       <DxSeries
         v-for="energy in Options.series.filter((v, i) => v.value !== 'oil')"
         :key="energy.value"
@@ -85,14 +80,14 @@ export default defineComponent({
         :axis="energy.value === 'hydro' ? 'hydro' : ''"
       />
       <DxMargin :bottom="20" />
-      <DxValueAxis :tick-interval="300" name="oil" position="left" />
+      <DxValueAxis :tick-interval="300" name="oil" position="right" />
 
       <DxValueAxis
         :tick-interval="20"
         :show-zero="true"
         :value-margins-enabled="false"
         name="hydro"
-        position="right"
+        position="left"
       >
         <DxLabel />
         <!-- red dashed line -->
@@ -125,17 +120,3 @@ export default defineComponent({
     </div>
   </div>
 </template>
-<style lang="scss">
-#line_chart {
-  height: 450px;
-  width: 659px;
-
-  .dxc-legend {
-    .dxc-item {
-      rect {
-        rx: 12;
-      }
-    }
-  }
-}
-</style>

@@ -23,10 +23,7 @@ export interface LineOptions {
   idName: string
   loadedData: []
   series: Series[]
-  style?: {
-    width: string
-    height: string
-  }
+  style?: any
 }
 
 export interface BarOptions {
