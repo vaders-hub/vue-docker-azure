@@ -1,12 +1,16 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["esnext", "ESNext.AsyncIterable", "dom"],
+    "resolveJsonModule": true,
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "esModuleInterop": true,
     "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
     "sourceMap": true,
     "strict": true,
     "noEmit": true,
@@ -16,19 +20,14 @@
       "~/*": ["./*"],
       "@/*": ["./src/*"]
     },
-    "types": ["vite/client", "@types/jest"],
+    "types": ["webpack-env", "@types/jest"],
     "typeRoots": ["./src/types", "./node_modules/@types"],
     "jsx": "preserve",
     "noImplicitAny": false,
     "isolatedModules": true
   },
 
-  "include": ["src/**/*.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
   "exclude": ["node_modules", "dist"],
-  "compileOnSave": false,
-  "references": [
-    {
-      "path": "./tsconfig.vite-config.json"
-    }
-  ]
+  "compileOnSave": false
 }

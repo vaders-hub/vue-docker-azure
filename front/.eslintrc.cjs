@@ -17,16 +17,19 @@ module.exports = {
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
+    parser: '@typescript-eslint/parser',
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    'typescript.suggestionActions.enabled': 0,
-    'javascript.suggestionActions.enabled': 0,
+    '@typescript-eslint/no-empty-function': 0,
+    '@typescript-eslint/no-this-alias': 0,
+
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/no-explicit-any': 0,
+    'no-empty-function': 0,
     'no-return-await': 2,
+    'javascript.suggestionActions.enabled': 0,
+    'typescript.suggestionActions.enabled': 0,
     curly: 0,
     '@typescript-eslint/no-inferrable-types': [
       'warn',

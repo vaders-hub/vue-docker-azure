@@ -5,7 +5,7 @@ import { useDashboardStore } from '@/store/dashboard'
 import Line from '@/components/chart/Line.vue'
 import Bar from '@/components/chart/Bar.vue'
 import Pie from '@/components/chart/Pie.vue'
-// import WorldMap from '@/components/chart/WorldMap.vue'
+import WorldMap from '@/components/chart/WorldMap.vue'
 import StackedBar from '@/components/chart/StackedBar.vue'
 import type { LineOptions, BarOptions, PieOptions, StackedBarOptions } from '@/interface/common'
 
@@ -17,7 +17,7 @@ export default defineComponent({
     Line,
     Bar,
     Pie,
-    // WorldMap,
+    WorldMap,
     StackedBar,
   },
   data() {
@@ -273,8 +273,8 @@ export default defineComponent({
           <span class="lca-chart__unit">(단위 : MWh)</span>
         </div>
         <div class="lca-chart__area">
-          <!-- <WorldMap /> -->
-          <img src="@/assets/images/dummy-chart-1440x710.gif" alt="" />
+          <WorldMap />
+          <!-- <img src="@/assets/images/dummy-chart-1440x710.gif" alt="" /> -->
         </div>
       </div>
     </div>
