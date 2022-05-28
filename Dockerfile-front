@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY front/ ./front/
 RUN cd front && rm -rf node_modules/
-RUN cd front && npm i && npm run build
+RUN cd front && yarn install && yarn build
 
 FROM nginx:alpine
 
