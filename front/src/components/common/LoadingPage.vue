@@ -13,7 +13,6 @@ export default defineComponent({
   },
   components: {},
   setup(props) {
-    const show = ref(false)
     const divClass = ref('pageLoaderWrap visible')
     const status: SorE = 'success'
     const percent = ref(0)
@@ -64,7 +63,7 @@ export default defineComponent({
         newVal === false ? stop() : start()
       },
     )
-    return { show, divClass, percent, styles }
+    return { divClass, percent, styles }
   },
 })
 </script>
