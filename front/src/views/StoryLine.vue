@@ -23,9 +23,9 @@ export default defineComponent({
       { name: 'Net Zero', active: false, value: 'StoryNetZero' },
     ])
     const onClickTab = (idx) => {
-      Icons.forEach((v, i) => {
-        i === idx ? (v.active = '') : (v.active = 'is-active')
-      })
+      Icons.forEach((v, i) => (v.active = ''))
+      Icons[0].active = 'is-active'
+
       Tabs.forEach((v, i) => {
         v.active = false
         if (idx === i) {
