@@ -12,14 +12,16 @@ export const useMainStore = defineStore({
     layout: 'Default',
     loadingData: false,
     loadingPage: false,
+    current: '',
     members: {},
   }),
   actions: {
     changeLayout(layoutTo) {
       this.layout = layoutTo
     },
-    changeLoadingpageStatus(status) {
+    changeLoadingpageStatus(status, path?) {
       this.loadingPage = status
+      this.current = path
     },
     changeLoadingdataStatus(status) {
       // if (!this.loadingData) return

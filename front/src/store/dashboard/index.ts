@@ -1153,12 +1153,8 @@ export const useDashboardStore = defineStore({
         ]
 
         if (payload) {
-          if (payload == 'line') {
-            // this.dataSet[payload] = this.dataSet[payload].concat(lineData.data.rows)
+          if (payload === 'line') {
             this.dataSet[payload] = this.dataSet[payload].concat(lineDatas)
-          }
-          if (this.dataSet[payload].length < eval(payload).length) {
-            this.dataSet[payload] = this.dataSet[payload].concat(eval(payload))
           }
         }
       } catch (e) {

@@ -1,7 +1,5 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
-import Header from '@/components/common/Header.vue'
-import Footer from '@/components/common/Footer.vue'
 import Diagram1 from '@/components/chart/Diagram-1.vue'
 
 import type { LineOptions } from '@/interface/common'
@@ -9,8 +7,6 @@ import type { LineOptions } from '@/interface/common'
 export default defineComponent({
   name: 'Assessment',
   components: {
-    Header,
-    Footer,
     Diagram1,
   },
   setup(context) {
@@ -20,7 +16,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <Header />
   <section class="contents">
     <div class="page-top">
       <div class="page-top__header">
@@ -31,7 +26,6 @@ export default defineComponent({
       <Diagram1 />
     </div>
   </section>
-  <Footer />
 </template>
 <style lang="scss">
 .diagram-wrap {

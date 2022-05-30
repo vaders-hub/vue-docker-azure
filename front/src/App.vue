@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, reactive, watch, inject } from 'vue'
+import { useRoute } from 'vue-router'
 import { useMainStore } from '@/store/index'
 import LoadingData from '@/components/common/LoadingData.vue'
 import LoadingPage from '@/components/common/LoadingPage.vue'
@@ -9,12 +10,11 @@ import type { InputEvents } from '@/interface/common'
 export default defineComponent({
   name: 'App',
   components: { LoadingData, LoadingPage },
-  renderError(h, err) {
-    return h('pre', { style: { color: 'red' } }, err.stack)
-  },
   setup(context) {
-    const uiEvent = inject<InputEvents>('inputEvents')
+    const route = useRoute()
     const mainStore = useMainStore()
+    const uiEvent = inject<InputEvents>('inputEvents')
+    let isMain
 
     onMounted(() => {
       uiEvent?.initDetection()
@@ -22,6 +22,7 @@ export default defineComponent({
 
     return {
       mainStore,
+      isMain,
     }
   },
 })

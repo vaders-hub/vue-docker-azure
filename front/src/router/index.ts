@@ -3,6 +3,7 @@ import { useMainStore } from '@/store/index'
 
 import Dashboard from '@/views/Dashboard.vue'
 import Assessment from '@/views/Assessment.vue'
+import StoryLine from '@/views/StoryLine.vue'
 
 const routes = [
   {
@@ -32,13 +33,13 @@ const routes = [
   {
     path: '/storyline',
     name: 'Storyline',
-    meta: { layout: 'Main' },
-    component: () => import('@/views/StoryLine.vue'),
+    meta: { layout: 'Default' },
+    component: StoryLine,
   },
   {
     path: '/assessment',
     name: 'Assessment',
-    meta: { layout: 'Main' },
+    meta: { layout: 'Default' },
     component: Assessment,
   },
   {
@@ -54,14 +55,14 @@ const routes = [
     component: () => import('@/views/DashboardDev.vue'),
   },
   {
-    path: '/scope_1_2',
-    name: 'Scope_1_2',
+    path: '/scope12',
+    name: 'Scope 1/2',
     meta: { layout: 'Default' },
     component: () => import('@/views/Scope_1_2.vue'),
   },
   {
-    path: '/scope_3',
-    name: 'Scope_3',
+    path: '/scope3',
+    name: 'Scope 3',
     meta: { layout: 'Default' },
     component: () => import('@/views/Scope_3.vue'),
   },
@@ -74,7 +75,7 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
-    meta: { layout: 'Admin' },
+    meta: { layout: 'Default' },
     component: () => import('@/views/admin/Index.vue'),
     children: [
       {
@@ -111,8 +112,9 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach((to, from, next) => {
   const mainStore = useMainStore()
+  const toPath = to.path.replace('/', '')
 
-  mainStore.changeLoadingpageStatus(false)
+  mainStore.changeLoadingpageStatus(false, toPath)
 })
 
 export default router

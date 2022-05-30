@@ -2,23 +2,31 @@
 import { defineComponent, onMounted, reactive, watch } from 'vue'
 import { hander } from '@/lib/index'
 import { useMainStore } from '@/store/index'
-import { useRouter } from 'vue-router'
-import DxToolbar from 'devextreme-vue/toolbar'
-import DxForm, {
-  DxItem,
-  DxEmailRule,
-  DxRequiredRule,
-  DxLabel,
-  DxButtonItem,
-  DxButtonOptions,
-} from 'devextreme-vue/form'
-import DxButton from 'devextreme-vue/button'
+import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
   components: {},
   setup(context) {
     const mainStore = useMainStore()
+    const currentPath = mainStore.current
+    const route = useRoute()
     const router = useRouter()
+
+    const menuDepth1 = reactive([
+      { name: 'Dashboard', active: 'is-active', class: 'dashboard' },
+      { name: 'Scope 1/2', active: '', class: 'scope12' },
+      { name: 'Scope 3', active: '', class: 'scope3' },
+    ])
+    const MenuDepth2 = reactive([
+      { name: 'SKI', active: '', class: 'ski' },
+      { name: 'SKE(w/TI)', active: '', class: 'ske' },
+      { name: 'SKGC', active: '', class: 'skgc' },
+      { name: 'SKO', active: '', class: 'sko' },
+      { name: 'SKL', active: '', class: 'skl' },
+      { name: 'SKIPC', active: '', class: 'skipc' },
+      { name: 'SKIET', active: '', class: 'skiet' },
+      { name: 'SKEO', active: '', class: 'skeo' },
+    ])
 
     onMounted(() => {
       hander.contentReady()
@@ -29,19 +37,41 @@ export default defineComponent({
       router.push({ path: '/' })
     }
 
-    const onClickMenu = async (e) => {
+    const onClickMenu = async (e, idx) => {
       e.preventDefault()
 
-      const { innerText } = e.target
-      const tgtRoute = innerText.toLowerCase()
-      console.log('e', tgtRoute)
-      // await mainStore.login();
-      router.push({ path: `/${tgtRoute}` })
+      menuDepth1.forEach((v, i) => {
+        i === idx ? (v.active = '') : (v.active = 'is-active')
+      })
     }
+
+    const onClickNavigate = async (e, idx?, sidx?) => {
+      e.preventDefault()
+
+      if (typeof idx !== 'number') {
+        router.push({ name: 'Assessment' })
+      }
+      if (typeof idx === 'number') {
+        router.push({ name: `${menuDepth1[idx].name}`, params: { target: MenuDepth2[sidx].class } })
+      }
+    }
+
+    watch(
+      () => mainStore.current,
+      (newVal, oldVal) => {
+        console.log('currentPath watch', newVal, oldVal)
+        menuDepth1.forEach((v) => {
+          v.class === newVal ? (v.active = 'is-active') : (v.active = '')
+        })
+      },
+    )
 
     return {
       goHome,
+      menuDepth1,
+      MenuDepth2,
       onClickMenu,
+      onClickNavigate,
       router,
     }
   },
@@ -72,149 +102,30 @@ export default defineComponent({
               <button class="menu__pin-btn" type="button"><span class="hidden">pin</span></button>
             </div>
             <ul role="menubar">
-              <li role="presentation">
+              <li v-for="(title, tid) in menuDepth1" :key="tid" role="presentation">
                 <!-- (js) 메뉴 활성화 시 .is-active 추가 -->
                 <a
-                  @click="onClickMenu($event)"
-                  class="menu__depth1 menu__depth1--dashboard is-active"
+                  @click="onClickMenu($event, tid)"
+                  :class="`menu__depth1 menu__depth1--${title.class} ${title.active}`"
                   href="#"
                   role="menuitem"
-                  >Dashboard</a
+                  >{{ title.name }}</a
                 >
                 <ul class="menu__depth2" role="menu">
-                  <li role="presentation">
-                    <!-- (D) 메뉴 활성화 시 .is-active 추가 -->
-                    <a class="icon-company icon-company--ski is-active" href="#" role="menuitem"
-                      ><span>SKI</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--ske" href="#" role="menuitem"
-                      ><span>SKE(w/TI)</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skgc" href="#" role="menuitem"
-                      ><span>SKGC</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--sko" href="#" role="menuitem"
-                      ><span>SKO</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skl" href="#" role="menuitem"
-                      ><span>SKL</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skipc" href="#" role="menuitem"
-                      ><span>SKIPC</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skiet" href="#" role="menuitem"
-                      ><span>SKIET</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skeo" href="#" role="menuitem"
-                      ><span>SKEO</span></a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li role="presentation">
-                <a class="menu__depth1 menu__depth1--scope12" href="#" role="menuitem">Scope 1/2</a>
-                <ul class="menu__depth2" role="menu">
-                  <li role="presentation">
-                    <!-- (D) 메뉴 활성화 시 .is-active 추가 -->
-                    <a class="icon-company icon-company--ski" href="#" role="menuitem"
-                      ><span>SKI</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--ske" href="#" role="menuitem"
-                      ><span>SKE(w/TI)</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skgc" href="#" role="menuitem"
-                      ><span>SKGC</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--sko" href="#" role="menuitem"
-                      ><span>SKO</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skl" href="#" role="menuitem"
-                      ><span>SKL</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skipc" href="#" role="menuitem"
-                      ><span>SKIPC</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skiet" href="#" role="menuitem"
-                      ><span>SKIET</span></a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li role="presentation">
-                <a class="menu__depth1 menu__depth1--scope3" href="#" role="menuitem">Scope 3</a>
-                <ul class="menu__depth2" role="menu">
-                  <li role="presentation">
-                    <!-- (D) 메뉴 활성화 시 .is-active 추가 -->
-                    <a class="icon-company icon-company--ski is-active" href="#" role="menuitem"
-                      ><span>SKI</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--ske" href="#" role="menuitem"
-                      ><span>SKE(w/TI)</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skgc" href="#" role="menuitem"
-                      ><span>SKGC</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--sko" href="#" role="menuitem"
-                      ><span>SKO</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skl" href="#" role="menuitem"
-                      ><span>SKL</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skipc" href="#" role="menuitem"
-                      ><span>SKIPC</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skiet" href="#" role="menuitem"
-                      ><span>SKIET</span></a
-                    >
-                  </li>
-                  <li role="presentation">
-                    <a class="icon-company icon-company--skeo" href="#" role="menuitem"
-                      ><span>SKEO</span></a
+                  <li v-for="(item, index) in MenuDepth2" :key="index" role="presentation">
+                    <a
+                      @click="onClickNavigate($event, tid, index)"
+                      :class="`icon-company icon-company--${item.class}`"
+                      href="#"
+                      role="menuitem"
+                      ><span>{{ item.name }}</span></a
                     >
                   </li>
                 </ul>
               </li>
             </ul>
             <div class="menu__assessment">
-              <a @click="onClickMenu($event)" href="#">Assessment</a>
+              <a @click="onClickNavigate($event)" href="#">Assessment</a>
             </div>
           </nav>
           <button class="menu__close" type="button"><span class="hidden">menu close</span></button>

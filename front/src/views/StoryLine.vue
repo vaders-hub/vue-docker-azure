@@ -1,7 +1,5 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
-import Header from '@/components/common/Header.vue'
-import Footer from '@/components/common/Footer.vue'
 import StoryScope12 from '@/components/story/StoryScope_1_2.vue'
 import StoryScope3 from '@/components/story/StoryScope_3.vue'
 import StoryNetZero from '@/components/story/StoryNetZero.vue'
@@ -11,8 +9,6 @@ import type { LineOptions } from '@/interface/common'
 export default defineComponent({
   name: 'Storyline',
   components: {
-    Header,
-    Footer,
     StoryScope12,
     StoryScope3,
     StoryNetZero,
@@ -28,10 +24,7 @@ export default defineComponent({
     ])
     const onClickTab = (idx) => {
       Icons.forEach((v, i) => {
-        v.active = ''
-        if (i === 0) {
-          v.active = 'is-active'
-        }
+        i === idx ? (v.active = '') : (v.active = 'is-active')
       })
       Tabs.forEach((v, i) => {
         v.active = false
@@ -74,7 +67,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <Header />
   <section class="storyline">
     <h1 class="hidden">Dashboard 스토리 라인</h1>
     <div class="contents">
@@ -121,5 +113,4 @@ export default defineComponent({
 
     <component :is="compName" keep-alive :current="activeIcon" />
   </section>
-  <Footer />
 </template>
