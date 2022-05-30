@@ -59,7 +59,7 @@ export default defineComponent({
     watch(
       () => mainStore.current,
       (newVal, oldVal) => {
-        console.log('currentPath watch', newVal, oldVal)
+        // console.log('currentPath watch', newVal, oldVal)
         menuDepth1.forEach((v) => {
           v.class === newVal ? (v.active = 'is-active') : (v.active = '')
         })
