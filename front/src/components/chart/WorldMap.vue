@@ -1,21 +1,13 @@
 <script lang="ts">
 import { defineComponent, ref, defineProps } from 'vue'
 import * as mapsData from 'devextreme/dist/js/vectormap-data/world.js'
-import {
-  DxVectorMap,
-  DxLayer,
-  DxSource,
-  DxTooltip,
-  DxBorder,
-  DxFont,
-} from 'devextreme-vue/vector-map'
-import type { PropType } from 'vue'
+import { DxVectorMap, DxLayer, DxTooltip, DxBorder, DxFont } from 'devextreme-vue/vector-map'
 import { useDashboardStore } from '@/store/dashboard'
+import CollectionWidget from 'devextreme/ui/collection/ui.collection_widget.base'
 export default defineComponent({
   components: {
     DxVectorMap,
     DxLayer,
-    // DxSource,
     DxTooltip,
     DxBorder,
     DxFont,
@@ -253,8 +245,10 @@ export default defineComponent({
     ]
 
     const customizeLayer = (worlds) => {
+      let worldEmmit_data = dashboardStore.dataSet.worldEmmit_data.sort((a, b) => a.value - b.value)
+
       worlds.forEach((world) => {
-        dashboardStore.dataSet.worldEmmit_data.forEach((data, index) => {
+        worldEmmit_data.forEach((data, index) => {
           if (data.engNm === world.attribute('name')) {
             world.applySettings({
               color: colors[index],

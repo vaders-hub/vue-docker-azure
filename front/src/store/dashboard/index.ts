@@ -1157,26 +1157,8 @@ export const useDashboardStore = defineStore({
             // this.dataSet[payload] = this.dataSet[payload].concat(lineData.data.rows)
             this.dataSet[payload] = this.dataSet[payload].concat(lineDatas)
           }
-          if (payload == 'scope_1_2_data') {
-            this.dataSet[payload] = this.dataSet[payload].concat(scope_1_2_data)
-          }
-          if (payload == 'scope_3_data') {
-            this.dataSet[payload] = this.dataSet[payload].concat(scope_3_data)
-          }
-          if (payload == 'site_data') {
-            this.dataSet[payload] = this.dataSet[payload].concat(site_data)
-          }
-          if (payload == 'cate_data') {
-            this.dataSet[payload] = this.dataSet[payload].concat(cate_data)
-          }
-          if (payload == 'stacked1_data') {
-            this.dataSet[payload] = this.dataSet[payload].concat(stacked1_data)
-          }
-          if (payload == 'stacked2_data') {
-            this.dataSet[payload] = this.dataSet[payload].concat(stacked2_data)
-          }
-          if (payload == 'worldEmmit_data') {
-            this.dataSet[payload] = this.dataSet[payload].concat(worldEmmit_data)
+          if (this.dataSet[payload].length < eval(payload).length) {
+            this.dataSet[payload] = this.dataSet[payload].concat(eval(payload))
           }
         }
       } catch (e) {
