@@ -46,7 +46,7 @@ class Accordion {
         el.animation = el.dataOptions.animation;
 
         el.animationSpeed = el.dataOptions.animationSpeed;
-      }
+      } 
       
       el.accHeader = el.target.querySelectorAll(selector.accHeader);
       el.accPanel = el.target.querySelectorAll(selector.accPanel);
@@ -63,6 +63,18 @@ class Accordion {
         el.accHeader[index]
           .querySelector('.accordion-btn')
           .setAttribute('aria-controls', singleAccPanel.id);
+      });
+
+      [... el.target.querySelectorAll('.accordion-item')].forEach(element => {
+        const panel = element.querySelector(selector.accPanel);
+        const putton = element.querySelector(selector.accHeader).querySelector('button');
+        panel.style.overflow = 'hidden';
+        if (putton.getAttribute('aria-expanded') === 'false') {
+          gsap.to(panel, 0, {
+            height: 0
+          });
+        }
+        panel.style.display = 'block';
       });
 
       Accordion.index++;
@@ -84,13 +96,14 @@ class Accordion {
           if (btnArrow === 'true') {
             e.currentTarget.setAttribute('aria-expanded', 'false');
 
-            e.currentTarget.dataText.show(1);
+            e.currentTarget.dataText ? e.currentTarget.dataText.show(1) : null;
 
             method.close(elId);
           } else {
             e.currentTarget.setAttribute('aria-expanded', 'true');
 
-            e.currentTarget.dataText.show(2);
+            e.currentTarget.dataText ? e.currentTarget.dataText.show(2) : null;
+
             method.open(elId);
           }
         } else if (el.openType === 'single' && btnArrow === 'false') {
@@ -100,15 +113,13 @@ class Accordion {
           [...accSingleEl].forEach((element) => {
             if (thisItem === element) {
               e.currentTarget.setAttribute('aria-expanded', 'true');
-              e.currentTarget.dataText.show(2);
+              e.currentTarget.dataText ? e.currentTarget.dataText.show(2) : null;
 
               method.open(elId);
               return;
             }
-            element
-              .querySelector('.accordion-btn')
-              .setAttribute('aria-expanded', 'false');
-            element.querySelector('.accordion-btn').dataText.show(1);
+            element.querySelector('.accordion-btn').setAttribute('aria-expanded', 'false');
+            element.querySelector('.accordion-btn').dataText ? element.querySelector('.accordion-btn').dataText.show(1) : null;
 
             const notActiveBtn = element.querySelector('.accordion-btn');
             const notActiveElId = notActiveBtn.getAttribute('aria-controls');
@@ -215,6 +226,7 @@ Accordion.animationType = Accordion.ANIMATION_TYPE;
 //  Accordion  생성
 export const accordionController = {
   init: (selector) => {
+
     [...document.querySelectorAll(selector)].forEach((el) => {
       const obj = root.weakMap.get(el);
 

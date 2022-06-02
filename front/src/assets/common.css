@@ -1430,7 +1430,7 @@ caption, .hidden {
   right: 0;
   bottom: 0;
   left: 0;
-  padding-left: 61px;
+  padding-left: 57px;
 }
 
 .assessment .assessment-step__selected-data span {
@@ -1455,7 +1455,7 @@ caption, .hidden {
 }
 
 .assessment .assessment-step__contents {
-  display: non e;
+  display: none;
   padding-bottom: 35px;
 }
 
