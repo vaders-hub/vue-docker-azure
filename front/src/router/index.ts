@@ -49,12 +49,6 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: '/dashboardDev',
-    name: 'DashboardDev',
-    meta: { layout: 'Default' },
-    component: () => import('@/views/DashboardDev.vue'),
-  },
-  {
     path: '/scope12',
     name: 'Scope 1/2',
     meta: { layout: 'Default' },
