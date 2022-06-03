@@ -4,7 +4,7 @@ import DxDropDownBox from 'devextreme-vue/drop-down-box'
 import DxTreeView from 'devextreme-vue/tree-view'
 
 export default defineComponent({
-  name: 'DropdownSingle',
+  name: 'DropdownMultiple',
   components: {
     DxDropDownBox,
     DxTreeView,
@@ -32,14 +32,11 @@ export default defineComponent({
       //   console.log('syncTreeViewSelection')
     }
     const treeViewItemSelectionChanged = async (e) => {
-      treeBoxValue.value = e.component.getSelectedNodeKeys()[0]
+      const { items, itemData } = e.node
 
-      const { text, key: value } = e.node
-      const emitData = { name: props.treeName, text, value }
+      treeBoxValue.value = e.component.getSelectedNodeKeys()
 
-      isTreeBoxOpened.value = false
-
-      if (text) emit('drop-changed', emitData)
+      emit('drop-changed', { ...items, ...itemData })
     }
     const onTreeItemClick = (e) => {
       isTreeBoxOpened.value = false
@@ -74,10 +71,12 @@ export default defineComponent({
         :ref="treeViewRefName"
         :data-source="treeDataSource"
         :select-by-click="true"
+        :select-nodes-recursive="true"
         data-structure="plain"
         key-expr="ID"
         parent-id-expr="categoryId"
-        selection-mode="single"
+        selection-mode="multiple"
+        show-check-boxes-mode="normal"
         display-expr="name"
         @item-selection-changed="treeViewItemSelectionChanged($event)"
         @item-click="onTreeItemClick($event)"

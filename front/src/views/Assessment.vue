@@ -1,13 +1,16 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, onBeforeUnmount, reactive, ref } from 'vue'
-import DropdownSingle from '@/components/common/DropdownSingle.vue'
+import SelectBox from '@/components/common/SelectBox.vue'
+import DropdownMultiple from '@/components/common/DropdownMultiple.vue'
 import { hander } from '@/lib/index'
 import Diagram1 from '@/components/chart/Diagram-1.vue'
+import tempTreeData from '@/store/assessment/tree'
 
 export default defineComponent({
   name: 'Assessment',
   components: {
-    DropdownSingle,
+    SelectBox,
+    DropdownMultiple,
     Diagram1,
   },
   setup(context) {
@@ -86,45 +89,31 @@ export default defineComponent({
       return title
     })
 
-    const step4DropDatas = [
-      [
-        {
-          ID: '1',
-          name: 'Stores 1',
-        },
-        {
-          ID: '2',
-          name: 'Super Mart of the West 1',
-        },
-      ],
-      [
-        {
-          ID: '1',
-          name: 'Stores 2',
-        },
-        {
-          ID: '2',
-          name: 'Super Mart of the West 2',
-        },
-      ],
-      [
-        {
-          ID: '1',
-          name: 'Stores 3',
-        },
-        {
-          ID: '2',
-          name: 'Super Mart of the West 3',
-        },
-      ],
+    const step4tempData = [
+      'HD Video Player',
+      'SuperHD Video Player',
+      'SuperPlasma 50',
+      'SuperLED 50',
+      'SuperLED 42',
+      'SuperLCD 55',
+      'SuperLCD 42',
+      'SuperPlasma 65',
+      'SuperLCD 70',
+      'Projector Plus',
+      'Projector PlusHT',
+      'ExcelRemote IR',
+      'ExcelRemote BT',
+      'ExcelRemote IP',
     ]
 
     let selectedStep4DropDatas: string[] = Array(3).fill('')
 
-    const singleDropChanged = ({ name, text, value }) => {
-      const [dataName, idx] = name.split('-')
+    const multiDropChanged = (e) => {
+      // console.log('multiDropChanged', e)
+    }
 
-      selectedStep4DropDatas[idx] = text
+    const selectChanged = (e) => {
+      // console.log('selectChanged', e)
     }
 
     return {
@@ -138,8 +127,10 @@ export default defineComponent({
       step3Items,
       step3ItemsSelected,
       step3ItemsSelectedTtl,
-      step4DropDatas,
-      singleDropChanged,
+      step4tempData,
+      tempTreeData,
+      selectChanged,
+      multiDropChanged,
     }
   },
 })
@@ -323,17 +314,10 @@ export default defineComponent({
             </div>
             <div class="assessment-step__contents">
               <div class="option-list option-list--bm">
-                <div class="option-item" v-for="(item, index) in step4DropDatas" :key="index">
-                  <em class="option-item__title"
-                    ><span>Step {{ index + 1 }}</span
-                    >SKE BM 선택</em
-                  >
+                <div class="option-item">
+                  <em class="option-item__title"><span>Step </span>SKE BM 선택</em>
                   <div class="option-item__data">
-                    <DropdownSingle
-                      :treeName="`step4DropDatas-${index}`"
-                      :treeData="item"
-                      @dropChanged="singleDropChanged"
-                    />
+                    <SelectBox :selectData="step4tempData" @selectChanged="selectChanged" />
                   </div>
                 </div>
               </div>
@@ -359,12 +343,7 @@ export default defineComponent({
                 <!-- 사업회사: SK에너지 / 평가 방법: 통합 평가 -->
                 <div class="option-item">
                   <div class="option-item__select">
-                    <div class="select-wrap">
-                      <select>
-                        <option>Virgin Naph</option>
-                        <option>Renewable (Naph)</option>
-                      </select>
-                    </div>
+                    <SelectBox :selectData="step4tempData" @selectChanged="selectChanged" />
                   </div>
                   <div class="option-item__input">
                     <div class="input">
@@ -377,13 +356,7 @@ export default defineComponent({
                 <!-- 사업회사: SK에너지 / 평가 방법: 개별 평가 -->
                 <div class="option-item">
                   <div class="option-item__select">
-                    <div class="select-wrap">
-                      <select data-options='{"msg": "Conventional Crude"}'>
-                        <option>Conventional Crude</option>
-                        <option>Renewables (UCO)</option>
-                        <option>열분해유</option>
-                      </select>
-                    </div>
+                    <SelectBox :selectData="step4tempData" @selectChanged="selectChanged" />
                   </div>
                   <div class="option-item__input">
                     <div class="input">
@@ -435,517 +408,35 @@ export default defineComponent({
             <div class="assessment-step__contents">
               <div class="option-list option-list--reduction">
                 <!-- 공정 효율 개선 -->
-                <div class="option-item">
-                  <div
-                    class="accordion"
-                    data-options='{
-                    "id": "chk-assessment-step7-1",
-                    "openType": "multi"
-                  }'
-                  >
-                    <!-- (dev) 체크된 항목이 있을 경우 is-checked 클래스 추가 -->
-                    <div class="accordion-item is-checked">
-                      <div class="accordion-header">
-                        <button type="button" class="accordion-btn" aria-expanded="false">
-                          <em class="accordion-btn__title">공정 효율 개선(단기)</em>
-                          <!-- (dev) 체크된 항목이 있을 경우, 체크된 항목 텍스트 노출(체크된 항목이 없을 경우, 영역을 삭제하거나 빈 값으로 출력)
-                            여러개 선택이 된 경우, 첫번째 항목만 텍스트를 노출하고 나머지 선택된 항목의 개수는 아래 마크업 형태로 출력
-                            <span>외 <i>+숫자</i></span>
-                          -->
-                          <span class="accordion-btn__selected-data">
-                            <span class="txt">#1 PX 효율 개선 (MVR 설치)</span>
-                          </span>
-                          <span
-                            class="accordion-btn__text"
-                            data-text='{"text":"열기|닫기", "show":1}'
-                            >열기</span
-                          >
-                        </button>
-                      </div>
-                      <div class="accordion-panel" aria-hidden="true">
-                        <div class="accordion-cont">
-                          <ul class="checkbox-list">
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-1-1" />
-                              <label for="chk-assessment-step7-1-1-1"
-                                >NAC 효율 개선 (Flare Tip)</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-1-2" checked />
-                              <label for="chk-assessment-step7-1-1-2"
-                                >NEP 효율 개선 (GTG 교체)</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-1-3" />
-                              <label for="chk-assessment-step7-1-1-3"
-                                >#1 PX 효율 개선 (MVR 설치)</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-1-4" />
-                              <label for="chk-assessment-step7-1-1-4"
-                                >공정 효율 개선(단기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-1-5" />
-                              <label for="chk-assessment-step7-1-1-5"
-                                >공정 효율 개선(단기) 선택 항목</label
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- (dev) 체크된 항목이 있을 경우 is-checked 클래스 추가 -->
-                    <div class="accordion-item is-checked">
-                      <div class="accordion-header">
-                        <button type="button" class="accordion-btn" aria-expanded="false">
-                          <em class="accordion-btn__title">공정 효율 개선(중기)</em>
-                          <!-- (dev) 체크된 항목이 있을 경우, 체크된 항목 텍스트 노출(체크된 항목이 없을 경우, 영역을 삭제하거나 빈 값으로 출력)
-                            여러개 선택이 된 경우, 첫번째 항목만 텍스트를 노출하고 나머지 선택된 항목의 개수는 아래 마크업 형태로 출력
-                            <span>외 <i>+숫자</i></span>
-                          -->
-                          <span class="accordion-btn__selected-data">
-                            <span class="txt">공정 효율 개선(중기) 선택 항목</span>
-                            <span class="add">외 <i>+2</i></span></span
-                          >
-                          <span
-                            class="accordion-btn__text"
-                            data-text='{"text":"열기|닫기", "show":1}'
-                            >열기</span
-                          >
-                        </button>
-                      </div>
-                      <div class="accordion-panel" aria-hidden="true">
-                        <div class="accordion-cont">
-                          <ul class="checkbox-list">
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-2-1" />
-                              <label for="chk-assessment-step7-1-2-1"
-                                >공정 효율 개선(중기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-2-2" checked />
-                              <label for="chk-assessment-step7-1-2-2"
-                                >공정 효율 개선(중기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-2-3" checked />
-                              <label for="chk-assessment-step7-1-2-3"
-                                >공정 효율 개선(중기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-2-4" checked />
-                              <label for="chk-assessment-step7-1-2-4"
-                                >공정 효율 개선(중기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-2-5" />
-                              <label for="chk-assessment-step7-1-2-5"
-                                >공정 효율 개선(중기) 선택 항목</label
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- (dev) 체크된 항목이 있을 경우 is-checked 클래스 추가 -->
-                    <div class="accordion-item">
-                      <div class="accordion-header">
-                        <button type="button" class="accordion-btn" aria-expanded="false">
-                          <em class="accordion-btn__title">공정 효율 개선(장기)</em>
-                          <!-- (dev) 체크된 항목이 있을 경우, 체크된 항목 텍스트 노출(체크된 항목이 없을 경우, 영역을 삭제하거나 빈 값으로 출력)
-                            여러개 선택이 된 경우, 첫번째 항목만 텍스트를 노출하고 나머지 선택된 항목의 개수는 아래 마크업 형태로 출력
-                            <span>외 <i>+숫자</i></span>
-                          -->
-                          <span class="accordion-btn__selected-data"></span>
-                          <span
-                            class="accordion-btn__text"
-                            data-text='{"text":"열기|닫기", "show":1}'
-                            >열기</span
-                          >
-                        </button>
-                      </div>
-                      <div class="accordion-panel" aria-hidden="true">
-                        <div class="accordion-cont">
-                          <ul class="checkbox-list">
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-3-1" />
-                              <label for="chk-assessment-step7-1-3-1"
-                                >공정 효율 개선(장기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-3-2" />
-                              <label for="chk-assessment-step7-1-3-2"
-                                >공정 효율 개선(장기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-3-3" />
-                              <label for="chk-assessment-step7-1-3-3"
-                                >공정 효율 개선(장기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-3-4" />
-                              <label for="chk-assessment-step7-1-3-4"
-                                >공정 효율 개선(장기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-1-3-5" />
-                              <label for="chk-assessment-step7-1-3-5"
-                                >공정 효율 개선(장기) 선택 항목</label
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <DropdownMultiple
+                  :treeName="`step7DropDatas-0`"
+                  :treeData="tempTreeData"
+                  @dropChanged="multiDropChanged"
+                />
                 <!--// 공정 효율 개선 -->
 
                 <!-- 연료전환 -->
-                <div class="option-item">
-                  <div
-                    class="accordion"
-                    data-options='{
-                    "id": "chk-assessment-step7-2",
-                    "openType": "multi"
-                  }'
-                  >
-                    <!-- (dev) 체크된 항목이 있을 경우 is-checked 클래스 추가 -->
-                    <div class="accordion-item">
-                      <div class="accordion-header">
-                        <button type="button" class="accordion-btn" aria-expanded="false">
-                          <em class="accordion-btn__title">연료전환(단기)</em>
-                          <!-- (dev) 체크된 항목이 있을 경우, 체크된 항목 텍스트 노출(체크된 항목이 없을 경우, 영역을 삭제하거나 빈 값으로 출력)
-                            여러개 선택이 된 경우, 첫번째 항목만 텍스트를 노출하고 나머지 선택된 항목의 개수는 아래 마크업 형태로 출력
-                            <span>외 <i>+숫자</i></span>
-                          -->
-                          <span class="accordion-btn__selected-data"></span>
-                          <span
-                            class="accordion-btn__text"
-                            data-text='{"text":"열기|닫기", "show":1}'
-                            >열기</span
-                          >
-                        </button>
-                      </div>
-                      <div class="accordion-panel" aria-hidden="true">
-                        <div class="accordion-cont">
-                          <ul class="checkbox-list">
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-1-1" />
-                              <label for="chk-assessment-step7-2-1-1"
-                                >연료전환(단기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-1-2" />
-                              <label for="chk-assessment-step7-2-1-2"
-                                >연료전환(단기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-1-3" />
-                              <label for="chk-assessment-step7-2-1-3"
-                                >연료전환(단기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-1-4" />
-                              <label for="chk-assessment-step7-2-1-4"
-                                >연료전환(단기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-1-5" />
-                              <label for="chk-assessment-step7-2-1-5"
-                                >연료전환(단기) 선택 항목</label
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- (dev) 체크된 항목이 있을 경우 is-checked 클래스 추가 -->
-                    <div class="accordion-item">
-                      <div class="accordion-header">
-                        <button type="button" class="accordion-btn" aria-expanded="false">
-                          <em class="accordion-btn__title">연료전환(중기)</em>
-                          <!-- (dev) 체크된 항목이 있을 경우, 체크된 항목 텍스트 노출(체크된 항목이 없을 경우, 영역을 삭제하거나 빈 값으로 출력)
-                            여러개 선택이 된 경우, 첫번째 항목만 텍스트를 노출하고 나머지 선택된 항목의 개수는 아래 마크업 형태로 출력
-                            <span>외 <i>+숫자</i></span>
-                          -->
-                          <span class="accordion-btn__selected-data"></span>
-                          <span
-                            class="accordion-btn__text"
-                            data-text='{"text":"열기|닫기", "show":1}'
-                            >열기</span
-                          >
-                        </button>
-                      </div>
-                      <div class="accordion-panel" aria-hidden="true">
-                        <div class="accordion-cont">
-                          <ul class="checkbox-list">
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-2-1" />
-                              <label for="chk-assessment-step7-2-2-1"
-                                >연료전환(중기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-2-2" />
-                              <label for="chk-assessment-step7-2-2-2"
-                                >연료전환(중기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-2-3" />
-                              <label for="chk-assessment-step7-2-2-3"
-                                >연료전환(중기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-2-4" />
-                              <label for="chk-assessment-step7-2-2-4"
-                                >연료전환(중기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-2-5" />
-                              <label for="chk-assessment-step7-2-2-5"
-                                >연료전환(중기) 선택 항목</label
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- (dev) 체크된 항목이 있을 경우 is-checked 클래스 추가 -->
-                    <div class="accordion-item">
-                      <div class="accordion-header">
-                        <button type="button" class="accordion-btn" aria-expanded="false">
-                          <em class="accordion-btn__title">연료전환(장기)</em>
-                          <!-- (dev) 체크된 항목이 있을 경우, 체크된 항목 텍스트 노출(체크된 항목이 없을 경우, 영역을 삭제하거나 빈 값으로 출력)
-                            여러개 선택이 된 경우, 첫번째 항목만 텍스트를 노출하고 나머지 선택된 항목의 개수는 아래 마크업 형태로 출력
-                            <span>외 <i>+숫자</i></span>
-                          -->
-                          <span class="accordion-btn__selected-data"></span>
-                          <span
-                            class="accordion-btn__text"
-                            data-text='{"text":"열기|닫기", "show":1}'
-                            >열기</span
-                          >
-                        </button>
-                      </div>
-                      <div class="accordion-panel" aria-hidden="true">
-                        <div class="accordion-cont">
-                          <ul class="checkbox-list">
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-3-1" />
-                              <label for="chk-assessment-step7-2-3-1"
-                                >연료전환(장기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-3-2" />
-                              <label for="chk-assessment-step7-2-3-2"
-                                >연료전환(장기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-3-3" />
-                              <label for="chk-assessment-step7-2-3-3"
-                                >연료전환(장기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-3-4" />
-                              <label for="chk-assessment-step7-2-3-4"
-                                >연료전환(장기) 선택 항목</label
-                              >
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-2-3-5" />
-                              <label for="chk-assessment-step7-2-3-5"
-                                >연료전환(장기) 선택 항목</label
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <DropdownMultiple
+                  :treeName="`step7DropDatas-1`"
+                  :treeData="tempTreeData"
+                  @dropChanged="multiDropChanged"
+                />
                 <!--// 연료전환 -->
 
                 <!-- renewable energy -->
-                <div class="option-item option-item--renewable-energy">
-                  <div class="option-item__label">
-                    <label for="inp-renewable-energy">Renewable Energy</label>
-                  </div>
-                  <div class="option-item__input">
-                    <div class="input">
-                      <input type="text" id="inp-renewable-energy" required />
-                      <span class="input__unit">%</span>
-                    </div>
-                  </div>
-                </div>
+                <DropdownMultiple
+                  :treeName="`step7DropDatas-2`"
+                  :treeData="tempTreeData"
+                  @dropChanged="multiDropChanged"
+                />
                 <!--// renewable energy -->
 
                 <!-- CCUS -->
-                <div class="option-item">
-                  <div
-                    class="accordion"
-                    data-options='{
-                    "id": "chk-assessment-step7-3",
-                    "openType": "multi"
-                  }'
-                  >
-                    <!-- (dev) 체크된 항목이 있을 경우 is-checked 클래스 추가 -->
-                    <div class="accordion-item">
-                      <div class="accordion-header">
-                        <button type="button" class="accordion-btn" aria-expanded="false">
-                          <em class="accordion-btn__title">CCUS(단기)</em>
-                          <!-- (dev) 체크된 항목이 있을 경우, 체크된 항목 텍스트 노출(체크된 항목이 없을 경우, 영역을 삭제하거나 빈 값으로 출력)
-                            여러개 선택이 된 경우, 첫번째 항목만 텍스트를 노출하고 나머지 선택된 항목의 개수는 아래 마크업 형태로 출력
-                            <span>외 <i>+숫자</i></span>
-                          -->
-                          <span class="accordion-btn__selected-data"></span>
-                          <span
-                            class="accordion-btn__text"
-                            data-text='{"text":"열기|닫기", "show":1}'
-                            >열기</span
-                          >
-                        </button>
-                      </div>
-                      <div class="accordion-panel" aria-hidden="true">
-                        <div class="accordion-cont">
-                          <ul class="checkbox-list">
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-1-1" />
-                              <label for="chk-assessment-step7-3-1-1">CCUS(단기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-1-2" />
-                              <label for="chk-assessment-step7-3-1-2">CCUS(단기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-1-3" />
-                              <label for="chk-assessment-step7-3-1-3">CCUS(단기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-1-4" />
-                              <label for="chk-assessment-step7-3-1-4">CCUS(단기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-1-5" />
-                              <label for="chk-assessment-step7-3-1-5">CCUS(단기) 선택 항목</label>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- (dev) 체크된 항목이 있을 경우 is-checked 클래스 추가 -->
-                    <div class="accordion-item">
-                      <div class="accordion-header">
-                        <button type="button" class="accordion-btn" aria-expanded="false">
-                          <em class="accordion-btn__title">CCUS(중기)</em>
-                          <!-- (dev) 체크된 항목이 있을 경우, 체크된 항목 텍스트 노출(체크된 항목이 없을 경우, 영역을 삭제하거나 빈 값으로 출력)
-                            여러개 선택이 된 경우, 첫번째 항목만 텍스트를 노출하고 나머지 선택된 항목의 개수는 아래 마크업 형태로 출력
-                            <span>외 <i>+숫자</i></span>
-                          -->
-                          <span class="accordion-btn__selected-data"></span>
-                          <span
-                            class="accordion-btn__text"
-                            data-text='{"text":"열기|닫기", "show":1}'
-                            >열기</span
-                          >
-                        </button>
-                      </div>
-                      <div class="accordion-panel" aria-hidden="true">
-                        <div class="accordion-cont">
-                          <ul class="checkbox-list">
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-2-1" />
-                              <label for="chk-assessment-step7-3-2-1">CCUS(중기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-2-2" />
-                              <label for="chk-assessment-step7-3-2-2">CCUS(중기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-2-3" />
-                              <label for="chk-assessment-step7-3-2-3">CCUS(중기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-2-4" />
-                              <label for="chk-assessment-step7-3-2-4">CCUS(중기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-2-5" />
-                              <label for="chk-assessment-step7-3-2-5">CCUS(중기) 선택 항목</label>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- (dev) 체크된 항목이 있을 경우 is-checked 클래스 추가 -->
-                    <div class="accordion-item">
-                      <div class="accordion-header">
-                        <button type="button" class="accordion-btn" aria-expanded="false">
-                          <em class="accordion-btn__title">CCUS(장기)</em>
-                          <!-- (dev) 체크된 항목이 있을 경우, 체크된 항목 텍스트 노출(체크된 항목이 없을 경우, 영역을 삭제하거나 빈 값으로 출력)
-                            여러개 선택이 된 경우, 첫번째 항목만 텍스트를 노출하고 나머지 선택된 항목의 개수는 아래 마크업 형태로 출력
-                            <span>외 <i>+숫자</i></span>
-                          -->
-                          <span class="accordion-btn__selected-data"></span>
-                          <span
-                            class="accordion-btn__text"
-                            data-text='{"text":"열기|닫기", "show":1}'
-                            >열기</span
-                          >
-                        </button>
-                      </div>
-                      <div class="accordion-panel" aria-hidden="true">
-                        <div class="accordion-cont">
-                          <ul class="checkbox-list">
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-3-1" />
-                              <label for="chk-assessment-step7-3-3-1">CCUS(장기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-3-2" />
-                              <label for="chk-assessment-step7-3-3-2">CCUS(장기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-3-3" />
-                              <label for="chk-assessment-step7-3-3-3">CCUS(장기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-3-4" />
-                              <label for="chk-assessment-step7-3-3-4">CCUS(장기) 선택 항목</label>
-                            </li>
-                            <li>
-                              <input type="checkbox" id="chk-assessment-step7-3-3-5" />
-                              <label for="chk-assessment-step7-3-3-5">CCUS(장기) 선택 항목</label>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <DropdownMultiple
+                  :treeName="`step7DropDatas-3`"
+                  :treeData="tempTreeData"
+                  @dropChanged="multiDropChanged"
+                />
                 <!--// CCUS -->
               </div>
             </div>
