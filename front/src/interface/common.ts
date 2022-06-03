@@ -44,4 +44,5 @@ export interface PieOptions {
   idName: string
   loadedData: []
   series: Series[]
+  selYear: number
 }

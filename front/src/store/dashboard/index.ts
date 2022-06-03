@@ -18,7 +18,7 @@ export const useDashboardStore = defineStore({
     tableData: [],
   }),
   actions: {
-    async loadData(payload) {
+    async loadData(payload, selYear) {
       try {
         let lineData
         // 시연용 주석 처리
@@ -167,48 +167,71 @@ export const useDashboardStore = defineStore({
           },
         ]
 
-        const site_data = [
-          {
-            baseDt: '2021/05',
-            item: 'KNC',
-            value: 171.55981,
-          },
-          {
-            baseDt: '2021/05',
-            item: 'SKGCJ',
-            value: 182.434371,
-          },
-          {
-            baseDt: '2021/05',
-            item: 'SKGCNB',
-            value: 107.297586,
-          },
-          {
-            baseDt: '2021/05',
-            item: 'SKGCSH',
-            value: 2185.081308,
-          },
-          {
-            baseDt: '2021/05',
-            item: 'SKGCSP',
-            value: 732.313321,
-          },
-          {
-            baseDt: '2021/05',
-            item: 'SKPA',
-            value: 11.316608,
-          },
-          {
-            baseDt: '2021/05',
-            item: 'SKPE',
-            value: 76.485133,
-          },
-          {
-            baseDt: '2021/05',
-            item: 'UAC',
-            value: 75.081412,
-          },
-        ]
+        console.log('기준년: ' + selYear)
+
+        let site_data
+        if (selYear > 2020) {
+          site_data = [
+            {
+              baseDt: '2021/05',
+              item: 'SKI',
+              value: 171.55981,
+            },
+            {
+              baseDt: '2021/05',
+              item: 'SKGCJ',
+              value: 182.434371,
+            },
+            {
+              baseDt: '2021/05',
+              item: 'SKGCNB',
+              value: 107.297586,
+            },
+            {
+              baseDt: '2021/05',
+              item: 'SKGCSH',
+              value: 2185.081308,
+            },
+            {
+              baseDt: '2021/05',
+              item: 'SKGCSP',
+              value: 732.313321,
+            },
+            {
+              baseDt: '2021/05',
+              item: 'SKPA',
+              value: 11.316608,
+            },
+            {
+              baseDt: '2021/05',
+              item: 'SKPE',
+              value: 76.485133,
+            },
+            {
+              baseDt: '2021/05',
+              item: 'UAC',
+              value: 75.081412,
+            },
+          ]
+        } else {
+          site_data = [
+            {
+              baseDt: '2021/05',
+              item: 'SKI',
+              value: 171.55981,
+            },
+            {
+              baseDt: '2021/05',
+              item: 'SKGCJ',
+              value: 182.434371,
+            },
+            {
+              baseDt: '2021/05',
+              item: 'SKGCNB',
+              value: 107.297586,
+            },
+          ]
+        }
 
         const cate_data = [
           {
