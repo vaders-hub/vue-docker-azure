@@ -7,7 +7,6 @@ import Bar from '@/components/chart/Bar.vue'
 import Pie from '@/components/chart/Pie.vue'
 import WorldMap from '@/components/chart/WorldMap.vue'
 import StackedBar from '@/components/chart/StackedBar.vue'
-import SelectBox from '@/components/common/SelectBox.vue'
 import 'devextreme/dist/css/dx.light.css'
 import { DxSelectBox } from 'devextreme-vue/select-box'
 import type { LineOptions, BarOptions, PieOptions, StackedBarOptions } from '@/interface/common'
@@ -23,7 +22,6 @@ export default defineComponent({
     WorldMap,
     StackedBar,
     DxSelectBox,
-    SelectBox,
   },
   setup(context) {
     let yearOption: any = []
@@ -31,10 +29,10 @@ export default defineComponent({
 
     const setDate = new Date()
     setDate.setMonth(setDate.getMonth() - 1)
-    let selYear = setDate.getFullYear()
-    let selMonth = setDate.getMonth() + 1
+    let sch_year = setDate.getFullYear()
+    let sch_month = setDate.getMonth() + 1
 
-    for (let i = selYear; i > selYear - 10; i--) {
+    for (let i = sch_year; i > sch_year - 10; i--) {
       let dateOption = { id: i, name: i + '년' }
       yearOption.push(dateOption)
     }
@@ -74,13 +72,11 @@ export default defineComponent({
       idName: 'site',
       series: [{ value: 'compNm', name: 'compNm' }],
       loadedData: [],
-      selYear: selYear,
     })
     const cate_data = reactive<PieOptions>({
       idName: 'cate',
       series: [{ value: 'scope3', name: 'Scope3' }],
       loadedData: [],
-      selYear: selYear,
     })
     const stacked1_data = reactive<StackedBarOptions>({
       idName: 'stack',
@@ -101,25 +97,25 @@ export default defineComponent({
 
     const loadDatas = async () => {
       try {
-        await dashboardStore.loadData('line', selYear, selMonth)
+        await dashboardStore.loadData('line', sch_year, sch_month)
         lineOptions.loadedData = dashboardStore.dataSet.line
 
-        await dashboardStore.loadData('scope_1_2_data', selYear, selMonth)
+        await dashboardStore.loadData('scope_1_2_data', sch_year, sch_month)
         scope_1_2_data.loadedData = dashboardStore.dataSet.scope_1_2_data
 
-        await dashboardStore.loadData('scope_3_data', selYear, selMonth)
+        await dashboardStore.loadData('scope_3_data', sch_year, sch_month)
         scope_3_data.loadedData = dashboardStore.dataSet.scope_3_data
 
-        await dashboardStore.loadData('site_data', selYear, selMonth)
+        await dashboardStore.loadData('site_data', sch_year, sch_month)
         site_data.loadedData = dashboardStore.dataSet.site_data
 
-        await dashboardStore.loadData('cate_data', selYear, selMonth)
+        await dashboardStore.loadData('cate_data', sch_year, sch_month)
         cate_data.loadedData = dashboardStore.dataSet.cate_data
 
-        await dashboardStore.loadData('stacked1_data', selYear, selMonth)
+        await dashboardStore.loadData('stacked1_data', sch_year, sch_month)
         stacked1_data.loadedData = dashboardStore.dataSet.stacked1_data
 
-        await dashboardStore.loadData('stacked2_data', selYear, selMonth)
+        await dashboardStore.loadData('stacked2_data', sch_year, sch_month)
         stacked2_data.loadedData = dashboardStore.dataSet.stacked2_data
       } catch (e) {
         console.warn(e)
@@ -133,11 +129,11 @@ export default defineComponent({
     })
 
     function yearValChanged(e) {
-      selYear = e.value
+      sch_year = e.value
     }
 
     function monthValChanged(e) {
-      selMonth = e.value
+      sch_month = e.value
     }
 
     function serachBtn() {
@@ -160,15 +156,13 @@ export default defineComponent({
       cate_data,
       stacked1_data,
       stacked2_data,
-      selYear,
+      sch_year,
       yearOption,
       yearValChanged,
-      selMonth,
+      sch_month,
       monthOption,
       monthValChanged,
       serachBtn,
-      SelectBox,
-      test,
     }
   },
 })
@@ -183,26 +177,18 @@ export default defineComponent({
       </div>
       <div class="view-options">
         <div class="view-options-wrap">
-          <SelectBox :selectData="test" @selectChanged="yearValChanged" />
-          <SelectBox
-            :selectData="yearOption"
-            @selectChanged="yearValChanged"
-            :value="selYear"
-            value-expr="id"
-            display-expr="name"
-          />
           <DxSelectBox
             :data-source="yearOption"
-            :value="selYear"
-            v-model="selYear"
+            :value="sch_year"
+            v-model="sch_year"
             value-expr="id"
             display-expr="name"
             @value-changed="yearValChanged"
           />
           <DxSelectBox
             :data-source="monthOption"
-            :value="selMonth"
-            v-model="selMonth"
+            :value="sch_month"
+            v-model="sch_month"
             value-expr="id"
             display-expr="name"
             @value-changed="monthValChanged"
@@ -332,7 +318,7 @@ export default defineComponent({
                 <span class="lca-chart__unit">(단위 : MWh)</span>
               </div>
               <div class="lca-chart__area">
-                <Pie :Options="site_data" v-model="selYear" />
+                <Pie :Options="site_data" v-model="sch_year" />
               </div>
             </div>
             <div class="lca-chart">
