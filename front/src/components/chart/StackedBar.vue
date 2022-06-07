@@ -32,12 +32,23 @@ export default defineComponent({
   },
   setup(context) {
     // write
-    const customizeText = (valueText) => {
-      return `${valueText.value}` //&#176F;`
+    const customizeTooltip = (data) => {
+      const title = data.seriesName
+      const value = data.value
+      console.log(data)
+
+      return {
+        html: `<div>
+                <div class='tooltip-header'>Title: ${title}</div>
+                <div class='tooltip-body'>
+                  <div class='tooltip-value'>배출량: ${value}</div>
+                </div>
+              </div>`,
+      }
     }
 
     return {
-      customizeText,
+      customizeTooltip,
     }
   },
 })
@@ -61,7 +72,7 @@ export default defineComponent({
         horizontal-alignment="center"
         item-text-position="top"
       />
-      <DxTooltip :enabled="true" location="edge" />
+      <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip" />
     </DxChart>
   </div>
 </template>

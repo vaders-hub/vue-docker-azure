@@ -219,7 +219,9 @@ export default defineComponent({
     <div class="page-top">
       <div class="page-top__header">
         <h1 class="page-top__title">Dashboard</h1>
-        <h2 class="page-top__sub-title"><strong>SK 이노베이션</strong><span>2022.04</span></h2>
+        <h2 class="page-top__sub-title">
+          <strong>SK 이노베이션</strong><span>{{ sch_year }}.{{ sch_month }}</span>
+        </h2>
       </div>
       <div class="view-options">
         <div class="view-options-wrap">
