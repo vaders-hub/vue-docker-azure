@@ -109,6 +109,21 @@ body {
     }
   }
 
+  #stackedBar_chart {
+    g.dxc-series-group {
+      g.dxc-series:nth-child(1) {
+        rect:nth-child(2) {
+          fill: #c0d4c2;
+        }
+      }
+      g.dxc-series:nth-child(2) {
+        rect:nth-child(2) {
+          fill: #e8e5d3;
+        }
+      }
+    }
+  }
+
   #polygonalLine_chart {
     height: 414px;
     width: 410px;

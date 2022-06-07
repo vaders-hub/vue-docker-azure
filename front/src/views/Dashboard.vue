@@ -33,22 +33,14 @@ export default defineComponent({
     PolygonalLine,
   },
   setup(context) {
+    // 날짜 세팅
     const setDate = new Date()
     setDate.setMonth(setDate.getMonth() - 1)
     let sch_year = setDate.getFullYear()
     let sch_month = setDate.getMonth() + 1
     let yearOption: any = []
     let monthOption: any = []
-
-    for (let i = sch_year; i > sch_year - 10; i--) {
-      let dateOption = { id: i, name: i + '년' }
-      yearOption.push(dateOption)
-    }
-
-    for (let i = 1; i < 13; i++) {
-      let dateOption = { id: i, name: i + '월' }
-      monthOption.push(dateOption)
-    }
+    dateSetting()
 
     const dashboardStore = useDashboardStore()
     const worldEmmit_data = []
@@ -63,7 +55,7 @@ export default defineComponent({
       loadedData: [],
     })
     const scope_1_2_options = reactive<BarOptions>({
-      idName: 'scope_1_2',
+      idName: 'scope_1_2_chart',
       series: [
         { value: 'scope1', name: 'scope1', color: '#E8E5D3' },
         { value: 'scope2', name: 'scope2', color: '#F3C848' },
@@ -71,22 +63,22 @@ export default defineComponent({
       loadedData: [],
     })
     const scope_3_options = reactive<BarOptions>({
-      idName: 'scope_3',
+      idName: 'scope_3_chart',
       series: [{ value: 'scope3', name: 'scope3', color: '#E8E5D3' }],
       loadedData: [],
     })
     const site_options = reactive<PieOptions>({
-      idName: 'site',
+      idName: 'site_chart',
       series: [{ value: 'compNm', name: 'compNm' }],
       loadedData: [],
     })
     const cate_options = reactive<PieOptions>({
-      idName: 'cate',
+      idName: 'cate_chart',
       series: [{ value: 'scope3', name: 'Scope3' }],
       loadedData: [],
     })
     const stacked1_options = reactive<StackedBarOptions>({
-      idName: 'stack',
+      idName: 'stack_chart',
       series: [
         { value: 'scope12', name: 'scope12', color: '#E69B50' },
         { value: 'scope3', name: 'scope3', color: '#F3C848' },
@@ -94,7 +86,7 @@ export default defineComponent({
       loadedData: [],
     })
     const stacked2_options = reactive<StackedBarOptions>({
-      idName: 'stack',
+      idName: 'stack_chart',
       series: [
         { value: 'scope12', name: 'scope12', color: '#E69B50' },
         { value: 'scope3', name: 'scope3', color: '#F3C848' },
@@ -165,6 +157,18 @@ export default defineComponent({
       loadDatas()
     })
 
+    // 년/월 SELECT-BOX 세팅
+    function dateSetting() {
+      for (let i = sch_year; i > sch_year - 10; i--) {
+        let dateOption = { id: i, name: i + '년' }
+        yearOption.push(dateOption)
+      }
+      for (let i = 1; i < 13; i++) {
+        let dateOption = { id: i, name: i + '월' }
+        monthOption.push(dateOption)
+      }
+    }
+
     function yearValChanged(e) {
       sch_year = e
     }
@@ -173,6 +177,7 @@ export default defineComponent({
       sch_month = e
     }
 
+    // 검색(확인)
     function serachBtn() {
       dashboardStore.dataSet.worldEmmit_data = []
       dashboardStore.dataSet.line = []

@@ -276,13 +276,13 @@ export const useDashboardStore = defineStore({
         const stacked2_data = [
           {
             item: 'base',
-            scope12: 1280,
-            scope3: 1090,
+            scope12: 780,
+            scope3: 690,
           },
           {
             item: 'item',
-            scope12: 920,
-            scope3: 770,
+            scope12: 1120,
+            scope3: 970,
           },
         ]
 
