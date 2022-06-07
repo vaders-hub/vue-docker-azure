@@ -8,7 +8,8 @@ import Pie from '@/components/chart/Pie.vue'
 import WorldMap from '@/components/chart/WorldMap.vue'
 import StackedBar from '@/components/chart/StackedBar.vue'
 import 'devextreme/dist/css/dx.light.css'
-import { DxSelectBox } from 'devextreme-vue/select-box'
+// import { DxSelectBox } from 'devextreme-vue/select-box'
+import SelectBox from '../components/common/SelectBox.vue'
 import type { LineOptions, BarOptions, PieOptions, StackedBarOptions } from '@/interface/common'
 
 import 'devextreme/dist/css/dx.light.css'
@@ -21,7 +22,8 @@ export default defineComponent({
     Pie,
     WorldMap,
     StackedBar,
-    DxSelectBox,
+    // DxSelectBox,
+    SelectBox,
   },
   setup(context) {
     let yearOption: any = []
@@ -42,9 +44,8 @@ export default defineComponent({
       monthOption.push(dateOption)
     }
 
-    const test = [2020, 2021, 2022]
-
     const dashboardStore = useDashboardStore()
+    const worldEmmit_data = []
     const lineOptions = reactive<LineOptions>({
       idName: 'line-demo',
       series: [
@@ -97,6 +98,9 @@ export default defineComponent({
 
     const loadDatas = async () => {
       try {
+        await dashboardStore.loadData('worldEmmit_data', sch_year, sch_month)
+        lineOptions.loadedData = dashboardStore.dataSet.worldEmmit_data
+
         await dashboardStore.loadData('line', sch_year, sch_month)
         lineOptions.loadedData = dashboardStore.dataSet.line
 
@@ -129,11 +133,11 @@ export default defineComponent({
     })
 
     function yearValChanged(e) {
-      sch_year = e.value
+      sch_year = e
     }
 
     function monthValChanged(e) {
-      sch_month = e.value
+      sch_month = e
     }
 
     function serachBtn() {
@@ -149,6 +153,7 @@ export default defineComponent({
     }
 
     return {
+      worldEmmit_data,
       lineOptions,
       scope_1_2_data,
       scope_3_data,
@@ -163,6 +168,7 @@ export default defineComponent({
       monthOption,
       monthValChanged,
       serachBtn,
+      SelectBox,
     }
   },
 })
@@ -177,7 +183,21 @@ export default defineComponent({
       </div>
       <div class="view-options">
         <div class="view-options-wrap">
-          <DxSelectBox
+          <SelectBox
+            :selectData="yearOption"
+            @selectChanged="yearValChanged"
+            :value="sch_year"
+            value-expr="id"
+            display-expr="name"
+          />
+          <SelectBox
+            :selectData="monthOption"
+            @selectChanged="monthValChanged"
+            :value="sch_month"
+            value-expr="id"
+            display-expr="name"
+          />
+          <!-- <DxSelectBox
             :data-source="yearOption"
             :value="sch_year"
             v-model="sch_year"
@@ -192,7 +212,7 @@ export default defineComponent({
             value-expr="id"
             display-expr="name"
             @value-changed="monthValChanged"
-          />
+          /> -->
           <div class="view-options__btn">
             <button class="btn" @click="serachBtn">확인</button>
           </div>
@@ -292,7 +312,7 @@ export default defineComponent({
           <span class="lca-chart__unit">(단위 : MWh)</span>
         </div>
         <div class="lca-chart__area">
-          <WorldMap />
+          <WorldMap v-bind="worldEmmit_data" />
           <!-- <img src="@/assets/images/dummy-chart-1440x710.gif" alt="" /> -->
         </div>
       </div>
