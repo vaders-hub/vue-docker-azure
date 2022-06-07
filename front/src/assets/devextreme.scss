@@ -1,4 +1,15 @@
 body {
+  .option-list {
+    .dx-selectbox {
+      height: 50px;
+      margin-bottom: 5px;
+    }
+    .dx-dropdownbox {
+      height: 50px;
+      margin-bottom: 5px;
+    }
+  }
+
   #line-demo {
     display: inline-block;
     vertical-align: top;
