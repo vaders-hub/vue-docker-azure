@@ -22,6 +22,11 @@ interface Series {
   point?: any
 }
 
+export interface Point {
+  shape: string // "circle" "square" "polygon" "triangleDown" "triangleUp"
+  color: string
+}
+
 export interface LineOptions {
   idName: string
   loadedData: []
@@ -51,9 +56,4 @@ export interface PolygonalLineOptions {
   idName: string
   loadedData: []
   series: Series[]
-}
-
-export interface Point {
-  shape: string
-  color: string
 }

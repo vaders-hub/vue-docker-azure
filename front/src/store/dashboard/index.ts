@@ -7,8 +7,8 @@ export const useDashboardStore = defineStore({
     dataSet: {
       table: [],
       line: [],
-      scope12_data: [],
-      scope3_data: [],
+      scope_1_2_data: [],
+      scope_3_data: [],
       site_data: [],
       cate_data: [],
       stacked1_data: [],
@@ -19,7 +19,7 @@ export const useDashboardStore = defineStore({
     tableData: [],
   }),
   actions: {
-    async loadData(payload, selYear) {
+    async loadData(payload, sch_year, sch_month) {
       try {
         let lineData
         // 시연용 주석 처리
@@ -30,7 +30,7 @@ export const useDashboardStore = defineStore({
         //   })
         // }
 
-        const scope12_data = [
+        const scope_1_2_data = [
           {
             baseDt: '1월',
             scope1: 459.5,
@@ -105,7 +105,7 @@ export const useDashboardStore = defineStore({
           },
         ]
 
-        const scope3_data = [
+        const scope_3_data = [
           {
             baseDt: '1월',
             scope3: 1057.410132,
@@ -169,7 +169,7 @@ export const useDashboardStore = defineStore({
         ]
 
         let site_data
-        if (selYear > 2020) {
+        if (sch_year > 2020) {
           site_data = [
             {
               baseDt: '2021/05',
