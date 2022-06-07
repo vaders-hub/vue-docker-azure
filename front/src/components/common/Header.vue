@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref, watch, Ref } from 'vue'
 import { hander } from '@/lib/index'
 import { useMainStore } from '@/store/index'
 import { useRoute, useRouter } from 'vue-router'
@@ -52,8 +52,17 @@ export default defineComponent({
       })
     }
 
+    const selectedIcon = ref<HTMLAnchorElement[]>([])
+
     const onClickNavigate = async (e, idx?, sidx?) => {
       e.preventDefault()
+
+      const selectedIconArr = selectedIcon.value
+
+      selectedIconArr.forEach((v) => {
+        v.classList.remove('is-active')
+      })
+      e.target.classList.add('is-active')
 
       if (typeof idx !== 'number') {
         router.push({ name: 'Assessment' })
@@ -82,6 +91,7 @@ export default defineComponent({
       onClickNavigate,
       router,
       hFlag,
+      selectedIcon,
     }
   },
 })
@@ -97,7 +107,7 @@ export default defineComponent({
       <div class="header__util">
         <a v-show="!hFlag" href="#" @click="goMonitoring" class="btn-monitoring">Monitoring</a>
         <div class="user-info">
-          <strong>SKI_김선경</strong>님<br />
+          <strong>SKI_김선경</strong>님 {{ hFlag }}<br />
           오늘도 좋은하루 되세요!
         </div>
         <!-- (js) btn-menu 활성화 시 aria-expanded="true" 적용 -->
@@ -128,6 +138,7 @@ export default defineComponent({
                       :class="`icon-company icon-company--${item.class}`"
                       href="#"
                       role="menuitem"
+                      ref="selectedIcon"
                       ><span>{{ item.name }}</span></a
                     >
                   </li>

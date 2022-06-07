@@ -26,13 +26,15 @@ export default defineComponent({
       hander.contentReady()
 
       if (AppElement) {
-        AppElement.classList.add('wrap', 'wrap--assessment')
+        AppElement.classList.add('wrap--assessment')
       }
+
+      document.querySelector('.header__util')?.classList.remove('is-active')
     })
 
     onBeforeUnmount(() => {
       if (AppElement) {
-        AppElement.classList.remove('wrap', 'wrap--assessment')
+        AppElement.classList.remove('wrap--assessment')
       }
     })
 
