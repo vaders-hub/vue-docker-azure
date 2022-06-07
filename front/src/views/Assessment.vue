@@ -37,12 +37,13 @@ export default defineComponent({
     })
 
     const stepValidator = () => {
-      console.log('validator', step3ItemsSelectedTtl.value)
       if (!step1ItemsSelected.value) return false
       if (!step2ItemsSelected.value) return false
-      if (!step3ItemsSelectedTtl.value) return false
+      if (!step3ItemsTtl.value) return false
+      if (step3ItemsChk.value === 'intg' && step3ItemsSelected.value.length === 0) return false
       return true
     }
+
     const onClickStep = ({ target }, idx?) => {
       const r = stepValidator()
 
@@ -90,9 +91,10 @@ export default defineComponent({
       { title: 'SK인천석유화학' },
     ]
     const step2ItemsSelected = ref('')
-    const step3ItemsChk = ref('intg')
+    const step3ItemsChk = ref('')
     const step3ItemsTtl = computed(() => {
-      const title = step3ItemsChk.value === 'intg' ? '통합' : '개별'
+      const title =
+        step3ItemsChk.value === 'intg' ? '통합' : step3ItemsChk.value !== '' ? '개별' : ''
       return title
     })
     const step3Items = [{ title: 'R&S' }, { title: 'GC' }, { title: 'L' }]

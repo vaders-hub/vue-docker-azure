@@ -33,9 +33,15 @@ export default defineComponent({
       hander.contentReady()
     })
 
-    const goHome = async () => {
+    const goHome = () => {
       // await mainStore.login();
       router.push({ path: '/' })
+    }
+
+    const goMonitoring = (e) => {
+      e.preventDefault()
+      // await mainStore.login();
+      router.push({ path: '/storyline' })
     }
 
     const onClickMenu = async (e, idx) => {
@@ -69,6 +75,7 @@ export default defineComponent({
 
     return {
       goHome,
+      goMonitoring,
       menuDepth1,
       MenuDepth2,
       onClickMenu,
@@ -81,32 +88,20 @@ export default defineComponent({
 </script>
 <template>
   <header class="header">
-    <div v-if="!hFlag" class="header__inner">
-      <strong class="lca-logo" @click="goHome">
-        <span class="lca-logo__image"><span class="hidden">SK 이노베이션</span></span>
-        <span class="lca-logo__txt">LCA Infra</span>
-      </strong>
-      <div class="header__util">
-        <a href="#" class="btn-monitoring">Monitoring</a>
-        <div class="user-info">
-          <strong>SKI_김선경</strong>님<br />
-          오늘도 좋은하루 되세요!
-        </div>
-      </div>
-    </div>
-    <div v-if="hFlag" class="header__inner">
+    <div class="header__inner">
       <strong class="lca-logo" @click="goHome">
         <span class="lca-logo__image"><span class="hidden">SK 이노베이션</span></span>
         <span class="lca-logo__txt">LCA Infra</span>
       </strong>
       <!-- (js) btn-menu 활성화 시 .is-active 적용 -->
       <div class="header__util">
+        <a v-show="!hFlag" href="#" @click="goMonitoring" class="btn-monitoring">Monitoring</a>
         <div class="user-info">
           <strong>SKI_김선경</strong>님<br />
           오늘도 좋은하루 되세요!
         </div>
         <!-- (js) btn-menu 활성화 시 aria-expanded="true" 적용 -->
-        <button class="btn-menu">
+        <button v-show="hFlag" class="btn-menu">
           <span class="hidden">View Menu</span>
         </button>
         <!-- (js) btn-menu 활성화 시 aria-hidden="false" 적용 -->

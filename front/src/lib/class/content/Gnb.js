@@ -58,7 +58,7 @@ class Gnb {
     }
 
     const bind = () => {
-      if (el.gnbBtn) {
+      if (el.gnbBtn && el.menuClose) {
         el.gnbBtn.addEventListener('click', handler.setActiveClass)
         el.menuClose.addEventListener('click', handler.closeMenu)
         ;[...el.menuDepth1].forEach((element) => {
@@ -69,7 +69,7 @@ class Gnb {
     }
 
     const unbind = () => {
-      if (el.gnbBtn) {
+      if (el.gnbBtn && el.menuClose) {
         el.gnbBtn.removeEventListener('click', handler.setActiveClass)
         el.menuClose.removeEventListener('click', handler.closeMenu)
         ;[...el.menuDepth1].forEach((element) => {
