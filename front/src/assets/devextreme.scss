@@ -114,34 +114,8 @@ body {
     width: 659px;
   }
 
-  #chart-demo-story {
-    > div {
-      width: 920px;
-      height: 416px;
-      text {
-        fill: #fff !important;
-      }
-
-      .dxc-legend {
-        .dxc-item {
-          rect {
-            rx: 12;
-          }
-        }
-      }
-
-      .dxc-series-group {
-        .dxc-series:nth-child(1) {
-          g {
-            fill: #f3c848;
-
-            rect {
-              width: 25px !important;
-              transform: translate(12px, 0);
-            }
-          }
-        }
-      }
-    }
+  #polygonalLine_chart {
+    height: 414px;
+    width: 410px;
   }
 }

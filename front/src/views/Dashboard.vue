@@ -8,11 +8,17 @@ import Pie from '@/components/chart/Pie.vue'
 import WorldMap from '@/components/chart/WorldMap.vue'
 import StackedBar from '@/components/chart/StackedBar.vue'
 import 'devextreme/dist/css/dx.light.css'
-// import { DxSelectBox } from 'devextreme-vue/select-box'
 import SelectBox from '../components/common/SelectBox.vue'
-import type { LineOptions, BarOptions, PieOptions, StackedBarOptions } from '@/interface/common'
+import type {
+  LineOptions,
+  BarOptions,
+  PieOptions,
+  StackedBarOptions,
+  PolygonalLineOptions,
+} from '@/interface/common'
 
 import 'devextreme/dist/css/dx.light.css'
+import PolygonalLine from '../components/chart/PolygonalLine.vue'
 
 export default defineComponent({
   name: 'Dashboard',
@@ -22,8 +28,8 @@ export default defineComponent({
     Pie,
     WorldMap,
     StackedBar,
-    // DxSelectBox,
     SelectBox,
+    PolygonalLine,
   },
   setup(context) {
     let yearOption: any = []
@@ -46,6 +52,7 @@ export default defineComponent({
 
     const dashboardStore = useDashboardStore()
     const worldEmmit_data = []
+
     const lineOptions = reactive<LineOptions>({
       idName: 'line-demo',
       series: [
@@ -56,42 +63,66 @@ export default defineComponent({
       ],
       loadedData: [],
     })
-    const scope_1_2_data = reactive<BarOptions>({
-      idName: 'scope_1_2',
+    const scope12_options = reactive<BarOptions>({
+      idName: 'scope12_chart',
       series: [
         { value: 'scope1', name: 'scope1', color: '#E8E5D3' },
         { value: 'scope2', name: 'scope2', color: '#F3C848' },
       ],
       loadedData: [],
     })
-    const scope_3_data = reactive<BarOptions>({
-      idName: 'scope_3',
+    const scope3_options = reactive<BarOptions>({
+      idName: 'scope3_chart',
       series: [{ value: 'scope3', name: 'scope3', color: '#E8E5D3' }],
       loadedData: [],
     })
-    const site_data = reactive<PieOptions>({
-      idName: 'site',
+    const site_options = reactive<PieOptions>({
+      idName: 'site_chart',
       series: [{ value: 'compNm', name: 'compNm' }],
       loadedData: [],
     })
-    const cate_data = reactive<PieOptions>({
-      idName: 'cate',
+    const cate_options = reactive<PieOptions>({
+      idName: 'cate_chart',
       series: [{ value: 'scope3', name: 'Scope3' }],
       loadedData: [],
     })
-    const stacked1_data = reactive<StackedBarOptions>({
-      idName: 'stack',
+    const stacked1_options = reactive<StackedBarOptions>({
+      idName: 'stack1_chart',
       series: [
         { value: 'scope12', name: 'scope12', color: '#E69B50' },
         { value: 'scope3', name: 'scope3', color: '#F3C848' },
       ],
       loadedData: [],
     })
-    const stacked2_data = reactive<StackedBarOptions>({
-      idName: 'stack',
+    const stacked2_options = reactive<StackedBarOptions>({
+      idName: 'stack2_chart',
       series: [
         { value: 'scope12', name: 'scope12', color: '#E69B50' },
         { value: 'scope3', name: 'scope3', color: '#F3C848' },
+      ],
+      loadedData: [],
+    })
+    const majorPrcTrend_options = reactive<PolygonalLineOptions>({
+      idName: 'polygonalLine_chart',
+      series: [
+        {
+          value: 'REC',
+          name: 'REC',
+          color: 'red',
+          point: { shape: 'triangleDown', color: 'pink' },
+        },
+        {
+          value: 'KAU21',
+          name: 'KAU21',
+          color: 'green',
+          point: { shape: 'polygon', color: 'blue' },
+        },
+        {
+          value: 'EU_ETS',
+          name: 'EU-ETS',
+          color: 'silver',
+          point: { shape: 'circle', color: 'black' },
+        },
       ],
       loadedData: [],
     })
@@ -104,23 +135,26 @@ export default defineComponent({
         await dashboardStore.loadData('line', sch_year, sch_month)
         lineOptions.loadedData = dashboardStore.dataSet.line
 
-        await dashboardStore.loadData('scope_1_2_data', sch_year, sch_month)
-        scope_1_2_data.loadedData = dashboardStore.dataSet.scope_1_2_data
+        await dashboardStore.loadData('scope12_data', sch_year, sch_month)
+        scope12_options.loadedData = dashboardStore.dataSet.scope12_data
 
-        await dashboardStore.loadData('scope_3_data', sch_year, sch_month)
-        scope_3_data.loadedData = dashboardStore.dataSet.scope_3_data
+        await dashboardStore.loadData('scope3_data', sch_year, sch_month)
+        scope3_options.loadedData = dashboardStore.dataSet.scope3_data
 
         await dashboardStore.loadData('site_data', sch_year, sch_month)
-        site_data.loadedData = dashboardStore.dataSet.site_data
+        site_options.loadedData = dashboardStore.dataSet.site_data
 
         await dashboardStore.loadData('cate_data', sch_year, sch_month)
-        cate_data.loadedData = dashboardStore.dataSet.cate_data
+        cate_options.loadedData = dashboardStore.dataSet.cate_data
 
         await dashboardStore.loadData('stacked1_data', sch_year, sch_month)
-        stacked1_data.loadedData = dashboardStore.dataSet.stacked1_data
+        stacked1_options.loadedData = dashboardStore.dataSet.stacked1_data
 
         await dashboardStore.loadData('stacked2_data', sch_year, sch_month)
-        stacked2_data.loadedData = dashboardStore.dataSet.stacked2_data
+        stacked2_options.loadedData = dashboardStore.dataSet.stacked2_data
+
+        await dashboardStore.loadData('majorPrcTrend_data', sch_year, sch_month)
+        majorPrcTrend_options.loadedData = dashboardStore.dataSet.majorPrcTrend_data
       } catch (e) {
         console.warn(e)
       }
@@ -142,8 +176,8 @@ export default defineComponent({
 
     function serachBtn() {
       dashboardStore.dataSet.line = []
-      dashboardStore.dataSet.scope_1_2_data = []
-      dashboardStore.dataSet.scope_3_data = []
+      dashboardStore.dataSet.scope12_data = []
+      dashboardStore.dataSet.scope3_data = []
       dashboardStore.dataSet.site_data = []
       dashboardStore.dataSet.cate_data = []
       dashboardStore.dataSet.stacked1_data = []
@@ -155,12 +189,12 @@ export default defineComponent({
     return {
       worldEmmit_data,
       lineOptions,
-      scope_1_2_data,
-      scope_3_data,
-      site_data,
-      cate_data,
-      stacked1_data,
-      stacked2_data,
+      scope12_options,
+      scope3_options,
+      site_options,
+      cate_options,
+      stacked1_options,
+      stacked2_options,
       sch_year,
       yearOption,
       yearValChanged,
@@ -169,6 +203,7 @@ export default defineComponent({
       monthValChanged,
       serachBtn,
       SelectBox,
+      majorPrcTrend_options,
     }
   },
 })
@@ -197,22 +232,6 @@ export default defineComponent({
             value-expr="id"
             display-expr="name"
           />
-          <!-- <DxSelectBox
-            :data-source="yearOption"
-            :value="sch_year"
-            v-model="sch_year"
-            value-expr="id"
-            display-expr="name"
-            @value-changed="yearValChanged"
-          />
-          <DxSelectBox
-            :data-source="monthOption"
-            :value="sch_month"
-            v-model="sch_month"
-            value-expr="id"
-            display-expr="name"
-            @value-changed="monthValChanged"
-          /> -->
           <div class="view-options__btn">
             <button class="btn" @click="serachBtn">확인</button>
           </div>
@@ -338,7 +357,7 @@ export default defineComponent({
                 <span class="lca-chart__unit">(단위 : MWh)</span>
               </div>
               <div class="lca-chart__area">
-                <Pie :Options="site_data" v-model="sch_year" />
+                <Pie :Options="site_options" v-model="sch_year" />
               </div>
             </div>
             <div class="lca-chart">
@@ -346,7 +365,7 @@ export default defineComponent({
                 <h3 class="lca-chart__title">배출활동별 배출현황</h3>
               </div>
               <div class="lca-chart__area">
-                <Pie :Options="site_data" />
+                <Pie :Options="site_options" />
               </div>
             </div>
             <div class="lca-chart">
@@ -354,7 +373,7 @@ export default defineComponent({
                 <h3 class="lca-chart__title">카테고리별 배출현황</h3>
               </div>
               <div class="lca-chart__area">
-                <Pie :Options="cate_data" />
+                <Pie :Options="cate_options" />
               </div>
             </div>
           </div>
@@ -426,7 +445,7 @@ export default defineComponent({
                 </li>
               </ul>
               <div class="lca-chart__area">
-                <Bar :Options="scope_1_2_data" />
+                <Bar :Options="scope12_options" />
               </div>
             </div>
             <div class="lca-chart">
@@ -451,7 +470,7 @@ export default defineComponent({
                 </li>
               </ul>
               <div class="lca-chart__area">
-                <Bar :Options="scope_3_data" />
+                <Bar :Options="scope3_options" />
               </div>
             </div>
           </div>
@@ -643,10 +662,10 @@ export default defineComponent({
               </div>
               <div class="lca-chart__area-wrap">
                 <div class="lca-chart__area" style="float: left">
-                  <StackedBar :Options="stacked1_data" />
+                  <StackedBar :Options="stacked1_options" />
                 </div>
                 <div class="lca-chart__area" style="float: left; padding-left: 50px">
-                  <StackedBar :Options="stacked2_data" />
+                  <StackedBar :Options="stacked2_options" />
                 </div>
               </div>
             </div>
@@ -654,7 +673,9 @@ export default defineComponent({
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">주요 가격 트렌드</h3>
               </div>
-              <div class="lca-chart__area"></div>
+              <div class="lca-chart__area">
+                <PolygonalLine :Options="majorPrcTrend_options" />
+              </div>
             </div>
           </div>
           <div class="swiper-slide">

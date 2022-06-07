@@ -7,12 +7,13 @@ export const useDashboardStore = defineStore({
     dataSet: {
       table: [],
       line: [],
-      scope_1_2_data: [],
-      scope_3_data: [],
+      scope12_data: [],
+      scope3_data: [],
       site_data: [],
       cate_data: [],
       stacked1_data: [],
       stacked2_data: [],
+      majorPrcTrend_data: [],
       worldEmmit_data: [],
     },
     tableData: [],
@@ -29,7 +30,7 @@ export const useDashboardStore = defineStore({
         //   })
         // }
 
-        const scope_1_2_data = [
+        const scope12_data = [
           {
             baseDt: '1월',
             scope1: 459.5,
@@ -104,7 +105,7 @@ export const useDashboardStore = defineStore({
           },
         ]
 
-        const scope_3_data = [
+        const scope3_data = [
           {
             baseDt: '1월',
             scope3: 1057.410132,
@@ -166,8 +167,6 @@ export const useDashboardStore = defineStore({
             netZeroVal: 130.0,
           },
         ]
-
-        console.log('기준년: ' + selYear)
 
         let site_data
         if (selYear > 2020) {
@@ -284,6 +283,69 @@ export const useDashboardStore = defineStore({
             item: 'item',
             scope12: 920,
             scope3: 770,
+          },
+        ]
+
+        const majorPrcTrend_data = [
+          {
+            baseDt: '5/1',
+            REC: 39823,
+            KAU21: 33260,
+            EU_ETS: 24871,
+          },
+          {
+            baseDt: '5/2',
+            REC: 41825,
+            KAU21: 32251,
+            EU_ETS: 29879,
+          },
+          {
+            baseDt: '5/3',
+            REC: 37841,
+            KAU21: 34257,
+            EU_ETS: 25872,
+          },
+          {
+            baseDt: '5/4',
+            REC: 35893,
+            KAU21: 31852,
+            EU_ETS: 21872,
+          },
+          {
+            baseDt: '5/5',
+            REC: 33850,
+            KAU21: 41255,
+            EU_ETS: 33872,
+          },
+          {
+            baseDt: '5/6',
+            REC: 34713,
+            KAU21: 33286,
+            EU_ETS: 34451,
+          },
+          {
+            baseDt: '5/7',
+            REC: 32817,
+            SKGCJ: 33311,
+            EU_ETS: 28836,
+          },
+          {
+            baseDt: '5/8',
+            REC: 35867,
+            KAU21: 41091,
+            EU_ETS: 22780,
+          },
+          {
+            baseDt: '5/9',
+            REC: 36598,
+            KAU21: 31204,
+            EU_ETS: 41856,
+          },
+          {
+            baseDt: '5/10',
+            REC: 38881,
+            KAU21: 33458,
+            EU_ETS: 24875,
           },
         ]
 

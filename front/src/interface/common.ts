@@ -19,6 +19,7 @@ interface Series {
   value: string
   name: string
   color?: string
+  point?: any
 }
 
 export interface LineOptions {
@@ -44,4 +45,15 @@ export interface PieOptions {
   idName: string
   loadedData: []
   series: Series[]
+}
+
+export interface PolygonalLineOptions {
+  idName: string
+  loadedData: []
+  series: Series[]
+}
+
+export interface Point {
+  shape: string
+  color: string
 }
