@@ -36,7 +36,20 @@ export default defineComponent({
       }
     })
 
+    const stepValidator = () => {
+      console.log('validator', step3ItemsSelectedTtl.value)
+      if (!step1ItemsSelected.value) return false
+      if (!step2ItemsSelected.value) return false
+      if (!step3ItemsSelectedTtl.value) return false
+      return true
+    }
     const onClickStep = ({ target }, idx?) => {
+      const r = stepValidator()
+
+      if (idx > 2 && !r) {
+        alert('Step 1, 2, 3 항목을 선택해주세요')
+        return false
+      }
       for (let i = 0; i < StepsLen; i++) {
         StepElements[i].classList.remove('is-expand')
       }
@@ -445,7 +458,10 @@ export default defineComponent({
         </div>
       </div>
       <div class="assessment__result">
-        <h2 class="assessment__title">평가 결과를 확인하세요.</h2>
+        <h2 class="assessment__title">
+          평가 결과를 확인하세요.
+          <em>*평가 결과는 내부 참고용으로만 활용해 주시기 바랍니다.</em>
+        </h2>
         <div class="result-info">
           <ul class="result-info__list">
             <li class="result-info__item">

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, watch } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { hander } from '@/lib/index'
 import { useMainStore } from '@/store/index'
 import { useRoute, useRouter } from 'vue-router'
@@ -11,6 +11,7 @@ export default defineComponent({
     const currentPath = mainStore.current
     const route = useRoute()
     const router = useRouter()
+    const hFlag = ref(true)
 
     const menuDepth1 = reactive([
       { name: 'Dashboard', active: 'is-active', class: 'dashboard' },
@@ -59,7 +60,7 @@ export default defineComponent({
     watch(
       () => mainStore.current,
       (newVal, oldVal) => {
-        // console.log('currentPath watch', newVal, oldVal)
+        newVal === 'assessment' ? (hFlag.value = false) : (hFlag.value = true)
         menuDepth1.forEach((v) => {
           v.class === newVal ? (v.active = 'is-active') : (v.active = '')
         })
@@ -73,13 +74,27 @@ export default defineComponent({
       onClickMenu,
       onClickNavigate,
       router,
+      hFlag,
     }
   },
 })
 </script>
 <template>
   <header class="header">
-    <div class="header__inner">
+    <div v-if="!hFlag" class="header__inner">
+      <strong class="lca-logo" @click="goHome">
+        <span class="lca-logo__image"><span class="hidden">SK 이노베이션</span></span>
+        <span class="lca-logo__txt">LCA Infra</span>
+      </strong>
+      <div class="header__util">
+        <a href="#" class="btn-monitoring">Monitoring</a>
+        <div class="user-info">
+          <strong>SKI_김선경</strong>님<br />
+          오늘도 좋은하루 되세요!
+        </div>
+      </div>
+    </div>
+    <div v-if="hFlag" class="header__inner">
       <strong class="lca-logo" @click="goHome">
         <span class="lca-logo__image"><span class="hidden">SK 이노베이션</span></span>
         <span class="lca-logo__txt">LCA Infra</span>
@@ -91,11 +106,11 @@ export default defineComponent({
           오늘도 좋은하루 되세요!
         </div>
         <!-- (js) btn-menu 활성화 시 aria-expanded="true" 적용 -->
-        <button class="btn-menu" aria-haspopup="true" aria-expanded="false">
+        <button class="btn-menu">
           <span class="hidden">View Menu</span>
         </button>
         <!-- (js) btn-menu 활성화 시 aria-hidden="false" 적용 -->
-        <div class="menu" role="dialog" aria-hidden="true">
+        <div class="menu" role="dialog">
           <nav class="menu__inner">
             <div class="menu__user-info">안녕하세요, 김선경님</div>
             <div class="menu__pin">

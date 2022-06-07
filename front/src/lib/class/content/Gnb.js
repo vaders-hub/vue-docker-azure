@@ -50,9 +50,10 @@ class Gnb {
         })
         evt.target.classList.add('is-active')
       },
-      // .menu__pin-btn 클릭 시 .pin-fixed 추가
+      // .menu__pin-btn 클릭 시 .pin-fixed 추가 및 .menu__close 버튼에 disabled 속성 추가
       togglePinClass: () => {
         el.wrap.classList.toggle('pin-fixed')
+        el.menuClose.toggleAttribute('disabled')
       },
     }
 

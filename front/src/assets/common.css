@@ -1977,6 +1977,12 @@ caption, .hidden {
   background: #F4F5F7;
 }
 
+.assessment__result .assessment__title em {
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: -.5px;
+}
+
 .assessment .result-info__list {
   padding: 16px 20px;
   border-bottom: 1px solid #a7a7a7;

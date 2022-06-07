@@ -1,12 +1,12 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, watch } from "vue";
-import Header from "@/components/common/Header.vue";
-import Drawer from "devextreme-vue/drawer";
-import SideBarAdmin from "@/components/common/SideBarAdmin.vue";
-import ScrollView from "devextreme-vue/scroll-view";
+import { defineComponent, onMounted, reactive, watch } from 'vue'
+import Header from '@/components/common/Header.vue'
+import Drawer from 'devextreme-vue/drawer'
+import SideBarAdmin from '@/components/common/SideBarAdmin.vue'
+import ScrollView from 'devextreme-vue/scroll-view'
 
 export default defineComponent({
-  name: "Admin",
+  name: 'Admin',
   components: {
     Header,
     Drawer,
@@ -14,9 +14,9 @@ export default defineComponent({
     ScrollView,
   },
   setup(context) {
-    return {};
+    return {}
   },
-});
+})
 </script>
 
 <template>

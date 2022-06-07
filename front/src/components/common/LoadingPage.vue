@@ -83,7 +83,7 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 1000;
+  z-index: 100001;
   background-color: rgba(255, 255, 255, 0);
   transition: all 0.5s linear;
   p {
