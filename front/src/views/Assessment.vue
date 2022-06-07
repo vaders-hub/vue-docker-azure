@@ -1,5 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, onBeforeUnmount, reactive, ref } from 'vue'
+import { useAssessmentStore } from '@/store/assessment/index'
 import SelectBox from '@/components/common/SelectBox.vue'
 import DropdownMultiple from '@/components/common/DropdownMultiple.vue'
 import { hander } from '@/lib/index'
@@ -14,6 +15,7 @@ export default defineComponent({
     Diagram1,
   },
   setup(context) {
+    const assessmentStore: any = useAssessmentStore()
     let AppElement
     let StepElements
     let StepsLen
@@ -46,7 +48,7 @@ export default defineComponent({
       return true
     }
 
-    const onClickStep = ({ target }, idx?) => {
+    const onClickStep = async ({ target }, idx?) => {
       const r = stepValidator()
 
       if (idx > 2 && !r) {
@@ -56,6 +58,9 @@ export default defineComponent({
       for (let i = 0; i < StepsLen; i++) {
         StepElements[i].classList.remove('is-expand')
       }
+
+      // assessmentStore.loadData('')
+
       StepElements[idx].classList.add('is-expand')
     }
 

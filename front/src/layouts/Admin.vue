@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, watch } from 'vue'
+import { RouterView } from 'vue-router'
 import Header from '@/components/common/Header.vue'
 import Drawer from 'devextreme-vue/drawer'
 import SideBarAdmin from '@/components/common/SideBarAdmin.vue'
@@ -12,6 +13,7 @@ export default defineComponent({
     Drawer,
     SideBarAdmin,
     ScrollView,
+    RouterView,
   },
   setup(context) {
     return {}
