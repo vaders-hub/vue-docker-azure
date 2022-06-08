@@ -108,7 +108,8 @@ router.afterEach((to, from, next) => {
   const mainStore = useMainStore()
   const toPath = to.path.replace('/', '')
 
-  mainStore.changeLoadingpageStatus(false, toPath)
+  mainStore.changeLoadingpageStatus(false)
+  mainStore.changePath(toPath)
 })
 
 export default router

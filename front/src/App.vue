@@ -2,6 +2,7 @@
 import { defineComponent, onMounted, ref, reactive, watch, inject } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMainStore } from '@/store/index'
+import { setStorages } from '@/plugins/storages'
 import LoadingData from '@/components/common/LoadingData.vue'
 import LoadingPage from '@/components/common/LoadingPage.vue'
 
@@ -14,15 +15,14 @@ export default defineComponent({
     const route = useRoute()
     const mainStore = useMainStore()
     const uiEvent = inject<InputEvents>('inputEvents')
-    let isMain
 
     onMounted(() => {
       uiEvent?.initDetection()
+      setStorages()
     })
 
     return {
       mainStore,
-      isMain,
     }
   },
 })

@@ -1,15 +1,50 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, watch } from 'vue'
+import { computed, defineComponent, onMounted, ref, reactive, watch } from 'vue'
 import { useMainStore } from '@/store/index'
+import { useRoute, useRouter } from 'vue-router'
+import { hander } from '@/lib/index'
+import LayoutController from '@/components/common/LayoutController.vue'
+import DateSearchBox from '@/components/common/DateSearchBox.vue'
 
 export default defineComponent({
   name: 'Scope 1/2',
-  components: {},
+  components: { LayoutController, DateSearchBox },
   setup(context) {
     const mainStore = useMainStore()
+    const current = mainStore.current
+    const sssss = mainStore.layoutBlock
+    const selectedCompany = computed(() => {
+      return mainStore.company
+    })
+
+    const getStoreVisibility: any = computed(() => {
+      return mainStore.layoutBlock[current]
+    })
+
+    const controllerFlag = ref(false)
+    const toggleController = () => {
+      controllerFlag.value = !controllerFlag.value
+    }
+
+    const onCloseController = () => {
+      controllerFlag.value = false
+    }
+
+    function searchData(data) {
+      console.log(data.yyyy + '년 ' + data.mm + '월')
+    }
+
+    onMounted(() => {
+      hander.contentReady()
+    })
 
     return {
-      mainStore,
+      selectedCompany,
+      getStoreVisibility,
+      controllerFlag,
+      toggleController,
+      onCloseController,
+      searchData,
     }
   },
 })
@@ -19,60 +54,14 @@ export default defineComponent({
   <section class="contents">
     <div class="page-top">
       <div class="page-top__header">
-        <h1 class="page-top__title">Scope 1/2</h1>
+        <h1 class="page-top__title">Scope 1/2 <button @click="toggleController">toggle</button></h1>
         <h2 class="page-top__sub-title"><strong>SK 에너지</strong><span>2022.04</span></h2>
       </div>
       <div class="view-options">
-        <div class="view-options-wrap">
-          <div class="view-options__year select-wrap">
-            <select
-              data-options='{
-              "maxHeight": "226",
-              "msg": "년도"
-              }'
-            >
-              <option>2011년</option>
-              <option>2012년</option>
-              <option>2013년</option>
-              <option>2014년</option>
-              <option>2015년</option>
-              <option>2016년</option>
-              <option>2017년</option>
-              <option>2018년</option>
-              <option>2019년</option>
-              <option>2020년</option>
-              <option>2021년</option>
-              <option>2022년</option>
-            </select>
-          </div>
-          <div class="view-options__month select-wrap">
-            <select
-              data-options='{
-              "maxHeight": "226",
-              "msg": "월"
-              }'
-            >
-              <option>1월</option>
-              <option>2월</option>
-              <option>3월</option>
-              <option>4월</option>
-              <option>5월</option>
-              <option>6월</option>
-              <option>7월</option>
-              <option>8월</option>
-              <option>9월</option>
-              <option>10월</option>
-              <option>11월</option>
-              <option>12월</option>
-            </select>
-          </div>
-          <div class="view-options__btn">
-            <button class="btn">확인</button>
-          </div>
-        </div>
+        <DateSearchBox @click-event="searchData($event)" />
       </div>
     </div>
-
+    <LayoutController v-show="controllerFlag" @onCloseController="onCloseController" />
     <!-- Chart Grid -->
     <!-- div.swiper-slide 개수가 1개 일 경우 .swiper 클래스 삭제 -->
     <div
@@ -86,7 +75,7 @@ export default defineComponent({
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <div class="lca-chart">
+            <div class="lca-chart" v-if="getStoreVisibility.a">
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">Scope 1/2 배출량</h3>
               </div>
@@ -94,7 +83,7 @@ export default defineComponent({
                 <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
               </div>
             </div>
-            <div class="lca-chart">
+            <div class="lca-chart" v-if="getStoreVisibility.b">
               <div class="lca-chart__title-wrap">
                 <h3 class="lca-chart__title">사업장별 배출 현황</h3>
                 <span class="lca-chart__unit">(단위 : MWh)</span>

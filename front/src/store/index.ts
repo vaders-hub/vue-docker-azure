@@ -10,18 +10,30 @@ export const useMainStore = defineStore({
   id: 'mainStore',
   state: () => ({
     layout: 'Default',
+    layoutBlock: {
+      scope12: {},
+    },
     loadingData: false,
     loadingPage: false,
     current: '',
+    company: '',
     members: {},
   }),
   actions: {
     changeLayout(layoutTo) {
       this.layout = layoutTo
     },
-    changeLoadingpageStatus(status, path?) {
-      this.loadingPage = status
+    updateLayoutBlock(name, blocks) {
+      this.layoutBlock.scope12 = blocks
+    },
+    changePath(path) {
       this.current = path
+    },
+    changeCompany(icon) {
+      this.company = icon
+    },
+    changeLoadingpageStatus(status) {
+      this.loadingPage = status
     },
     changeLoadingdataStatus(status) {
       // if (!this.loadingData) return

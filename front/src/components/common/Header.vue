@@ -8,7 +8,6 @@ export default defineComponent({
   components: {},
   setup(context) {
     const mainStore = useMainStore()
-    const currentPath = mainStore.current
     const route = useRoute()
     const router = useRouter()
     const hFlag = ref(true)
@@ -44,30 +43,33 @@ export default defineComponent({
       router.push({ path: '/storyline' })
     }
 
+    // 1 뎁스 메뉴
     const onClickMenu = async (e, idx) => {
       e.preventDefault()
 
       menuDepth1.forEach((v, i) => {
         i === idx ? (v.active = '') : (v.active = 'is-active')
       })
+      MenuDepth2.forEach((v) => (v.active = ''))
+      MenuDepth2[0].active = 'is-active'
+      router.push({ name: `${menuDepth1[idx].name}`, params: { target: MenuDepth2[0].class } })
     }
 
     const selectedIcon = ref<HTMLAnchorElement[]>([])
 
+    // 회사 아이콘 + 평가
     const onClickNavigate = async (e, idx?, sidx?) => {
       e.preventDefault()
 
-      const selectedIconArr = selectedIcon.value
-
-      selectedIconArr.forEach((v) => {
-        v.classList.remove('is-active')
-      })
-      e.target.classList.add('is-active')
-
+      // 평가로 이동
       if (typeof idx !== 'number') {
         router.push({ name: 'Assessment' })
       }
+
       if (typeof idx === 'number') {
+        MenuDepth2.forEach((v) => (v.active = ''))
+        MenuDepth2[sidx].active = 'is-active'
+        mainStore.changeCompany(MenuDepth2[sidx].class)
         router.push({ name: `${menuDepth1[idx].name}`, params: { target: MenuDepth2[sidx].class } })
       }
     }
@@ -76,8 +78,16 @@ export default defineComponent({
       () => mainStore.current,
       (newVal, oldVal) => {
         newVal === 'assessment' ? (hFlag.value = false) : (hFlag.value = true)
+        // 1 뎁스 메뉴 하이라이팅
         menuDepth1.forEach((v) => {
-          v.class === newVal ? (v.active = 'is-active') : (v.active = '')
+          if (v.class === newVal) {
+            v.active = 'is-active'
+            MenuDepth2[0].active = 'is-active'
+            mainStore.changeCompany(MenuDepth2[0].class)
+            // router.push({ name: `${v.name}`, params: { target: MenuDepth2[0].class } })
+          } else {
+            v.active = ''
+          }
         })
       },
     )
@@ -135,7 +145,7 @@ export default defineComponent({
                   <li v-for="(item, index) in MenuDepth2" :key="index" role="presentation">
                     <a
                       @click="onClickNavigate($event, tid, index)"
-                      :class="`icon-company icon-company--${item.class}`"
+                      :class="`icon-company icon-company--${item.class} ${item.active}`"
                       href="#"
                       role="menuitem"
                       ref="selectedIcon"
