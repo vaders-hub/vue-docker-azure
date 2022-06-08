@@ -19,8 +19,8 @@ export default defineComponent({
     const simpleProducts = JSON.parse(JSON.stringify(propData))
 
     const valueChanged = (e) => {
-      const { previousValue, newValue } = e
-      emit('select-changed', newValue)
+      const { previousValue, value } = e
+      emit('select-changed', value)
     }
     return { simpleProducts, valueChanged }
   },

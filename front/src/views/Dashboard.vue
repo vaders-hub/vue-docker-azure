@@ -10,6 +10,7 @@ import StackedBar from '@/components/chart/StackedBar.vue'
 import 'devextreme/dist/css/dx.light.css'
 // import { DxSelectBox } from 'devextreme-vue/select-box'
 import SelectBox from '../components/common/SelectBox.vue'
+import DateSearchBox from '@/components/common/DateSearchBox.vue'
 import type {
   LineOptions,
   BarOptions,
@@ -29,8 +30,8 @@ export default defineComponent({
     Pie,
     WorldMap,
     StackedBar,
-    SelectBox,
     PolygonalLine,
+    DateSearchBox,
   },
   setup(context) {
     // 날짜 세팅
@@ -38,9 +39,6 @@ export default defineComponent({
     setDate.setMonth(setDate.getMonth() - 1)
     let sch_year = setDate.getFullYear()
     let sch_month = setDate.getMonth() + 1
-    let yearOption: any = []
-    let monthOption: any = []
-    dateSetting()
 
     const dashboardStore = useDashboardStore()
     const worldEmmit_data = []
@@ -153,42 +151,11 @@ export default defineComponent({
 
     onMounted(() => {
       hander.contentReady()
-
       loadDatas()
     })
 
-    // 년/월 SELECT-BOX 세팅
-    function dateSetting() {
-      for (let i = sch_year; i > sch_year - 10; i--) {
-        let dateOption = { id: i, name: i + '년' }
-        yearOption.push(dateOption)
-      }
-      for (let i = 1; i < 13; i++) {
-        let dateOption = { id: i, name: i + '월' }
-        monthOption.push(dateOption)
-      }
-    }
-
-    function yearValChanged(e) {
-      sch_year = e
-    }
-
-    function monthValChanged(e) {
-      sch_month = e
-    }
-
-    // 검색(확인)
-    function serachBtn() {
-      dashboardStore.dataSet.worldEmmit_data = []
-      dashboardStore.dataSet.line = []
-      dashboardStore.dataSet.scope_1_2_data = []
-      dashboardStore.dataSet.scope_3_data = []
-      dashboardStore.dataSet.site_data = []
-      dashboardStore.dataSet.cate_data = []
-      dashboardStore.dataSet.stacked1_data = []
-      dashboardStore.dataSet.stacked2_data = []
-      dashboardStore.dataSet.polygonalLine_Options = []
-      loadDatas()
+    function searchData(data) {
+      console.log(data.yyyy + '년 ' + data.mm + '월')
     }
 
     return {
@@ -200,15 +167,10 @@ export default defineComponent({
       cate_options,
       stacked1_options,
       stacked2_options,
-      sch_year,
-      yearOption,
-      yearValChanged,
-      sch_month,
-      monthOption,
-      monthValChanged,
-      serachBtn,
-      SelectBox,
       majorPrcTrend_Options,
+      sch_year,
+      sch_month,
+      searchData,
     }
   },
 })
@@ -220,45 +182,11 @@ export default defineComponent({
       <div class="page-top__header">
         <h1 class="page-top__title">Dashboard</h1>
         <h2 class="page-top__sub-title">
-          <strong>SK 이노베이션</strong><span>{{ sch_year }}.{{ sch_month }}</span>
+          <strong>SK 이노베이션</strong><span>{{ sch_year }}.{{ sch_month }} </span>
         </h2>
       </div>
       <div class="view-options">
-        <div class="view-options-wrap">
-          <SelectBox
-            :selectData="yearOption"
-            @selectChanged="yearValChanged"
-            :value="sch_year"
-            value-expr="id"
-            display-expr="name"
-          />
-          <SelectBox
-            :selectData="monthOption"
-            @selectChanged="monthValChanged"
-            :value="sch_month"
-            value-expr="id"
-            display-expr="name"
-          />
-          <!-- <DxSelectBox
-            :data-source="yearOption"
-            :value="sch_year"
-            v-model="sch_year"
-            value-expr="id"
-            display-expr="name"
-            @value-changed="yearValChanged"
-          />
-          <DxSelectBox
-            :data-source="monthOption"
-            :value="sch_month"
-            v-model="sch_month"
-            value-expr="id"
-            display-expr="name"
-            @value-changed="monthValChanged"
-          /> -->
-          <div class="view-options__btn">
-            <button class="btn" @click="serachBtn">확인</button>
-          </div>
-        </div>
+        <DateSearchBox @click-event="searchData($event)" />
       </div>
     </div>
 
@@ -380,7 +308,7 @@ export default defineComponent({
                 <span class="lca-chart__unit">(단위 : MWh)</span>
               </div>
               <div class="lca-chart__area">
-                <Pie :Options="site_options" v-model="sch_year" />
+                <Pie :Options="site_options" />
               </div>
             </div>
             <div class="lca-chart">
