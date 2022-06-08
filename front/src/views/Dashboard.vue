@@ -155,7 +155,9 @@ export default defineComponent({
     })
 
     function searchData(data) {
-      console.log(data.yyyy + '년 ' + data.mm + '월')
+      // console.log(data.yyyy + '년 ' + data.mm + '월')
+      sch_year = data.yyyy
+      sch_month = data.mm
     }
 
     return {
