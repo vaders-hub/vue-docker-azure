@@ -1,59 +1,41 @@
 # vue-docker-azure
 
-This template should help get you started developing with Vue 3 in Vite.
+Dockerizable Vue 3 framework on Nginx which can be deployed to Cloud like Azure.
 
-## Recommended IDE Setup
+### Technologies Used
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+1. Vue3, Vue-cli, Pinia, Axios, Devextreme
+2. Typescript
+3. Node, Express
+4. Jest
+5. Docker
+6. Socket
+7. Nginx
 
-## Type Support for `.vue` Imports in TS
+### Contributors
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+Hyunbae Jeon 100%
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### Running Front
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+RUN
 
-## Customize configuration
+1. cd front
+2. yarn install
+3. npm run dev
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+TEST
 
-## Project Setup
+1.  npm run test:unit
 
-```sh
-npm install
-```
+### Running Server
 
-### Compile and Hot-Reload for Development
+RUN
 
-```sh
-npm run dev
-```
+1. cd server
+2. npm i
+3. npm run dev
 
-### Type-Check, Compile and Minify for Production
+### Build Docker Image
 
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Cypress Component Testing](https://docs.cypress.io/guides/component-testing/introduction)
-
-```sh
-npm run test:unit # or `npm run test:unit:ci` for headless testing
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run build
-npm run test:e2e # or `npm run test:e2e:ci` for headless testing
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+1. docker-compose-front up --build
