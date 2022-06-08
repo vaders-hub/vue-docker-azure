@@ -155,9 +155,23 @@ export default defineComponent({
     })
 
     function searchData(data) {
-      // console.log(data.yyyy + '년 ' + data.mm + '월')
+      console.log(data.yyyy + '년 ' + data.mm + '월')
       sch_year = data.yyyy
       sch_month = data.mm
+      chartData_reLoad()
+    }
+
+    function chartData_reLoad() {
+      dashboardStore.dataSet.worldEmmit_data = []
+      dashboardStore.dataSet.line = []
+      dashboardStore.dataSet.scope_1_2_data = []
+      dashboardStore.dataSet.scope_3_data = []
+      dashboardStore.dataSet.site_data = []
+      dashboardStore.dataSet.cate_data = []
+      dashboardStore.dataSet.stacked1_data = []
+      dashboardStore.dataSet.stacked2_data = []
+      dashboardStore.dataSet.majorPrcTrend_data = []
+      loadDatas()
     }
 
     return {
