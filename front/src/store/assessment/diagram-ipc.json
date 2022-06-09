@@ -1,0 +1,685 @@
+{
+  "page": {
+    "width": 15840,
+    "height": 12240,
+    "pageColor": -1,
+    "pageWidth": 12240,
+    "pageHeight": 15840,
+    "pageLandscape": true
+  },
+  "connectors": [
+    {
+      "key": "285",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 0,
+          "y": 5400
+        },
+        {
+          "x": 1440,
+          "y": 5400
+        }
+      ]
+    },
+    {
+      "key": "293",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 0,
+          "y": 4320
+        },
+        {
+          "x": 1440,
+          "y": 4320
+        }
+      ]
+    },
+    {
+      "key": "294",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 0,
+          "y": 6480
+        },
+        {
+          "x": 1440,
+          "y": 6480
+        }
+      ]
+    },
+    {
+      "key": "295",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 1980,
+          "y": 3420
+        },
+        {
+          "x": 14040,
+          "y": 1080
+        }
+      ],
+      "beginItemKey": "223",
+      "beginConnectionPointIndex": 0,
+      "endItemKey": "284",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "296",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 2520,
+          "y": 6390
+        },
+        {
+          "x": 2880,
+          "y": 5400
+        },
+        {
+          "x": 3420,
+          "y": 5400
+        }
+      ],
+      "beginItemKey": "223",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "273",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "298",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 4860,
+          "y": 5400
+        },
+        {
+          "x": 5220,
+          "y": 5400
+        }
+      ],
+      "beginItemKey": "273",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "274",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "299",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 6660,
+          "y": 5400
+        },
+        {
+          "x": 7020,
+          "y": 5400
+        }
+      ],
+      "beginItemKey": "274",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "275",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "300",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 8460,
+          "y": 5400
+        },
+        {
+          "x": 8820,
+          "y": 5400
+        }
+      ],
+      "beginItemKey": "275",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "276",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "301",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 10260,
+          "y": 5400
+        },
+        {
+          "x": 11340,
+          "y": 4680
+        }
+      ],
+      "beginItemKey": "276",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "280",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "302",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 10260,
+          "y": 5400
+        },
+        {
+          "x": 11340,
+          "y": 6660
+        }
+      ],
+      "beginItemKey": "276",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "281",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "303",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 12060,
+          "y": 5220
+        },
+        {
+          "x": 12060,
+          "y": 6120
+        }
+      ],
+      "beginItemKey": "280",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "281",
+      "endConnectionPointIndex": 0
+    },
+    {
+      "key": "304",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 12060,
+          "y": 7200
+        },
+        {
+          "x": 12060,
+          "y": 7920
+        },
+        {
+          "x": 9540,
+          "y": 7920
+        },
+        {
+          "x": 9540,
+          "y": 5940
+        }
+      ],
+      "beginItemKey": "281",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "276",
+      "endConnectionPointIndex": 2
+    },
+    {
+      "key": "305",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 2520,
+          "y": 6390
+        },
+        {
+          "x": 8100,
+          "y": 7200
+        },
+        {
+          "x": 14040,
+          "y": 8820
+        }
+      ],
+      "beginItemKey": "223",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "290",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "306",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 2520,
+          "y": 6390
+        },
+        {
+          "x": 2880,
+          "y": 8100
+        },
+        {
+          "x": 3960,
+          "y": 8100
+        }
+      ],
+      "beginItemKey": "223",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "283",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "307",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 5400,
+          "y": 8100
+        },
+        {
+          "x": 7020,
+          "y": 8100
+        },
+        {
+          "x": 7020,
+          "y": 10080
+        },
+        {
+          "x": 14040,
+          "y": 10080
+        }
+      ],
+      "beginItemKey": "283",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "291",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "309",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 1980,
+          "y": 9360
+        },
+        {
+          "x": 14040,
+          "y": 11340
+        }
+      ],
+      "beginItemKey": "223",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "292",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "310",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 1980,
+          "y": 9360
+        },
+        {
+          "x": 14040,
+          "y": 10080
+        }
+      ],
+      "beginItemKey": "223",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "291",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "312",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 9540,
+          "y": 4860
+        },
+        {
+          "x": 9540,
+          "y": 3780
+        },
+        {
+          "x": 13680,
+          "y": 3780
+        },
+        {
+          "x": 14040,
+          "y": 4320
+        }
+      ],
+      "beginItemKey": "276",
+      "beginConnectionPointIndex": 0,
+      "endItemKey": "288",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "313",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 12780,
+          "y": 4680
+        },
+        {
+          "x": 14040,
+          "y": 5400
+        }
+      ],
+      "beginItemKey": "280",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "289",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "314",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 4140,
+          "y": 4860
+        },
+        {
+          "x": 5580,
+          "y": 2520
+        }
+      ],
+      "beginItemKey": "273",
+      "beginConnectionPointIndex": 0,
+      "endItemKey": "282",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "315",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7020,
+          "y": 2520
+        },
+        {
+          "x": 14040,
+          "y": 2160
+        }
+      ],
+      "beginItemKey": "282",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "286",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "316",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7020,
+          "y": 2520
+        },
+        {
+          "x": 14040,
+          "y": 3240
+        }
+      ],
+      "beginItemKey": "282",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "287",
+      "endConnectionPointIndex": 3
+    }
+  ],
+  "shapes": [
+    {
+      "key": "223",
+      "locked": false,
+      "zIndex": 0,
+      "type": "rectangle",
+      "text": "CDU",
+      "x": 1440,
+      "y": 3420,
+      "width": 1080,
+      "height": 5940.000000000001
+    },
+    {
+      "key": "234",
+      "locked": false,
+      "zIndex": 0,
+      "type": "text",
+      "text": "FRN",
+      "x": 180,
+      "y": 3600,
+      "width": 720,
+      "height": 720,
+      "styleText": {
+        "font-size": "12pt"
+      }
+    },
+    {
+      "key": "263",
+      "locked": false,
+      "zIndex": 0,
+      "type": "text",
+      "text": "Condy",
+      "x": 180,
+      "y": 4680,
+      "width": 900,
+      "height": 720,
+      "styleText": {
+        "font-size": "12pt"
+      }
+    },
+    {
+      "key": "264",
+      "locked": false,
+      "zIndex": 0,
+      "type": "text",
+      "text": "Crude Oil",
+      "x": 180,
+      "y": 5760,
+      "width": 1080,
+      "height": 720,
+      "styleText": {
+        "font-size": "12pt"
+      }
+    },
+    {
+      "key": "273",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "NSU\n(NSU2/\nNHT3)",
+      "x": 3420,
+      "y": 4860,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "274",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "NHT\n(NHT2/\nNHT3)",
+      "x": 5220,
+      "y": 4860,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "275",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "NHT\n(NHT2/\nNHT3)",
+      "x": 7020,
+      "y": 4860,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "276",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "SEP\n(BFU2+SUL2/\nBFU3+SUL3, XFU)",
+      "x": 8820,
+      "y": 4860,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "280",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "px",
+      "x": 11340,
+      "y": 4140,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "281",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "TAT",
+      "x": 11340,
+      "y": 6120,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "282",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "LHT",
+      "x": 5580,
+      "y": 1980,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "283",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "KGHT",
+      "x": 3960,
+      "y": 7560,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "284",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "LPG",
+      "x": 14040,
+      "y": 720,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "286",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "LSR",
+      "x": 14040,
+      "y": 1800,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "287",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Gasoline",
+      "x": 14040,
+      "y": 2880,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "288",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Benzene",
+      "x": 14040,
+      "y": 3960,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "289",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "PX",
+      "x": 14040,
+      "y": 5040,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "290",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Jet",
+      "x": 14040,
+      "y": 8460,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "291",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Diesel",
+      "x": 14040,
+      "y": 9720,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "292",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "FO",
+      "x": 14040,
+      "y": 10980,
+      "width": 1440,
+      "height": 720
+    }
+  ]
+}

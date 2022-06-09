@@ -17,7 +17,7 @@ import {
   DxGroup,
   DxTab,
 } from 'devextreme-vue/diagram'
-import rows from '@/store/assessment/diagram.json'
+import rows from '@/store/assessment/diagram-l.json'
 
 type ShapeType = {
   key: string
@@ -94,46 +94,9 @@ export default defineComponent({
       dComp = e.component
     }
 
-    const onSelectionChanged = ({ items }) => {
-      if (items.length > 0) {
-        const [{ id, text, type }] = items
-        if (type && type !== 'text') {
-          alert(`${id} : ${text} : ${type}`)
-        }
-      }
-    }
+    const onSelectionChanged = ({ items }) => {}
 
     const onLayoutChanged = (e) => (dComp = e.component)
-
-    const changeDiagram = async () => {
-      let targetIdx = 0
-      const changed = {
-        key: '164',
-        locked: false,
-        zIndex: 0,
-        type: 'delay',
-        text: 'LPG',
-        x: 9900,
-        y: 360,
-        width: 1080,
-        height: 1080,
-        style: {
-          fill: 'red',
-          stroke: '#0056cf',
-        },
-        styleText: {
-          fill: '#ffffff',
-        },
-      }
-
-      if (diagramData.shapes) {
-        for (const [i, value] of Object.entries(diagramData.shapes)) {
-          if (changed.key === value.key) targetIdx = parseInt(i)
-        }
-        diagramData.shapes[targetIdx] = changed
-        diagramInstance.import(JSON.stringify(diagramData))
-      }
-    }
 
     const saveDiagram = async () => {
       const changed = await diagramInstance.export(dComp)
@@ -146,7 +109,6 @@ export default defineComponent({
       onContentReady,
       onSelectionChanged,
       onLayoutChanged,
-      changeDiagram,
       saveDiagram,
       checks,
     }
@@ -155,14 +117,7 @@ export default defineComponent({
 </script>
 <template>
   <div>
-    <button @click="changeDiagram">change</button>
     <button @click="saveDiagram">save</button>
-  </div>
-  <div>
-    <span v-for="(item, index) in checks" :key="index">
-      <input type="checkbox" :vaule="item.value" :id="`${item.value}ck`" />
-      <label :for="`${item.value}ck`">{{ item.name }}</label>
-    </span>
   </div>
   <div>
     <!-- @request-edit-operation="onLayoutChanged" -->
@@ -174,24 +129,13 @@ export default defineComponent({
       @selection-changed="onSelectionChanged"
       @request-edit-operation="onLayoutChanged"
       @content-ready="onContentReady"
-      :readOnly="true"
       :autoZoomMode="'fitContent'"
       :showGrid="false"
     >
-      <DxToolboxGroup :visible="false" />
-      <DxContextMenu
-        :visible="false"
-        :enabled="false"
-        :commands="['bringToFront', 'sendToBack', 'lock', 'unlock']"
-      />
-      <DxContextToolbox
-        :visible="false"
-        :enabled="false"
-        :category="'flowchart'"
-        :shape-icons-per-row="5"
-        :width="200"
-      />
-      <DxPropertiesPanel :visibility="'disabled'">
+      <DxToolboxGroup />
+      <DxContextMenu :commands="['bringToFront', 'sendToBack', 'lock', 'unlock']" />
+      <DxContextToolbox :category="'flowchart'" :shape-icons-per-row="5" :width="200" />
+      <DxPropertiesPanel>
         <DxTab>
           <DxGroup
             :title="'Page Properties'"
@@ -199,9 +143,9 @@ export default defineComponent({
           />
         </DxTab>
       </DxPropertiesPanel>
-      <DxHistoryToolbar :visible="false" />
-      <DxViewToolbar :visible="false" />
-      <DxMainToolbar :visible="false">
+      <DxHistoryToolbar />
+      <DxViewToolbar />
+      <DxMainToolbar :visible="true">
         <DxCommand :name="'undo'" />
         <DxCommand :name="'redo'" />
         <DxCommand :name="'separator'" />
@@ -218,16 +162,12 @@ export default defineComponent({
         <DxCommand :name="'separator'" />
         <DxCommand :name="'clear'" :icon="'clearsquare'" :text="'Clear Diagram'" />
       </DxMainToolbar>
-      <DxToolbox :visibility="'disabled'" />
+      <DxToolbox />
       <!-- <DxPageSize :width="100" :height="100" /> -->
     </DxDiagram>
   </div>
 </template>
-<style scoped>
-#diagram {
-  height: 900px;
-}
-
+<style lang="scss" scoped>
 .selected-data {
   margin-top: 20px;
   padding: 20px;

@@ -82,6 +82,11 @@ const routes = [
         name: 'User',
         component: () => import('@/views/admin/UserManagement.vue'),
       },
+      {
+        path: 'diagram',
+        name: 'Diagram',
+        component: () => import('@/views/admin/DiagramManagement.vue'),
+      },
     ],
   },
   {
