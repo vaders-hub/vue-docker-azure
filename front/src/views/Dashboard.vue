@@ -18,7 +18,9 @@ import type {
 } from '@/interface/common'
 
 import 'devextreme/dist/css/dx.light.css'
-import PolygonalLine from '../components/chart/PolygonalLine.vue'
+import PolygonalLine from '@/components/chart/PolygonalLine.vue'
+import { useMainStore } from '@/store'
+import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Dashboard',
@@ -33,6 +35,40 @@ export default defineComponent({
   },
 
   setup(props) {
+    const mainStore = useMainStore()
+    const router = useRouter()
+    const route = useRoute()
+    const current = mainStore.current
+    const targetCorp = reactive<Record<string, unknown>>({ value: 'SK 이노베이션' })
+
+    const corpNm = {
+      ski: 'SK 이노베이션',
+      ske: 'SK 에너지',
+      skgc: 'SK 지오센트릭',
+      sko: 'SK 온',
+      skl: 'SK 루브리컨츠',
+      skipc: 'SK 인천석유화학',
+      skiet: 'SK 아이이테크놀로지',
+      skeo: 'SK 어스오일',
+    }
+
+    // 메뉴 변경 감지
+    router.afterEach(() => {
+      const { target } = route.params
+      targetCorp.value = eval('corpNm.' + target)
+
+      onChangeMenu()
+    })
+
+    // api 호출
+    const onChangeMenu = async () => {
+      await console.log('call api >>>>', targetCorp.value)
+    }
+
+    const selectedCompany = computed(() => {
+      return mainStore.company
+    })
+
     // 날짜 세팅
     const setDate = new Date()
     setDate.setMonth(setDate.getMonth() - 1)
@@ -169,7 +205,6 @@ export default defineComponent({
     })
 
     function searchData(data) {
-      // console.log(data.yyyy + '년 ' + data.mm + '월')
       sch_date.sch_year = data.yyyy
       sch_date.sch_month = data.mm
       sch_year = data.yyyy
@@ -202,6 +237,8 @@ export default defineComponent({
       majorPrcTrend_Options,
       searchData,
       sch_date,
+      selectedCompany,
+      targetCorp,
     }
   },
 })
@@ -213,7 +250,7 @@ export default defineComponent({
       <div class="page-top__header">
         <h1 class="page-top__title">Dashboard</h1>
         <h2 class="page-top__sub-title">
-          <strong>SK 이노베이션</strong
+          <strong v-html="targetCorp.value"></strong
           ><span v-html="sch_date.sch_year + '.' + sch_date.sch_month" />
         </h2>
       </div>

@@ -1,6 +1,19 @@
 import { defineStore } from 'pinia'
 import lineDatas from './line'
 
+export const store = defineStore({
+  id: 'store',
+  state: (): any => ({
+    msg: 'Hello!',
+    setMsg(newValue) {
+      this.state.msg = newValue
+    },
+    getMsg() {
+      return this.state.msg
+    },
+  }),
+})
+
 export const useDashboardStore = defineStore({
   id: 'dashboardStore',
   state: (): any => ({
@@ -18,6 +31,7 @@ export const useDashboardStore = defineStore({
     },
     tableData: [],
   }),
+
   actions: {
     async loadData(payload, sch_year, sch_month) {
       try {
