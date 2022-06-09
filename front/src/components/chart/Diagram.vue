@@ -17,8 +17,10 @@ import {
   DxGroup,
   DxTab,
 } from 'devextreme-vue/diagram'
-import rows from '@/store/assessment/diagram.json'
-
+import rows from '@/store/assessment/diagram-l.json'
+// -r2 - skipc
+// -r3 - skgc
+// -skl - skl
 type ShapeType = {
   key: string
   locked: boolean
@@ -45,7 +47,7 @@ type DiagramType = {
 }
 
 export default defineComponent({
-  name: 'Diagram-1',
+  name: 'Diagram',
   components: {
     DxDiagram,
     DxToolbox,
@@ -154,16 +156,10 @@ export default defineComponent({
 })
 </script>
 <template>
-  <div>
+  <div v-show="false">
     <button @click="changeDiagram">change</button>
-    <button @click="saveDiagram">save</button>
   </div>
-  <div>
-    <span v-for="(item, index) in checks" :key="index">
-      <input type="checkbox" :vaule="item.value" :id="`${item.value}ck`" />
-      <label :for="`${item.value}ck`">{{ item.name }}</label>
-    </span>
-  </div>
+
   <div>
     <!-- @request-edit-operation="onLayoutChanged" -->
     <!-- @selection-changed="onSelectionChanged" -->
@@ -223,11 +219,7 @@ export default defineComponent({
     </DxDiagram>
   </div>
 </template>
-<style scoped>
-#diagram {
-  height: 900px;
-}
-
+<style lang="scss" scoped>
 .selected-data {
   margin-top: 20px;
   padding: 20px;

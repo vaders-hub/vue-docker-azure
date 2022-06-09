@@ -4,7 +4,7 @@ import { useAssessmentStore } from '@/store/assessment/index'
 import SelectBox from '@/components/common/SelectBox.vue'
 import DropdownMultiple from '@/components/common/DropdownMultiple.vue'
 import { hander } from '@/lib/index'
-import Diagram1 from '@/components/chart/Diagram-1.vue'
+import Diagram from '@/components/chart/Diagram.vue'
 import tempTreeData from '@/store/assessment/tree'
 
 export default defineComponent({
@@ -12,7 +12,7 @@ export default defineComponent({
   components: {
     SelectBox,
     DropdownMultiple,
-    Diagram1,
+    Diagram,
   },
   setup(context) {
     const assessmentStore: any = useAssessmentStore()
@@ -41,10 +41,10 @@ export default defineComponent({
     })
 
     const stepValidator = () => {
-      if (!step1ItemsSelected.value) return false
-      if (!step2ItemsSelected.value) return false
-      if (!step3ItemsTtl.value) return false
-      if (step3ItemsChk.value === 'intg' && step3ItemsSelected.value.length === 0) return false
+      // if (!step1ItemsSelected.value) return false
+      // if (!step2ItemsSelected.value) return false
+      // if (!step3ItemsTtl.value) return false
+      // if (step3ItemsChk.value === 'intg' && step3ItemsSelected.value.length === 0) return false
       return true
     }
 
@@ -408,7 +408,7 @@ export default defineComponent({
             </div>
             <div class="assessment-step__contents">
               <div class="diagram-wrap">
-                <Diagram1 />
+                <Diagram />
               </div>
             </div>
           </div>
@@ -567,10 +567,14 @@ export default defineComponent({
 </template>
 <style lang="scss">
 .diagram-wrap {
-  width: 670px;
-  height: 500px;
+  width: 740px;
+  height: 590px;
   padding: 0;
   overflow: hidden;
+  .dxdi-canvas.dxdi-touch-action {
+    width: 740px !important;
+    height: 600px !important;
+  }
   .dx-diagram {
     border: none;
     .dxdi-canvas {

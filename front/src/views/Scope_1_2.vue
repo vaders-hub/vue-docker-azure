@@ -9,31 +9,17 @@ import DateSearchBox from '@/components/common/DateSearchBox.vue'
 export default defineComponent({
   name: 'Scope 1/2',
   components: { LayoutController, DateSearchBox },
-  setup(context) {
+  setup(props) {
     const mainStore = useMainStore()
-    const router = useRouter()
-    const route = useRoute()
     const current = mainStore.current
-    const targetCorp = reactive<Record<string, unknown>>({ value: 'ski' })
-
-    // 메뉴 변경 감지
-    router.afterEach(() => {
-      const { target } = route.params
-      targetCorp.value = target
-
-      onChangeMenu()
-    })
+    const currentCompany = mainStore.company
 
     // api 호출
-    const onChangeMenu = async () => {
-      await console.log('call api >>>>', targetCorp.value)
+    const onChangeMenu = async (company = 'ski') => {
+      await console.log('call api >>>>', company)
     }
 
-    const selectedCompany = computed(() => {
-      return mainStore.company
-    })
-
-    const getStoreVisibility: any = computed(() => {
+    const getStoreVisibility = computed(() => {
       return mainStore.layoutBlock[current]
     })
 
@@ -56,13 +42,21 @@ export default defineComponent({
       onChangeMenu()
     })
 
+    // 회사 변경 감지
+    watch(
+      () => mainStore.company,
+      (newVal, oldVal) => {
+        onChangeMenu(newVal)
+      },
+    )
+
     return {
-      selectedCompany,
       getStoreVisibility,
       controllerFlag,
       toggleController,
       onCloseController,
       searchData,
+      currentCompany,
     }
   },
 })
