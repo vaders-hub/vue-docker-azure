@@ -11,8 +11,24 @@ export default defineComponent({
   components: { LayoutController, DateSearchBox },
   setup(context) {
     const mainStore = useMainStore()
+    const router = useRouter()
+    const route = useRoute()
     const current = mainStore.current
-    const sssss = mainStore.layoutBlock
+    const targetCorp = reactive<Record<string, unknown>>({ value: 'ski' })
+
+    // 메뉴 변경 감지
+    router.afterEach(() => {
+      const { target } = route.params
+      targetCorp.value = target
+
+      onChangeMenu()
+    })
+
+    // api 호출
+    const onChangeMenu = async () => {
+      await console.log('call api >>>>', targetCorp.value)
+    }
+
     const selectedCompany = computed(() => {
       return mainStore.company
     })
@@ -36,6 +52,8 @@ export default defineComponent({
 
     onMounted(() => {
       hander.contentReady()
+
+      onChangeMenu()
     })
 
     return {
