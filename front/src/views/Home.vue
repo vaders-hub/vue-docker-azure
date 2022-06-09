@@ -17,7 +17,7 @@ export default defineComponent({
     msg: { type: String, default: 'SKI LCA infra' },
   },
   setup(context) {
-    const mainStore: any = useMainStore()
+    const mainStore = useMainStore()
     const api = inject('api', (opt) => ({}), false)
     const apiService = inject<ApiService>('apiService')
     const router = useRouter()

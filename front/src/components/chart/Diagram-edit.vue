@@ -98,36 +98,6 @@ export default defineComponent({
 
     const onLayoutChanged = (e) => (dComp = e.component)
 
-    const changeDiagram = async () => {
-      let targetIdx = 0
-      const changed = {
-        key: '164',
-        locked: false,
-        zIndex: 0,
-        type: 'delay',
-        text: 'LPG',
-        x: 9900,
-        y: 360,
-        width: 1080,
-        height: 1080,
-        style: {
-          fill: 'red',
-          stroke: '#0056cf',
-        },
-        styleText: {
-          fill: '#ffffff',
-        },
-      }
-
-      if (diagramData.shapes) {
-        for (const [i, value] of Object.entries(diagramData.shapes)) {
-          if (changed.key === value.key) targetIdx = parseInt(i)
-        }
-        diagramData.shapes[targetIdx] = changed
-        diagramInstance.import(JSON.stringify(diagramData))
-      }
-    }
-
     const saveDiagram = async () => {
       const changed = await diagramInstance.export(dComp)
       console.log('save', JSON.parse(changed))
@@ -139,7 +109,6 @@ export default defineComponent({
       onContentReady,
       onSelectionChanged,
       onLayoutChanged,
-      changeDiagram,
       saveDiagram,
       checks,
     }
@@ -148,7 +117,6 @@ export default defineComponent({
 </script>
 <template>
   <div>
-    <button @click="changeDiagram">change</button>
     <button @click="saveDiagram">save</button>
   </div>
   <div>

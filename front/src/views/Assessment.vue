@@ -15,7 +15,6 @@ export default defineComponent({
     Diagram,
   },
   setup(context) {
-    const assessmentStore: any = useAssessmentStore()
     let AppElement
     let StepElements
     let StepsLen
@@ -58,8 +57,6 @@ export default defineComponent({
       for (let i = 0; i < StepsLen; i++) {
         StepElements[i].classList.remove('is-expand')
       }
-
-      // assessmentStore.loadData('')
 
       StepElements[idx].classList.add('is-expand')
     }

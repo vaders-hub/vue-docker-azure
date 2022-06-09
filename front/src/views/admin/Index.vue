@@ -14,6 +14,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <h2>Admin</h2>
-  <RouterView />
+  <section class="contents">
+    <h2>Admin</h2>
+    <RouterView />
+  </section>
 </template>

@@ -3,6 +3,10 @@ import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { useMainStore } from '@/store/index'
 import { useRouter } from 'vue-router'
 
+type LayoutBlock = {
+  scope12: Record<string, unknown>
+}
+
 export default defineComponent({
   name: 'layoutController',
   components: {},
@@ -14,7 +18,7 @@ export default defineComponent({
     const scope12Model = ref<string[]>([])
     let itemsTemp = {}
 
-    const layoutBlock: any = computed(() => {
+    const layoutBlock = computed<LayoutBlock>(() => {
       return mainStore.layoutBlock
     })
 

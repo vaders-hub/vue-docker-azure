@@ -2,8 +2,17 @@ import { inject } from 'vue'
 import { defineStore } from 'pinia'
 
 export type RootState = {
-  layout: ''
-  members: Record<string, unknown>
+  layout: string
+  layoutBlock: {
+    scope12: Record<string, unknown>
+  }
+  loadingData: boolean
+  loadingPage: boolean
+  current: string
+  company: string
+  members: {
+    login: boolean
+  }
 }
 
 export const useMainStore = defineStore({
@@ -17,7 +26,7 @@ export const useMainStore = defineStore({
     loadingPage: false,
     current: '',
     company: '',
-    members: {},
+    members: { login: false },
   }),
   actions: {
     changeLayout(layoutTo) {
@@ -62,6 +71,6 @@ export const useMainStore = defineStore({
     },
   },
   getters: {
-    doubleCount: (state) => state.members,
+    members: (state) => state.members,
   },
 })
