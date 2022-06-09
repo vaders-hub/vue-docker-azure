@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref, watch, computed } from 'vue'
 import { hander } from '@/lib/index'
 import { useDashboardStore } from '@/store/dashboard'
 import Line from '@/components/chart/Line.vue'
@@ -8,8 +8,6 @@ import Pie from '@/components/chart/Pie.vue'
 import WorldMap from '@/components/chart/WorldMap.vue'
 import StackedBar from '@/components/chart/StackedBar.vue'
 import 'devextreme/dist/css/dx.light.css'
-// import { DxSelectBox } from 'devextreme-vue/select-box'
-import SelectBox from '../components/common/SelectBox.vue'
 import DateSearchBox from '@/components/common/DateSearchBox.vue'
 import type {
   LineOptions,
@@ -33,88 +31,104 @@ export default defineComponent({
     PolygonalLine,
     DateSearchBox,
   },
-  setup(context) {
+
+  setup(props) {
     // 날짜 세팅
     const setDate = new Date()
     setDate.setMonth(setDate.getMonth() - 1)
     let sch_year = setDate.getFullYear()
     let sch_month = setDate.getMonth() + 1
+    let sch_date = reactive({ sch_year, sch_month })
 
     const dashboardStore = useDashboardStore()
-    const worldEmmit_data = []
-    const lineOptions = reactive<LineOptions>({
-      idName: 'line-demo',
-      series: [
-        { value: 'hydro', name: 'Hydro-electric', color: 'red' },
-        { value: 'oil', name: 'Oil', color: 'black' },
-        { value: 'gas', name: 'Natural gas', color: 'grey' },
-        { value: 'coal', name: 'Coal', color: 'blue' },
-      ],
-      loadedData: [],
-    })
-    const scope_1_2_options = reactive<BarOptions>({
-      idName: 'scope_1_2_chart',
-      series: [
-        { value: 'scope1', name: 'scope1', color: '#E8E5D3' },
-        { value: 'scope2', name: 'scope2', color: '#F3C848' },
-      ],
-      loadedData: [],
-    })
-    const scope_3_options = reactive<BarOptions>({
-      idName: 'scope_3_chart',
-      series: [{ value: 'scope3', name: 'scope3', color: '#E8E5D3' }],
-      loadedData: [],
-    })
-    const site_options = reactive<PieOptions>({
-      idName: 'site_chart',
-      series: [{ value: 'compNm', name: 'compNm' }],
-      loadedData: [],
-    })
-    const cate_options = reactive<PieOptions>({
-      idName: 'cate_chart',
-      series: [{ value: 'scope3', name: 'Scope3' }],
-      loadedData: [],
-    })
-    const stacked1_options = reactive<StackedBarOptions>({
-      idName: 'stack_chart',
-      series: [
-        { value: 'scope12', name: 'scope12', color: '#E69B50' },
-        { value: 'scope3', name: 'scope3', color: '#F3C848' },
-      ],
-      loadedData: [],
-    })
-    const stacked2_options = reactive<StackedBarOptions>({
-      idName: 'stack_chart',
-      series: [
-        { value: 'scope12', name: 'scope12', color: '#E69B50' },
-        { value: 'scope3', name: 'scope3', color: '#F3C848' },
-      ],
-      loadedData: [],
-    })
-    const majorPrcTrend_Options = reactive<PolygonalLineOptions>({
-      idName: 'majorPrcTrend_chart',
-      series: [
-        {
-          value: 'REC',
-          name: 'REC',
-          color: 'red',
-          point: { shape: 'triangleDown', color: 'pink' },
-        },
-        {
-          value: 'KAU21',
-          name: 'KAU21',
-          color: 'green',
-          point: { shape: 'polygon', color: 'blue' },
-        },
-        {
-          value: 'EU_ETS',
-          name: 'EU-ETS',
-          color: 'grey',
-          point: { shape: 'circle', color: 'black' },
-        },
-      ],
-      loadedData: [],
-    })
+    let worldEmmit_data,
+      lineOptions,
+      scope_1_2_options,
+      scope_3_options,
+      site_options,
+      cate_options,
+      stacked1_options,
+      stacked2_options,
+      majorPrcTrend_Options
+
+    loadOptions()
+
+    function loadOptions() {
+      worldEmmit_data = []
+      lineOptions = reactive<LineOptions>({
+        idName: 'line-demo',
+        series: [
+          { value: 'hydro', name: 'Hydro-electric', color: 'red' },
+          { value: 'oil', name: 'Oil', color: 'black' },
+          { value: 'gas', name: 'Natural gas', color: 'grey' },
+          { value: 'coal', name: 'Coal', color: 'blue' },
+        ],
+        loadedData: [],
+      })
+      scope_1_2_options = reactive<BarOptions>({
+        idName: 'scope_1_2_chart',
+        series: [
+          { value: 'scope1', name: 'scope1', color: '#E8E5D3' },
+          { value: 'scope2', name: 'scope2', color: '#F3C848' },
+        ],
+        loadedData: [],
+      })
+      scope_3_options = reactive<BarOptions>({
+        idName: 'scope_3_chart',
+        series: [{ value: 'scope3', name: 'scope3', color: '#E8E5D3' }],
+        loadedData: [],
+      })
+      site_options = reactive<PieOptions>({
+        idName: 'site_chart',
+        series: [{ value: 'compNm', name: 'compNm' }],
+        loadedData: [],
+      })
+      cate_options = reactive<PieOptions>({
+        idName: 'cate_chart',
+        series: [{ value: 'scope3', name: 'Scope3' }],
+        loadedData: [],
+      })
+      stacked1_options = reactive<StackedBarOptions>({
+        idName: 'stack_chart',
+        series: [
+          { value: 'scope12', name: 'scope12', color: '#E69B50' },
+          { value: 'scope3', name: 'scope3', color: '#F3C848' },
+        ],
+        loadedData: [],
+      })
+      stacked2_options = reactive<StackedBarOptions>({
+        idName: 'stack_chart',
+        series: [
+          { value: 'scope12', name: 'scope12', color: '#E69B50' },
+          { value: 'scope3', name: 'scope3', color: '#F3C848' },
+        ],
+        loadedData: [],
+      })
+      majorPrcTrend_Options = reactive<PolygonalLineOptions>({
+        idName: 'majorPrcTrend_chart',
+        series: [
+          {
+            value: 'REC',
+            name: 'REC',
+            color: 'red',
+            point: { shape: 'triangleDown', color: 'pink' },
+          },
+          {
+            value: 'KAU21',
+            name: 'KAU21',
+            color: 'green',
+            point: { shape: 'polygon', color: 'blue' },
+          },
+          {
+            value: 'EU_ETS',
+            name: 'EU-ETS',
+            color: 'grey',
+            point: { shape: 'circle', color: 'black' },
+          },
+        ],
+        loadedData: [],
+      })
+    }
 
     const loadDatas = async () => {
       try {
@@ -155,7 +169,9 @@ export default defineComponent({
     })
 
     function searchData(data) {
-      console.log(data.yyyy + '년 ' + data.mm + '월')
+      // console.log(data.yyyy + '년 ' + data.mm + '월')
+      sch_date.sch_year = data.yyyy
+      sch_date.sch_month = data.mm
       sch_year = data.yyyy
       sch_month = data.mm
       chartData_reLoad()
@@ -184,9 +200,8 @@ export default defineComponent({
       stacked1_options,
       stacked2_options,
       majorPrcTrend_Options,
-      sch_year,
-      sch_month,
       searchData,
+      sch_date,
     }
   },
 })
@@ -198,7 +213,8 @@ export default defineComponent({
       <div class="page-top__header">
         <h1 class="page-top__title">Dashboard</h1>
         <h2 class="page-top__sub-title">
-          <strong>SK 이노베이션</strong><span>{{ sch_year }}.{{ sch_month }} </span>
+          <strong>SK 이노베이션</strong
+          ><span v-html="sch_date.sch_year + '.' + sch_date.sch_month" />
         </h2>
       </div>
       <div class="view-options">

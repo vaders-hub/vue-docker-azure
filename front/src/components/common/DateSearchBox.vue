@@ -62,7 +62,6 @@ export default defineComponent({
     <SelectBox
       :selectData="yearOption"
       @selectChanged="yearValChanged"
-      :value="sch_year"
       v-model="sch_year"
       value-expr="id"
       display-expr="name"
@@ -70,7 +69,6 @@ export default defineComponent({
     <SelectBox
       :selectData="monthOption"
       @selectChanged="monthValChanged"
-      :value="sch_month"
       v-model="sch_month"
       value-expr="id"
       display-expr="name"
