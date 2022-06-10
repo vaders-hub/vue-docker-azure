@@ -132,7 +132,7 @@ body {
     }
   }
 
-  #stackedBar_chart {
+  #stack_chart {
     g.dxc-series-group {
       g.dxc-series:nth-child(1) {
         rect:nth-child(2) {
@@ -145,6 +145,15 @@ body {
         }
       }
     }
+  }
+
+  #scope_1_2_chart {
+    width: 600px;
+  }
+
+  #stackedBar_chart {
+    height: Auto;
+    width: Auto;
   }
 
   #polygonalLine_chart {

@@ -121,11 +121,7 @@ export default defineComponent({
           </DxLabel>
         </DxConstantLine>
       </DxValueAxis>
-      <DxLegend
-        vertical-alignment="top"
-        horizontal-alignment="center"
-        item-text-position="bottom"
-      />
+      <DxLegend vertical-alignment="top" horizontal-alignment="center" item-text-position="left" />
       <DxTooltip :enabled="true" :shared="true" :customize-tooltip="customizeTooltip" />
     </DxChart>
   </div>

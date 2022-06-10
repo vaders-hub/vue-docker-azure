@@ -20,7 +20,6 @@ import type {
 import 'devextreme/dist/css/dx.light.css'
 import PolygonalLine from '@/components/chart/PolygonalLine.vue'
 import { useMainStore } from '@/store'
-import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Dashboard',
@@ -37,7 +36,6 @@ export default defineComponent({
   setup(props) {
     const mainStore = useMainStore()
     const corpNm = reactive<Record<string, unknown>>({ value: 'SK 이노베이션' })
-
     const corpArr = {
       ski: 'SK 이노베이션',
       ske: 'SK 에너지',
@@ -53,12 +51,10 @@ export default defineComponent({
     watch(
       () => mainStore.company,
       (newVal, oldVal) => {
-        corpNm.value = eval('corpArr.' + newVal)
+        corpNm.value = corpArr[newVal]
         onChangeMenu(newVal)
       },
     )
-
-    let company = 'ski'
 
     // api 호출
     const onChangeMenu = async (company = 'ski') => {

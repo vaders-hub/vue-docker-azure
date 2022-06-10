@@ -1,18 +1,43 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref, reactive, watch } from 'vue'
 import { useMainStore } from '@/store/index'
-import { useRoute, useRouter } from 'vue-router'
 import { hander } from '@/lib/index'
+import { useScope_1_2_store } from '@/store/scope_1_2'
+import StackedBar from '@/components/chart/StackedBar.vue'
 import LayoutController from '@/components/common/LayoutController.vue'
 import DateSearchBox from '@/components/common/DateSearchBox.vue'
+import type { StackedBarOptions } from '@/interface/common'
 
 export default defineComponent({
   name: 'Scope 1/2',
-  components: { LayoutController, DateSearchBox },
+  components: { LayoutController, DateSearchBox, StackedBar },
   setup(props) {
     const mainStore = useMainStore()
     const current = mainStore.current
     const currentCompany = mainStore.company
+
+    const scope_1_2_store = useScope_1_2_store()
+    let scope_1_2_options
+    loadOptions()
+    function loadOptions() {
+      scope_1_2_options = reactive<StackedBarOptions>({
+        idName: 'scope_1_2_chart',
+        series: [
+          { value: 'scope1', name: 'scope1', color: '#E69B50' },
+          { value: 'scope2', name: 'scope2', color: '#F3C848' },
+        ],
+        loadedData: [],
+      })
+    }
+
+    const loadDatas = async () => {
+      try {
+        await scope_1_2_store.loadData('scope_1_2_data')
+        scope_1_2_options.loadedData = scope_1_2_store.dataSet.scope_1_2_data
+      } catch (e) {
+        console.warn(e)
+      }
+    }
 
     // api 호출
     const onChangeMenu = async (company = 'ski') => {
@@ -38,8 +63,8 @@ export default defineComponent({
 
     onMounted(() => {
       hander.contentReady()
-
       onChangeMenu()
+      loadDatas()
     })
 
     // 회사 변경 감지
@@ -57,6 +82,7 @@ export default defineComponent({
       onCloseController,
       searchData,
       currentCompany,
+      scope_1_2_options,
     }
   },
 })
@@ -92,7 +118,7 @@ export default defineComponent({
                 <h3 class="lca-chart__title">Scope 1/2 배출량</h3>
               </div>
               <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
+                <StackedBar :Options="scope_1_2_options" />
               </div>
             </div>
             <div class="lca-chart" v-if="getStoreVisibility.b">

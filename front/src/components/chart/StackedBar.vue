@@ -67,11 +67,7 @@ export default defineComponent({
         :name="series.name"
         :color="series.color"
       />
-      <DxLegend
-        vertical-alignment="bottom"
-        horizontal-alignment="center"
-        item-text-position="top"
-      />
+      <DxLegend vertical-alignment="top" horizontal-alignment="center" item-text-position="left" />
       <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip" />
     </DxChart>
   </div>

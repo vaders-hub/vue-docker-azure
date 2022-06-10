@@ -66,7 +66,12 @@ export default defineComponent({
       palette="Soft Pastel"
     >
       <DxSeries argument-field="item" value-field="value" />
-      <DxLegend :margin="20" horizontal-alignment="center" vertical-alignment="top" />
+      <DxLegend
+        :margin="20"
+        horizontal-alignment="center"
+        vertical-alignment="top"
+        item-text-position="left"
+      />
       <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip" />
     </DxPieChart>
   </div>

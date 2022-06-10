@@ -75,11 +75,7 @@ export default defineComponent({
         :visual-range="[15000, 45000]"
       />
 
-      <DxLegend
-        vertical-alignment="top"
-        horizontal-alignment="center"
-        item-text-position="bottom"
-      />
+      <DxLegend vertical-alignment="top" horizontal-alignment="center" item-text-position="left" />
       <DxExport :enabled="false" />
       <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip" />
     </DxChart>
