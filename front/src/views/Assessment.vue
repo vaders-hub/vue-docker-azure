@@ -585,5 +585,9 @@ export default defineComponent({
       }
     }
   }
+
+  .item-selection-rect {
+    display: none;
+  }
 }
 </style>

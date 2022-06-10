@@ -1,0 +1,764 @@
+{
+  "page": {
+    "width": 15840,
+    "height": 12240,
+    "pageColor": -1,
+    "pageWidth": 12240,
+    "pageHeight": 15840,
+    "pageLandscape": true
+  },
+  "connectors": [
+    {
+      "key": "330",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 2070,
+          "y": 2873
+        },
+        {
+          "x": 3060,
+          "y": 2880
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "319",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "326",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "331",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 3780,
+          "y": 2160
+        },
+        {
+          "x": 13320,
+          "y": 720
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "326",
+      "beginConnectionPointIndex": 0,
+      "endItemKey": "320",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "332",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 4500,
+          "y": 2880
+        },
+        {
+          "x": 5580,
+          "y": 2880
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "326",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "282",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "333",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7020,
+          "y": 2880
+        },
+        {
+          "x": 13320,
+          "y": 1980
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "282",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "284",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "334",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7020,
+          "y": 2880
+        },
+        {
+          "x": 13320,
+          "y": 3060
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "282",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "286",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "336",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 3780,
+          "y": 3600
+        },
+        {
+          "x": 5580,
+          "y": 4860
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "326",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "321",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "337",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 3780,
+          "y": 3600
+        },
+        {
+          "x": 5580,
+          "y": 6480
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "326",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "322",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "338",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7020,
+          "y": 2880
+        },
+        {
+          "x": 13320,
+          "y": 4320
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "282",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "287",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "339",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7020,
+          "y": 4860
+        },
+        {
+          "x": 13320,
+          "y": 5400
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "321",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "288",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "340",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7020,
+          "y": 4860
+        },
+        {
+          "x": 9540,
+          "y": 6300
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "321",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "281",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "341",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 3780,
+          "y": 3600
+        },
+        {
+          "x": 5580,
+          "y": 8280
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "326",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "323",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "342",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 3780,
+          "y": 3600
+        },
+        {
+          "x": 5580,
+          "y": 10800
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "326",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "324",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "343",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 3780,
+          "y": 3600
+        },
+        {
+          "x": 8460,
+          "y": 9900
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "326",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "325",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "344",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 7020,
+          "y": 8280
+        },
+        {
+          "x": 9540,
+          "y": 7740
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "323",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "318",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "345",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 10980,
+          "y": 6300
+        },
+        {
+          "x": 13320,
+          "y": 5400
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "281",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "288",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "346",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 10980,
+          "y": 6300
+        },
+        {
+          "x": 13320,
+          "y": 6480
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "281",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "289",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "347",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 10980,
+          "y": 6300
+        },
+        {
+          "x": 13320,
+          "y": 7740
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "281",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "317",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "348",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 10980,
+          "y": 7740
+        },
+        {
+          "x": 11700,
+          "y": 7740
+        },
+        {
+          "x": 11700,
+          "y": 5220
+        },
+        {
+          "x": 13320,
+          "y": 5400
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "318",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "288",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "350",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 10980,
+          "y": 7740
+        },
+        {
+          "x": 13320,
+          "y": 9000
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "318",
+      "beginConnectionPointIndex": -1,
+      "endItemKey": "290",
+      "endConnectionPointIndex": -1
+    },
+    {
+      "key": "351",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 6300,
+          "y": 8820
+        },
+        {
+          "x": 8460,
+          "y": 9900
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "323",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "325",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "352",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 9900,
+          "y": 9900
+        },
+        {
+          "x": 10980,
+          "y": 9900
+        },
+        {
+          "x": 10980,
+          "y": 10260
+        },
+        {
+          "x": 13320,
+          "y": 10260
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "325",
+      "beginConnectionPointIndex": 1,
+      "endItemKey": "291",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "353",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 9180,
+          "y": 10440
+        },
+        {
+          "x": 13320,
+          "y": 11520
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "325",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "292",
+      "endConnectionPointIndex": 3
+    },
+    {
+      "key": "356",
+      "locked": false,
+      "zIndex": 0,
+      "points": [
+        {
+          "x": 6300,
+          "y": 8820
+        },
+        {
+          "x": 12060,
+          "y": 9180
+        },
+        {
+          "x": 12060,
+          "y": 10260
+        },
+        {
+          "x": 13320,
+          "y": 10260
+        }
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
+      "beginItemKey": "323",
+      "beginConnectionPointIndex": 2,
+      "endItemKey": "291",
+      "endConnectionPointIndex": 3
+    }
+  ],
+  "shapes": [
+    {
+      "key": "281",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "RFCC",
+      "x": 9540,
+      "y": 5760,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "282",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "MDU",
+      "x": 5580,
+      "y": 2340,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "284",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Naph",
+      "x": 13320,
+      "y": 1620,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "286",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Jet",
+      "x": 13320,
+      "y": 2700,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "287",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Kero",
+      "x": 13320,
+      "y": 3960,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "288",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "DSL",
+      "x": 13320,
+      "y": 5040,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "289",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Gasoline",
+      "x": 13320,
+      "y": 6120,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "290",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "UCO",
+      "x": 13320,
+      "y": 8640,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "291",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Asphalt",
+      "x": 13320,
+      "y": 9900,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "292",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "DAO",
+      "x": 13320,
+      "y": 11160,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "317",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "B-C",
+      "x": 13320,
+      "y": 7380,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "318",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "UC",
+      "x": 9540,
+      "y": 7200,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "319",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "Crude Oil",
+      "x": 450,
+      "y": 2423,
+      "width": 1620,
+      "height": 900
+    },
+    {
+      "key": "320",
+      "locked": false,
+      "zIndex": 0,
+      "type": "terminator",
+      "text": "LPG",
+      "x": 13320,
+      "y": 360,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "key": "321",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "RHDS",
+      "x": 5580,
+      "y": 4320,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "322",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "#1\nVRDS",
+      "x": 5580,
+      "y": 5940,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "323",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "VDU",
+      "x": 5580,
+      "y": 7740,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "324",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "#2\nVRDS",
+      "x": 5580,
+      "y": 10260,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "325",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "SDA",
+      "x": 8460,
+      "y": 9360,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "key": "326",
+      "locked": false,
+      "zIndex": 0,
+      "type": "process",
+      "text": "CDU",
+      "x": 3060,
+      "y": 2160,
+      "width": 1440,
+      "height": 1440
+    }
+  ]
+}

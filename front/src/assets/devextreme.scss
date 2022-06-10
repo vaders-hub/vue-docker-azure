@@ -1,4 +1,16 @@
 body {
+  .page-top {
+    .dx-selectbox {
+      border: none;
+    }
+  }
+
+  .dx-selectbox {
+    .dx-dropdowneditor-icon {
+      background-color: transparent !important;
+    }
+  }
+
   .option-list {
     .dx-selectbox {
       height: 50px;

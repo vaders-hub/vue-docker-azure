@@ -17,10 +17,8 @@ import {
   DxGroup,
   DxTab,
 } from 'devextreme-vue/diagram'
-import rows from '@/store/assessment/diagram-l.json'
-// -r2 - skipc
-// -r3 - skgc
-// -skl - skl
+import rows from '@/store/assessment/diagram-e.json'
+
 type ShapeType = {
   key: string
   locked: boolean
@@ -234,4 +232,6 @@ export default defineComponent({
 input {
   -webkit-appearance: auto;
 }
+
+// item-selection-rect
 </style>

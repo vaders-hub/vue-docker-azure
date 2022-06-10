@@ -21,7 +21,10 @@
           "x": 1440,
           "y": 5400
         }
-      ]
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      }
     },
     {
       "key": "293",
@@ -36,7 +39,10 @@
           "x": 1440,
           "y": 4320
         }
-      ]
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      }
     },
     {
       "key": "294",
@@ -51,7 +57,10 @@
           "x": 1440,
           "y": 6480
         }
-      ]
+      ],
+      "style": {
+        "stroke": "#c7c7c7"
+      }
     },
     {
       "key": "295",
@@ -67,6 +76,9 @@
           "y": 1080
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "223",
       "beginConnectionPointIndex": 0,
       "endItemKey": "284",
@@ -90,6 +102,9 @@
           "y": 5400
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "223",
       "beginConnectionPointIndex": 1,
       "endItemKey": "273",
@@ -109,6 +124,9 @@
           "y": 5400
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "273",
       "beginConnectionPointIndex": 1,
       "endItemKey": "274",
@@ -128,6 +146,9 @@
           "y": 5400
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "274",
       "beginConnectionPointIndex": 1,
       "endItemKey": "275",
@@ -147,6 +168,9 @@
           "y": 5400
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "275",
       "beginConnectionPointIndex": 1,
       "endItemKey": "276",
@@ -166,6 +190,9 @@
           "y": 4680
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "276",
       "beginConnectionPointIndex": 1,
       "endItemKey": "280",
@@ -185,6 +212,9 @@
           "y": 6660
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "276",
       "beginConnectionPointIndex": 1,
       "endItemKey": "281",
@@ -204,6 +234,9 @@
           "y": 6120
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "280",
       "beginConnectionPointIndex": 2,
       "endItemKey": "281",
@@ -231,6 +264,9 @@
           "y": 5940
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "281",
       "beginConnectionPointIndex": 2,
       "endItemKey": "276",
@@ -254,6 +290,9 @@
           "y": 8820
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "223",
       "beginConnectionPointIndex": 1,
       "endItemKey": "290",
@@ -277,6 +316,9 @@
           "y": 8100
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "223",
       "beginConnectionPointIndex": 1,
       "endItemKey": "283",
@@ -304,6 +346,9 @@
           "y": 10080
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "283",
       "beginConnectionPointIndex": 1,
       "endItemKey": "291",
@@ -323,6 +368,9 @@
           "y": 11340
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "223",
       "beginConnectionPointIndex": 2,
       "endItemKey": "292",
@@ -342,6 +390,9 @@
           "y": 10080
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "223",
       "beginConnectionPointIndex": 2,
       "endItemKey": "291",
@@ -369,6 +420,9 @@
           "y": 4320
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "276",
       "beginConnectionPointIndex": 0,
       "endItemKey": "288",
@@ -388,6 +442,9 @@
           "y": 5400
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "280",
       "beginConnectionPointIndex": 1,
       "endItemKey": "289",
@@ -407,6 +464,9 @@
           "y": 2520
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "273",
       "beginConnectionPointIndex": 0,
       "endItemKey": "282",
@@ -426,6 +486,9 @@
           "y": 2160
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "282",
       "beginConnectionPointIndex": 1,
       "endItemKey": "286",
@@ -445,6 +508,9 @@
           "y": 3240
         }
       ],
+      "style": {
+        "stroke": "#c7c7c7"
+      },
       "beginItemKey": "282",
       "beginConnectionPointIndex": 1,
       "endItemKey": "287",

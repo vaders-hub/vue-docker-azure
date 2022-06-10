@@ -17,7 +17,7 @@ import {
   DxGroup,
   DxTab,
 } from 'devextreme-vue/diagram'
-import rows from '@/store/assessment/diagram-l.json'
+import rows from '@/store/assessment/diagram-ipc.json'
 
 type ShapeType = {
   key: string
