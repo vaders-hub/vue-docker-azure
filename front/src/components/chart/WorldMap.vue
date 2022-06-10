@@ -1,12 +1,20 @@
 <script lang="ts">
 import { defineComponent, ref, defineProps } from 'vue'
 import * as mapsData from 'devextreme/dist/js/vectormap-data/world.js'
-import { DxVectorMap, DxLayer, DxTooltip, DxBorder, DxFont } from 'devextreme-vue/vector-map'
+import {
+  DxVectorMap,
+  DxControlBar,
+  DxLayer,
+  DxTooltip,
+  DxBorder,
+  DxFont,
+} from 'devextreme-vue/vector-map'
 import { useDashboardStore } from '@/store/dashboard'
 import CollectionWidget from 'devextreme/ui/collection/ui.collection_widget.base'
 export default defineComponent({
   components: {
     DxVectorMap,
+    DxControlBar,
     DxLayer,
     DxTooltip,
     DxBorder,
@@ -103,12 +111,13 @@ export default defineComponent({
 </script>
 <template>
   <div>
-    <DxVectorMap id="vector-map" :bounds="bounds" @click="click">
-      <DxLayer :data-source="worldData" :customize="customizeLayer" />
+    <DxVectorMap id="vector-map" :bounds="bounds" @click="click" :wheelEnabled="false">
+      <DxLayer :data-source="worldData" :customize="customizeLayer"> </DxLayer>
       <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip">
         <DxBorder :visible="true" />
         <DxFont color="#fff" />
       </DxTooltip>
+      <DxControlBar horizontal-alignment="left" :enabled="false" />
     </DxVectorMap>
   </div>
 </template>
