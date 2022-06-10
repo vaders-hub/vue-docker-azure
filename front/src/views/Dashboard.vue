@@ -36,12 +36,9 @@ export default defineComponent({
 
   setup(props) {
     const mainStore = useMainStore()
-    const router = useRouter()
-    const route = useRoute()
-    const current = mainStore.current
-    const targetCorp = reactive<Record<string, unknown>>({ value: 'SK 이노베이션' })
+    const corpNm = reactive<Record<string, unknown>>({ value: 'SK 이노베이션' })
 
-    const corpNm = {
+    const corpArr = {
       ski: 'SK 이노베이션',
       ske: 'SK 에너지',
       skgc: 'SK 지오센트릭',
@@ -52,22 +49,21 @@ export default defineComponent({
       skeo: 'SK 어스오일',
     }
 
-    // 메뉴 변경 감지
-    router.afterEach(() => {
-      const { target } = route.params
-      targetCorp.value = eval('corpNm.' + target)
+    // 회사 변경 감지
+    watch(
+      () => mainStore.company,
+      (newVal, oldVal) => {
+        corpNm.value = eval('corpArr.' + newVal)
+        onChangeMenu(newVal)
+      },
+    )
 
-      onChangeMenu()
-    })
+    let company = 'ski'
 
     // api 호출
-    const onChangeMenu = async () => {
-      await console.log('call api >>>>', targetCorp.value)
+    const onChangeMenu = async (company = 'ski') => {
+      await console.log('call api >>>>', company)
     }
-
-    const selectedCompany = computed(() => {
-      return mainStore.company
-    })
 
     // 날짜 세팅
     const setDate = new Date()
@@ -202,6 +198,7 @@ export default defineComponent({
     onMounted(() => {
       hander.contentReady()
       loadDatas()
+      onChangeMenu()
     })
 
     function searchData(data) {
@@ -237,8 +234,7 @@ export default defineComponent({
       majorPrcTrend_Options,
       searchData,
       sch_date,
-      selectedCompany,
-      targetCorp,
+      corpNm,
     }
   },
 })
@@ -250,7 +246,7 @@ export default defineComponent({
       <div class="page-top__header">
         <h1 class="page-top__title">Dashboard</h1>
         <h2 class="page-top__sub-title">
-          <strong v-html="targetCorp.value"></strong
+          <strong v-html="corpNm.value"></strong
           ><span v-html="sch_date.sch_year + '.' + sch_date.sch_month" />
         </h2>
       </div>
