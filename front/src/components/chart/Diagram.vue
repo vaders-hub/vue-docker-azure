@@ -1,5 +1,14 @@
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted, onUnmounted, inject } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ref,
+  reactive,
+  onMounted,
+  onUnmounted,
+  inject,
+  watch,
+} from 'vue'
 import {
   DxDiagram,
   DxToolbox,
@@ -63,8 +72,9 @@ export default defineComponent({
   emit: [],
   setup(context) {
     const api = inject('api', (opt) => ({}), false)
-    const diagram = ref<any>(null)
-    let dComp = reactive({})
+    const diagram = ref<any>({ instance: {} })
+
+    let changedItem = ref({})
     let diagramData = reactive<DiagramType>({})
     let diagramInstance
 
@@ -74,16 +84,12 @@ export default defineComponent({
       { name: 'check-c', value: 'c' },
     ]
 
-    onMounted(async () => {
-      loadItem()
-    })
-
     const loadItem = async () => {
       // const {
       //   data: { rows },
       // }: any = await api({ methods: 'get', url: '/api/data/diagram', params: {} })
 
-      diagramData = rows
+      diagramData = JSON.parse(JSON.stringify(rows))
       if (diagram.value) {
         diagramInstance = diagram.value.instance
         diagramInstance.import(JSON.stringify(diagramData))
@@ -91,54 +97,49 @@ export default defineComponent({
     }
 
     const onContentReady = (e) => {
-      dComp = e.component
+      diagramInstance = e.component
     }
 
-    const onSelectionChanged = ({ items }) => {
-      if (items.length > 0) {
-        const [{ id, text, type }] = items
-        if (type && type !== 'text') {
-          alert(`${id} : ${text} : ${type}`)
-        }
-      }
+    const onSelectionChanged = (e) => {
+      const { items } = e
+      if (items.length === 0) return
+
+      const [{ id, text, type }] = items
+      changedItem.value = items
     }
 
-    const onLayoutChanged = (e) => (dComp = e.component)
+    const onLayoutChanged = (e) => (diagramInstance = e.component)
 
     const changeDiagram = async () => {
-      let targetIdx = 0
-      const changed = {
-        key: '164',
-        locked: false,
-        zIndex: 0,
-        type: 'delay',
-        text: 'LPG',
-        x: 9900,
-        y: 360,
-        width: 1080,
-        height: 1080,
-        style: {
-          fill: 'red',
-          stroke: '#0056cf',
-        },
-        styleText: {
-          fill: '#ffffff',
-        },
-      }
-
-      if (diagramData.shapes) {
-        for (const [i, value] of Object.entries(diagramData.shapes)) {
-          if (changed.key === value.key) targetIdx = parseInt(i)
+      const [{ id }] = JSON.parse(JSON.stringify(changedItem.value))
+      const newShapes = diagramData.shapes?.map((v, i) => {
+        if (v.key === id) {
+          return {
+            ...v,
+            style: {
+              stroke: '#2b7832',
+            },
+          }
+        } else {
+          delete v['style']
+          return v
         }
-        diagramData.shapes[targetIdx] = changed
-        diagramInstance.import(JSON.stringify(diagramData))
-      }
+      })
+
+      diagramData.shapes = newShapes
+      diagramInstance.import(JSON.stringify(diagramData))
     }
 
-    const saveDiagram = async () => {
-      const changed = await diagramInstance.export(dComp)
-      console.log('save', JSON.parse(changed))
-    }
+    watch(
+      () => changedItem.value,
+      (newVal, oldVal) => {
+        changeDiagram()
+      },
+    )
+
+    onMounted(async () => {
+      loadItem()
+    })
 
     return {
       diagram,
@@ -147,7 +148,6 @@ export default defineComponent({
       onSelectionChanged,
       onLayoutChanged,
       changeDiagram,
-      saveDiagram,
       checks,
     }
   },
@@ -217,7 +217,7 @@ export default defineComponent({
     </DxDiagram>
   </div>
 </template>
-<style lang="scss" scoped>
+<style lang="scss">
 .selected-data {
   margin-top: 20px;
   padding: 20px;
@@ -233,5 +233,7 @@ input {
   -webkit-appearance: auto;
 }
 
-// item-selection-rect
+.blackStroke {
+  stroke: red;
+}
 </style>
