@@ -118,6 +118,8 @@ export default defineComponent({
     <div
       class="lca-chart-grid swiper"
       data-options='{
+      "slidesPerView": "2",
+      "spaceBetween": 120,
       "autoplay": "0",
       "pagination": "bullet"
     }'
@@ -125,61 +127,88 @@ export default defineComponent({
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <!-- Slides -->
-          <div class="swiper-slide">
-            <div class="lca-chart" v-if="getStoreVisibility.a">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Scope 1/2 배출량</h3>
-              </div>
-              <div class="lca-chart__area">
-                <StackedBar :Options="scope_1_2_options" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Scope 1/2 배출량</h3>
             </div>
-            <div class="lca-chart" v-if="getStoreVisibility.b">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">사업장별 배출 현황</h3>
-                <span class="lca-chart__unit">(단위 : MWh)</span>
-              </div>
-              <div class="lca-chart__area">
-                <Doughnut :Options="emitBySite_options" />
-              </div>
+            <div class="lca-chart__area">
+              <StackedBar :Options="scope_1_2_options" />
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Scope 1/2 배출량</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">사업장별 배출 현황</h3>
+              <span class="lca-chart__unit">(단위 : MWh)</span>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">사업장별 배출 현황</h3>
-                <span class="lca-chart__unit">(단위 : MWh)</span>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-2.gif" alt="" />
-              </div>
+            <div class="lca-chart__area">
+              <Doughnut :Options="emitBySite_options" />
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Scope 1/2 배출량</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Scope 1/2 배출량</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">사업장별 배출 현황</h3>
-                <span class="lca-chart__unit">(단위 : MWh)</span>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-2.gif" alt="" />
-              </div>
+            <div class="lca-chart__area"></div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">사업장별 배출 현황</h3>
+              <span class="lca-chart__unit">(단위 : MWh)</span>
+            </div>
+            <div class="lca-chart__area"></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <!--// Chart Grid -->
+
+    <!-- Chart Grid -->
+    <!-- div.swiper-slide 개수가 1개 일 경우 .swiper 클래스 삭제 -->
+    <div
+      class="lca-chart-grid swiper"
+      data-options='{
+      "slidesPerView": "2",
+      "spaceBetween": 120,
+      "autoplay": "0",
+      "pagination": "bullet"
+    }'
+    >
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">배출활동별 배출 현황</h3>
+            </div>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
+            </div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">사업장별 배출활동별 배출 현황</h3>
+              <span class="lca-chart__unit">(단위 : MWh)</span>
+            </div>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x390-2.gif" alt="" />
+            </div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">배출활동별 배출 현황</h3>
+            </div>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
+            </div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">사업장별 배출활동별 배출 현황</h3>
+              <span class="lca-chart__unit">(단위 : MWh)</span>
+            </div>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x390-2.gif" alt="" />
             </div>
           </div>
         </div>
@@ -193,6 +222,8 @@ export default defineComponent({
     <div
       class="lca-chart-grid swiper"
       data-options='{
+      "slidesPerView": "2",
+      "spaceBetween": 120,
       "autoplay": "0",
       "pagination": "bullet"
     }'
@@ -200,133 +231,36 @@ export default defineComponent({
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <!-- Slides -->
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">배출활동별 배출 현황</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">공정별 배출량</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">사업장별 배출활동별 배출 현황</h3>
-                <span class="lca-chart__unit">(단위 : MWh)</span>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-2.gif" alt="" />
-              </div>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">배출활동별 배출 현황</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">주요 배출 계수</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">사업장별 배출활동별 배출 현황</h3>
-                <span class="lca-chart__unit">(단위 : MWh)</span>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-2.gif" alt="" />
-              </div>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x390-3.gif" alt="" />
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">배출활동별 배출 현황</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">공정별 배출량</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">사업장별 배출활동별 배출 현황</h3>
-                <span class="lca-chart__unit">(단위 : MWh)</span>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-2.gif" alt="" />
-              </div>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
             </div>
           </div>
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-    <!--// Chart Grid -->
-
-    <!-- Chart Grid -->
-    <!-- div.swiper-slide 개수가 1개 일 경우 .swiper 클래스 삭제 -->
-    <div
-      class="lca-chart-grid swiper"
-      data-options='{
-      "autoplay": "0",
-      "pagination": "bullet"
-    }'
-    >
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">공정별 배출량</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">주요 배출 계수</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">주요 배출 계수</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-3.gif" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">공정별 배출량</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
-              </div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">주요 배출 계수</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-3.gif" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">공정별 배출량</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-1.gif" alt="" />
-              </div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">주요 배출 계수</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-3.gif" alt="" />
-              </div>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x390-3.gif" alt="" />
             </div>
           </div>
         </div>

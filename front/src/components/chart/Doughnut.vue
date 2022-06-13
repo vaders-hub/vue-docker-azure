@@ -59,7 +59,12 @@ export default defineComponent({
       :palette="['red', 'yellow', 'green', 'red', 'blue', 'pink']"
     >
       <!-- :palette="['red', 'yellow', 'green', 'red', 'blue', 'pink']" -->
-      <DxLegend :visible="true" />
+      <DxLegend
+        :visible="true"
+        horizontal-alignment="center"
+        vertical-alignment="top"
+        item-text-position="left"
+      />
       <!-- <DxCommonSeriesSettings>
         <DxLabel :visible="false" />
       </DxCommonSeriesSettings> -->
