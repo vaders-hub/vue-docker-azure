@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, onUnmounted } from 'vue'
 import { RouterView } from 'vue-router'
 import Header from '@/components/common/HeaderAdmin.vue'
 import Footer from '@/components/common/FooterAdmin.vue'
@@ -20,6 +20,9 @@ export default defineComponent({
       if (AppElement) {
         AppElement.classList.add('wrap--admin')
       }
+    })
+    onUnmounted(() => {
+      AppElement.classList.remove('wrap--admin')
     })
     return {}
   },
