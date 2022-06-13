@@ -5,9 +5,7 @@ import DxButton from 'devextreme-vue/button'
 
 export default defineComponent({
   name: 'Login',
-  components: {
-    DxButton,
-  },
+  components: {},
   props: {
     iconColor: { type: String, default: 'default' },
   },
@@ -27,18 +25,47 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
-    <h2>Login</h2>
-    <DxButton text="Socket-test" type="normal" styling-mode="outlined" @click="testSocket()" />
-    <DxButton text="home" type="normal" styling-mode="outlined" @click="goHome()" />
-  </div>
+  <body class="bg-gray">
+    <header class="login-header">
+      <a href="#">
+        <img src="@/assets/images/logo-ski.png" alt="SK이노베이션" />
+      </a>
+    </header>
+    <div class="login">
+      <div class="login__inner">
+        <h1 class="login__title">Member Login</h1>
+        <form class="login-form" action="#">
+          <fieldset>
+            <legend class="hidden">SK 이노베이션 LCA Infra 로그인</legend>
+            <input
+              class="login-form__input"
+              type="text"
+              placeholder="아이디"
+              title="아이디를 입력하세요."
+              required
+            />
+            <input
+              class="login-form__input"
+              type="password"
+              placeholder="비밀번호"
+              title="비밀번호를 입력하세요."
+              required
+            />
+            <div class="login-form__check">
+              <input type="checkbox" name="lca-save-id" id="lca-save-id" />
+              <label for="lca-save-id">아이디 저장</label>
+            </div>
+            <p class="login-form__txt">
+              아이디와 패스워드를 정확히 입력하시고, 로그인 버튼을 클릭해 주세요.<br />
+              패스워드를 모르거나 아이디가 없을 경우 관리자에게 문의하시기 바랍니다.
+            </p>
+
+            <!-- (dev) 아이디 및 비밀번호 입력되면 disabled 속성 삭제 -->
+            <button class="login-form__btn" disabled>로그인</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </body>
 </template>
-<style lang="scss">
-.loginBox {
-  width: 25rem;
-  margin: 1rem 0;
-  .btn {
-    margin: 0.5rem 0.2rem 0 0;
-  }
-}
-</style>
+<style lang="scss"></style>

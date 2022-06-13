@@ -8,6 +8,8 @@ import {
   onUnmounted,
   inject,
   watch,
+  isProxy,
+  toRaw,
 } from 'vue'
 import {
   DxDiagram,
@@ -26,7 +28,7 @@ import {
   DxGroup,
   DxTab,
 } from 'devextreme-vue/diagram'
-import rows from '@/store/assessment/diagram-e.json'
+import rows from '@/store/assessment/diagram-ipc.json'
 
 type ShapeType = {
   key: string
@@ -74,22 +76,16 @@ export default defineComponent({
     const api = inject('api', (opt) => ({}), false)
     const diagram = ref<any>({ instance: {} })
 
-    let changedItem = ref({})
+    let changedItem = ref([])
     let diagramData = reactive<DiagramType>({})
     let diagramInstance
-
-    const checks = [
-      { name: 'check-a', value: 'a' },
-      { name: 'check-b', value: 'b' },
-      { name: 'check-c', value: 'c' },
-    ]
 
     const loadItem = async () => {
       // const {
       //   data: { rows },
       // }: any = await api({ methods: 'get', url: '/api/data/diagram', params: {} })
 
-      diagramData = JSON.parse(JSON.stringify(rows))
+      diagramData = rows
       if (diagram.value) {
         diagramInstance = diagram.value.instance
         diagramInstance.import(JSON.stringify(diagramData))
@@ -111,20 +107,20 @@ export default defineComponent({
     const onLayoutChanged = (e) => (diagramInstance = e.component)
 
     const changeDiagram = async () => {
-      const [{ id }] = JSON.parse(JSON.stringify(changedItem.value))
-      const newShapes = diagramData.shapes?.map((v, i) => {
-        if (v.key === id) {
-          return {
-            ...v,
-            style: {
-              stroke: '#2b7832',
+      const [{ id }] = toRaw(changedItem.value)
+      const newShapes = diagramData.shapes?.map((v, i) =>
+        v.key === id
+          ? {
+              ...v,
+              style: {
+                stroke: '#2b7832',
+              },
+            }
+          : {
+              ...v,
+              style: {},
             },
-          }
-        } else {
-          delete v['style']
-          return v
-        }
-      })
+      )
 
       diagramData.shapes = newShapes
       diagramInstance.import(JSON.stringify(diagramData))
@@ -148,7 +144,6 @@ export default defineComponent({
       onSelectionChanged,
       onLayoutChanged,
       changeDiagram,
-      checks,
     }
   },
 })
@@ -169,7 +164,6 @@ export default defineComponent({
       @request-edit-operation="onLayoutChanged"
       @content-ready="onContentReady"
       :readOnly="true"
-      :autoZoomMode="'fitContent'"
       :showGrid="false"
     >
       <DxToolboxGroup :visible="false" />

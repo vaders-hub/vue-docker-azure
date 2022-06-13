@@ -609,7 +609,7 @@
       "locked": false,
       "zIndex": 0,
       "type": "process",
-      "text": "SEP\n(BFU2+SUL2/\nBFU3+SUL3, XFU)",
+      "text": "SEP\n(BFU2+SUL2/\nBFU3+SUL\n,XFU)",
       "x": 8820,
       "y": 4860,
       "width": 1440,

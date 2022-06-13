@@ -69,7 +69,7 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
-    meta: { layout: 'Default' },
+    meta: { layout: 'Admin' },
     component: () => import('@/views/admin/Index.vue'),
     children: [
       {

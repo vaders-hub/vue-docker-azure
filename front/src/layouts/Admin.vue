@@ -1,21 +1,26 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, watch } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import { RouterView } from 'vue-router'
-import Header from '@/components/common/Header.vue'
-import Drawer from 'devextreme-vue/drawer'
-import SideBarAdmin from '@/components/common/SideBarAdmin.vue'
-import ScrollView from 'devextreme-vue/scroll-view'
+import Header from '@/components/common/HeaderAdmin.vue'
+import Footer from '@/components/common/FooterAdmin.vue'
 
 export default defineComponent({
   name: 'Admin',
   components: {
-    Header,
-    Drawer,
-    SideBarAdmin,
-    ScrollView,
     RouterView,
+    Header,
+    Footer,
   },
   setup(context) {
+    let AppElement
+
+    onMounted(() => {
+      AppElement = document.querySelector('#app')
+
+      if (AppElement) {
+        AppElement.classList.add('wrap--admin')
+      }
+    })
     return {}
   },
 })
@@ -23,8 +28,6 @@ export default defineComponent({
 
 <template>
   <Header />
-  <Drawer>
-    <SideBarAdmin />
-    <ScrollView><RouterView /></ScrollView>
-  </Drawer>
+  <RouterView />
+  <Footer />
 </template>
