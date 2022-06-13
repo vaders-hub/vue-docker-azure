@@ -83,48 +83,48 @@ export const useScope_1_2_store = defineStore({
           ],
           emitBySite_data = [
             {
-              Country: '현대',
+              Country: 'A',
               Import: 500,
             },
             {
-              Country: '아반떼',
+              Country: 'A-1',
               Export: 100,
             },
             {
-              Country: '쏘나타',
+              Country: 'A-2',
               Export: 200,
             },
             {
-              Country: '그랜저',
+              Country: 'A-3',
               Export: 200,
             },
             {
-              Country: '기아',
+              Country: 'B',
               Import: 400,
             },
             {
-              Country: 'K3',
+              Country: 'B-1',
               Export: 100,
             },
             {
-              Country: 'K5',
+              Country: 'B-2',
               Export: 200,
             },
             {
-              Country: 'K7',
+              Country: 'B-3',
               Export: 100,
               col: 'blue',
             },
             {
-              Country: '쉐보레',
+              Country: 'C',
               Import: 200,
             },
             {
-              Country: '말리부',
+              Country: 'C-1',
               Export: 100,
             },
             {
-              Country: '기타',
+              Country: 'C-2',
               Export: 100,
             },
           ]
