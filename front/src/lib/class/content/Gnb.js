@@ -23,7 +23,7 @@ class Gnb {
       menu: '.menu',
       menuClose: '.menu__close',
       menuDepth1: '.menu__depth1',
-      menuPin: '.menu__pin-btn',
+      menuPin: '.menu__util-btn--pin',
       wrap: '.wrap',
     }
 
@@ -85,7 +85,9 @@ class Gnb {
       el.menuClose = el.target.querySelector(selector.menuClose)
       el.menuDepth1 = el.target.querySelectorAll(selector.menuDepth1)
       el.menuPin = el.target.querySelector(selector.menuPin)
-      el.wrap = document.querySelector(selector.wrap)
+      setTimeout(() => {
+        el.wrap = document.querySelector(selector.wrap)
+      }, 300)
     }
 
     const init = () => {

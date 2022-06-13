@@ -70,24 +70,7 @@ const routes = [
     path: '/admin',
     name: 'Admin',
     meta: { layout: 'Admin' },
-    component: () => import('@/views/admin/Index.vue'),
-    children: [
-      {
-        path: 'code',
-        name: 'Code',
-        component: () => import('@/views/admin/CodeManagement.vue'),
-      },
-      {
-        path: 'user',
-        name: 'User',
-        component: () => import('@/views/admin/UserManagement.vue'),
-      },
-      {
-        path: 'diagram',
-        name: 'Diagram',
-        component: () => import('@/views/admin/DiagramManagement.vue'),
-      },
-    ],
+    component: () => import('@/views/Admin.vue'),
   },
   {
     path: '/:catchAll(.*)',

@@ -2,35 +2,35 @@
   font-family: 'suit';
   font-style: normal;
   font-weight: 400;
-  src: local("SUIT Regular"), url(font/SUIT-Regular.woff2) format("woff2"), url(font/SUIT-Regular.woff) format("woff");
+  src: local("SUIT Regular"), url(font/SUIT-Regular.woff) format("woff");
 }
 
 @font-face {
   font-family: 'suit';
   font-style: normal;
   font-weight: normal;
-  src: local("SUIT Regular"), url(font/SUIT-Regular.woff2) format("woff2"), url(font/SUIT-Regular.woff) format("woff");
+  src: local("SUIT Regular"), url(font/SUIT-Regular.woff) format("woff");
 }
 
 @font-face {
   font-family: 'suit';
   font-style: normal;
   font-weight: 500;
-  src: local("SUIT SemiBold"), url(font/SUIT-SemiBold.woff2) format("woff2"), url(font/SUIT-SemiBold.woff) format("woff");
+  src: local("SUIT SemiBold"), url(font/SUIT-SemiBold.woff) format("woff");
 }
 
 @font-face {
   font-family: 'suit';
   font-style: normal;
   font-weight: 700;
-  src: local("SUIT ExtraBold"), url(font/SUIT-ExtraBold.woff2) format("woff2"), url(font/SUIT-ExtraBold.woff) format("woff");
+  src: local("SUIT ExtraBold"), url(font/SUIT-ExtraBold.woff) format("woff");
 }
 
 @font-face {
   font-family: 'suit';
   font-style: normal;
   font-weight: bold;
-  src: local("SUIT ExtraBold"), url(font/SUIT-ExtraBold.woff2) format("woff2"), url(font/SUIT-ExtraBold.woff) format("woff");
+  src: local("SUIT ExtraBold"), url(font/SUIT-ExtraBold.woff) format("woff");
 }
 
 caption, .hidden {
@@ -866,6 +866,7 @@ caption, .hidden {
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+
 
 .menu__depth1 {
   display: -webkit-box;

@@ -5,6 +5,21 @@ body {
     }
   }
 
+  .select-wrap.search-select {
+    width: 120px;
+    .dx-selectbox {
+      height: 45px;
+    }
+  }
+
+  .option-item__data {
+    .dx-selectbox {
+      height: 50px;
+      border: none;
+      background-color: transparent !important;
+    }
+  }
+
   .dx-selectbox {
     .dx-dropdowneditor-icon {
       background-color: transparent !important;

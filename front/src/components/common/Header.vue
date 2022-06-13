@@ -37,10 +37,14 @@ export default defineComponent({
       router.push({ path: '/' })
     }
 
-    const goMonitoring = (e) => {
+    const gotoMonitoring = (e) => {
       e.preventDefault()
-      // await mainStore.login();
       router.push({ path: '/storyline' })
+    }
+
+    const gotoAdmin = (e) => {
+      e.preventDefault()
+      router.push({ path: '/admin' })
     }
 
     // 1 뎁스 메뉴
@@ -94,7 +98,8 @@ export default defineComponent({
 
     return {
       goHome,
-      goMonitoring,
+      gotoMonitoring,
+      gotoAdmin,
       menuDepth1,
       MenuDepth2,
       onClickMenu,
@@ -115,7 +120,7 @@ export default defineComponent({
       </strong>
       <!-- (js) btn-menu 활성화 시 .is-active 적용 -->
       <div class="header__util">
-        <a v-show="!hFlag" href="#" @click="goMonitoring" class="btn-monitoring">Monitoring</a>
+        <a v-show="!hFlag" href="#" @click="gotoMonitoring" class="btn-monitoring">Monitoring</a>
         <div class="user-info">
           <strong>SKI_김선경</strong>님 {{ hFlag }}<br />
           오늘도 좋은하루 되세요!
@@ -128,8 +133,17 @@ export default defineComponent({
         <div class="menu" role="dialog">
           <nav class="menu__inner">
             <div class="menu__user-info">안녕하세요, 김선경님</div>
-            <div class="menu__pin">
-              <button class="menu__pin-btn" type="button"><span class="hidden">pin</span></button>
+            <div class="menu__util">
+              <button
+                @click="gotoAdmin"
+                class="menu__util-btn menu__util-btn--setting"
+                type="button"
+              >
+                <span class="hidden">setting</span>
+              </button>
+              <button class="menu__util-btn menu__util-btn--pin" type="button">
+                <span class="hidden">pin</span>
+              </button>
             </div>
             <ul role="menubar">
               <li v-for="(title, tid) in menuDepth1" :key="tid" role="presentation">

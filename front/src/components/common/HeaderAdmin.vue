@@ -3,14 +3,26 @@ import { computed, defineComponent, onMounted, reactive, ref, watch, Ref } from 
 import { hander } from '@/lib/index'
 import { useMainStore } from '@/store/index'
 import { useRoute, useRouter } from 'vue-router'
+import SelectBox from '@/components/common/SelectBox.vue'
 
 export default defineComponent({
   name: 'HeaderAdmin',
-  components: {},
+  components: { SelectBox },
   setup(context) {
     const mainStore = useMainStore()
     const route = useRoute()
     const router = useRouter()
+    const companyList = ref([
+      'SK이노베이션',
+      'SK에너지',
+      'SK지오센트릭',
+      'SK루브리컨츠',
+      'SK인천석유화학',
+      'SK어스온',
+      'SK온',
+      'SK아이테크놀로지',
+    ])
+    const selectedCompany = ref('SK이노베이션')
 
     onMounted(() => {
       hander.contentReady()
@@ -20,8 +32,15 @@ export default defineComponent({
       router.push({ path: '/' })
     }
 
+    const selectChanged = (e) => {
+      // console.log('selectChanged', e)
+    }
+
     return {
       goHome,
+      companyList,
+      selectChanged,
+      selectedCompany,
     }
   },
 })
@@ -33,17 +52,15 @@ export default defineComponent({
         <span class="lca-logo__image"><span class="hidden">SK 이노베이션</span></span>
         <span class="lca-logo__txt">LCA Infra</span>
       </strong>
-      <div class="select-wrap select-company">
-        <select>
-          <option selected>SK이노베이션</option>
-          <option>SK에너지</option>
-          <option>SK지오센트릭</option>
-          <option>SK루브리컨츠</option>
-          <option>SK인천석유화학</option>
-          <option>SK어스온</option>
-          <option>SK온</option>
-          <option>SK아이테크놀로지</option>
-        </select>
+
+      <div class="view-options-wrap">
+        <div class="option-item__data">
+          <SelectBox
+            :selectData="companyList"
+            v-model="selectedCompany"
+            @selectChanged="selectChanged"
+          />
+        </div>
       </div>
     </div>
   </header>
