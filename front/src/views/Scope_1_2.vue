@@ -6,18 +6,19 @@ import { useScope_1_2_store } from '@/store/scope_1_2'
 import StackedBar from '@/components/chart/StackedBar.vue'
 import LayoutController from '@/components/common/LayoutController.vue'
 import DateSearchBox from '@/components/common/DateSearchBox.vue'
-import type { StackedBarOptions } from '@/interface/common'
+import type { DoughnutOptions, StackedBarOptions } from '@/interface/common'
+import Doughnut from '../components/chart/Doughnut.vue'
 
 export default defineComponent({
   name: 'Scope 1/2',
-  components: { LayoutController, DateSearchBox, StackedBar },
+  components: { LayoutController, DateSearchBox, StackedBar, Doughnut },
   setup(props) {
     const mainStore = useMainStore()
     const current = mainStore.current
     const currentCompany = mainStore.company
 
     const scope_1_2_store = useScope_1_2_store()
-    let scope_1_2_options
+    let scope_1_2_options, emitBySite_options
     loadOptions()
     function loadOptions() {
       scope_1_2_options = reactive<StackedBarOptions>({
@@ -28,12 +29,23 @@ export default defineComponent({
         ],
         loadedData: [],
       })
+      emitBySite_options = reactive<DoughnutOptions>({
+        idName: 'emitBySite_options',
+        series: [
+          { value: 'Export', name: 'Export' },
+          { value: 'Import', name: 'Import' },
+        ],
+        loadedData: [],
+      })
     }
 
     const loadDatas = async () => {
       try {
         await scope_1_2_store.loadData('scope_1_2_data')
         scope_1_2_options.loadedData = scope_1_2_store.dataSet.scope_1_2_data
+
+        await scope_1_2_store.loadData('emitBySite_data')
+        emitBySite_options.loadedData = scope_1_2_store.dataSet.emitBySite_data
       } catch (e) {
         console.warn(e)
       }
@@ -83,6 +95,7 @@ export default defineComponent({
       searchData,
       currentCompany,
       scope_1_2_options,
+      emitBySite_options,
     }
   },
 })
@@ -127,7 +140,7 @@ export default defineComponent({
                 <span class="lca-chart__unit">(단위 : MWh)</span>
               </div>
               <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x390-2.gif" alt="" />
+                <Doughnut :Options="emitBySite_options" />
               </div>
             </div>
           </div>

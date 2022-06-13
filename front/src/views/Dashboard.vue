@@ -2,7 +2,6 @@
 import { defineComponent, onMounted, reactive, ref, watch, computed } from 'vue'
 import { hander } from '@/lib/index'
 import { useDashboardStore } from '@/store/dashboard'
-import Line from '@/components/chart/Line.vue'
 import Bar from '@/components/chart/Bar.vue'
 import Pie from '@/components/chart/Pie.vue'
 import WorldMap from '@/components/chart/WorldMap.vue'
@@ -24,7 +23,6 @@ import { useMainStore } from '@/store'
 export default defineComponent({
   name: 'Dashboard',
   components: {
-    Line,
     Bar,
     Pie,
     WorldMap,
@@ -70,7 +68,6 @@ export default defineComponent({
 
     const dashboardStore = useDashboardStore()
     let worldEmmit_data,
-      lineOptions,
       scope_1_2_options,
       scope_3_options,
       site_options,
@@ -83,16 +80,6 @@ export default defineComponent({
 
     function loadOptions() {
       worldEmmit_data = []
-      lineOptions = reactive<LineOptions>({
-        idName: 'line-demo',
-        series: [
-          { value: 'hydro', name: 'Hydro-electric', color: 'red' },
-          { value: 'oil', name: 'Oil', color: 'black' },
-          { value: 'gas', name: 'Natural gas', color: 'grey' },
-          { value: 'coal', name: 'Coal', color: 'blue' },
-        ],
-        loadedData: [],
-      })
       scope_1_2_options = reactive<BarOptions>({
         idName: 'scope_1_2_chart',
         series: [
@@ -163,9 +150,6 @@ export default defineComponent({
         await dashboardStore.loadData('worldEmmit_data', sch_year, sch_month)
         dashboardStore.dataSet.worldEmmit_data
 
-        await dashboardStore.loadData('line', sch_year, sch_month)
-        lineOptions.loadedData = dashboardStore.dataSet.line
-
         await dashboardStore.loadData('scope_1_2_data', sch_year, sch_month)
         scope_1_2_options.loadedData = dashboardStore.dataSet.scope_1_2_data
 
@@ -220,7 +204,6 @@ export default defineComponent({
 
     return {
       worldEmmit_data,
-      lineOptions,
       scope_1_2_options,
       scope_3_options,
       site_options,
@@ -418,7 +401,7 @@ export default defineComponent({
           </div>
         </div>
       </div>
-      <!-- <div class="swiper-pagination"></div> -->
+      <div class="swiper-pagination"></div>
     </div>
     <!--// Chart Grid -->
 
@@ -509,7 +492,7 @@ export default defineComponent({
                 </li>
               </ul>
               <div class="lca-chart__area">
-                <Line :Options="lineOptions" />
+                <img src="@/assets/images/dummy-chart-660x336.gif" alt="" />
               </div>
             </div>
             <div class="lca-chart">
@@ -592,67 +575,8 @@ export default defineComponent({
           </div>
         </div>
       </div>
-      <!-- <div class="swiper-pagination"></div> -->
-    </div>
-    <!--// Chart Grid -->
-
-    <!-- Chart Grid -->
-    <!-- div.swiper-slide 개수가 1개 일 경우 .swiper 클래스 삭제 -->
-    <!-- <div
-      class="lca-chart-grid swiper"
-      data-options='{
-      "autoplay": "0",
-      "pagination": "bullet"
-    }'
-    >
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">배출활동별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area"></div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">카테고리별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area"></div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">배출활동별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area"></div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">카테고리별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area"></div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">배출활동별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area"></div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">카테고리별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area"></div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="swiper-pagination"></div>
-    </div> -->
+    </div>
     <!--// Chart Grid -->
 
     <!-- Chart Grid -->
@@ -732,7 +656,7 @@ export default defineComponent({
           </div>
         </div>
       </div>
-      <!-- <div class="swiper-pagination"></div> -->
+      <div class="swiper-pagination"></div>
     </div>
     <!--// Chart Grid -->
   </section>

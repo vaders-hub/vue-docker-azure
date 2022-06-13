@@ -52,6 +52,12 @@ export interface PieOptions {
   series: Series[]
 }
 
+export interface DoughnutOptions {
+  idName: string
+  loadedData: []
+  series: Series[]
+}
+
 export interface PolygonalLineOptions {
   idName: string
   loadedData: []
