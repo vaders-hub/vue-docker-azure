@@ -9,7 +9,6 @@ import StackedBar from '@/components/chart/StackedBar.vue'
 import 'devextreme/dist/css/dx.light.css'
 import DateSearchBox from '@/components/common/DateSearchBox.vue'
 import type {
-  LineOptions,
   BarOptions,
   PieOptions,
   StackedBarOptions,
@@ -191,7 +190,6 @@ export default defineComponent({
 
     function chartData_reLoad() {
       dashboardStore.dataSet.worldEmmit_data = []
-      dashboardStore.dataSet.line = []
       dashboardStore.dataSet.scope_1_2_data = []
       dashboardStore.dataSet.scope_3_data = []
       dashboardStore.dataSet.site_data = []
@@ -338,6 +336,8 @@ export default defineComponent({
     <div
       class="lca-chart-grid swiper"
       data-options='{
+      "slidesPerView": "2",
+      "spaceBetween": 120,
       "autoplay": "0",
       "pagination": "bullet"
     }'
@@ -345,58 +345,164 @@ export default defineComponent({
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <!-- Slides -->
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">사업장/Site별 배출현황</h3>
-                <span class="lca-chart__unit">(단위 : MWh)</span>
-              </div>
-              <div class="lca-chart__area">
-                <Pie :Options="site_options" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">사업장/Site별 배출현황</h3>
+              <span class="lca-chart__unit">(단위 : MWh)</span>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">배출활동별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area">
-                <Pie :Options="site_options" />
-              </div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">카테고리별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area">
-                <Pie :Options="cate_options" />
-              </div>
+            <div class="lca-chart__area">
+              <Pie :Options="site_options" />
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">사업장/Site별 배출현황</h3>
-                <span class="lca-chart__unit">(단위 : MWh)</span>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">배출활동별 배출현황</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">배출활동별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
-              </div>
+            <div class="lca-chart__area">
+              <Pie :Options="site_options" />
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">카테고리별 배출현황</h3>
-              </div>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-400x414.gif" alt="" />
-              </div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">카테고리별 배출현황</h3>
+            </div>
+            <div class="lca-chart__area">
+              <Pie :Options="cate_options" />
+            </div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">사업장/Site별 배출현황</h3>
+              <span class="lca-chart__unit">(단위 : MWh)</span>
+            </div>
+            <div class="lca-chart__area"></div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">배출활동별 배출현황</h3>
+            </div>
+            <div class="lca-chart__area"></div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">카테고리별 배출현황</h3>
+            </div>
+            <div class="lca-chart__area"></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <!--// Chart Grid -->
+
+    <!-- Chart Grid -->
+    <!-- div.swiper-slide 개수가 1개 일 경우 .swiper 클래스 삭제 -->
+    <div
+      class="lca-chart-grid swiper"
+      data-options='{
+      "slidesPerView": "2",
+      "spaceBetween": 120,
+      "autoplay": "0",
+      "pagination": "bullet"
+    }'
+    >
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Scope 1/2 vs Net-Zero Target 월간 배출량 비교</h3>
+            </div>
+            <ul class="lca-chart__monthly-data">
+              <li>
+                <span>월간 최고치</span
+                ><strong class="lca-chart__monthly-value increase"
+                  ><span title="증가">▲</span>120</strong
+                >
+              </li>
+              <li><span>월간 평균치</span><strong class="lca-chart__monthly-value">100</strong></li>
+              <li>
+                <span>월간 최고치</span
+                ><strong class="lca-chart__monthly-value decrease"
+                  ><span title="감소">▼</span>92</strong
+                >
+              </li>
+            </ul>
+            <div class="lca-chart__area">
+              <Bar :Options="scope_1_2_options" />
+            </div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Scope 3 vs Net-Zero Target 월간 배출량 비교</h3>
+            </div>
+            <ul class="lca-chart__monthly-data">
+              <li>
+                <span>월간 최고치</span
+                ><strong class="lca-chart__monthly-value increase"
+                  ><span title="증가">▲</span>1,308</strong
+                >
+              </li>
+              <li>
+                <span>월간 평균치</span><strong class="lca-chart__monthly-value">1,100</strong>
+              </li>
+              <li>
+                <span>월간 최고치</span
+                ><strong class="lca-chart__monthly-value decrease"
+                  ><span title="감소">▼</span>1,017</strong
+                >
+              </li>
+            </ul>
+            <div class="lca-chart__area">
+              <Bar :Options="scope_3_options" />
+            </div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Scope 1/2 vs Net-Zero Target 월간 배출량 비교</h3>
+            </div>
+            <ul class="lca-chart__monthly-data">
+              <li>
+                <span>월간 최고치</span
+                ><strong class="lca-chart__monthly-value increase"
+                  ><span title="증가">▲</span>120</strong
+                >
+              </li>
+              <li><span>월간 평균치</span><strong class="lca-chart__monthly-value">100</strong></li>
+              <li>
+                <span>월간 최고치</span
+                ><strong class="lca-chart__monthly-value decrease"
+                  ><span title="감소">▼</span>92</strong
+                >
+              </li>
+            </ul>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x336.gif" alt="" />
+            </div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Scope 3 vs Net-Zero Target 월간 배출량 비교</h3>
+            </div>
+            <ul class="lca-chart__monthly-data">
+              <li>
+                <span>월간 최고치</span
+                ><strong class="lca-chart__monthly-value increase"
+                  ><span title="증가">▲</span>1,308</strong
+                >
+              </li>
+              <li>
+                <span>월간 평균치</span><strong class="lca-chart__monthly-value">1,100</strong>
+              </li>
+              <li>
+                <span>월간 최고치</span
+                ><strong class="lca-chart__monthly-value decrease"
+                  ><span title="감소">▼</span>1,017</strong
+                >
+              </li>
+            </ul>
+            <div class="lca-chart__area">
+              <img src="@/assets/images/dummy-chart-660x336.gif" alt="" />
             </div>
           </div>
         </div>
@@ -410,6 +516,8 @@ export default defineComponent({
     <div
       class="lca-chart-grid swiper"
       data-options='{
+      "slidesPerView": "3",
+      "spaceBetween": 120,
       "autoplay": "0",
       "pagination": "bullet"
     }'
@@ -417,242 +525,55 @@ export default defineComponent({
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <!-- Slides -->
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Scope 1/2 vs Net-Zero Target 월간 배출량 비교</h3>
-              </div>
-              <ul class="lca-chart__monthly-data">
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value increase"
-                    ><span title="증가">▲</span>120</strong
-                  >
-                </li>
-                <li>
-                  <span>월간 평균치</span><strong class="lca-chart__monthly-value">100</strong>
-                </li>
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value decrease"
-                    ><span title="감소">▼</span>92</strong
-                  >
-                </li>
-              </ul>
-              <div class="lca-chart__area">
-                <Bar :Options="scope_1_2_options" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Avoided Emission</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Scope 3 vs Net-Zero Target 월간 배출량 비교</h3>
-              </div>
-              <ul class="lca-chart__monthly-data">
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value increase"
-                    ><span title="증가">▲</span>1,308</strong
-                  >
-                </li>
-                <li>
-                  <span>월간 평균치</span><strong class="lca-chart__monthly-value">1,100</strong>
-                </li>
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value decrease"
-                    ><span title="감소">▼</span>1,017</strong
-                  >
-                </li>
-              </ul>
-              <div class="lca-chart__area">
-                <Bar :Options="scope_3_options" />
+            <div class="lca-chart__area-wrap">
+              <div class="lca-chart__area" style="float: left">
+                <StackedBar :Options="stacked1_options" />
               </div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Scope 1/2 vs Net-Zero Target 월간 배출량 비교</h3>
-              </div>
-              <ul class="lca-chart__monthly-data">
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value increase"
-                    ><span title="증가">▲</span>120</strong
-                  >
-                </li>
-                <li>
-                  <span>월간 평균치</span><strong class="lca-chart__monthly-value">100</strong>
-                </li>
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value decrease"
-                    ><span title="감소">▼</span>92</strong
-                  >
-                </li>
-              </ul>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x336.gif" alt="" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Avoided Emission</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Scope 3 vs Net-Zero Target 월간 배출량 비교</h3>
-              </div>
-              <ul class="lca-chart__monthly-data">
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value increase"
-                    ><span title="증가">▲</span>1,308</strong
-                  >
-                </li>
-                <li>
-                  <span>월간 평균치</span><strong class="lca-chart__monthly-value">1,100</strong>
-                </li>
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value decrease"
-                    ><span title="감소">▼</span>1,017</strong
-                  >
-                </li>
-              </ul>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x336.gif" alt="" />
+            <div class="lca-chart__area-wrap">
+              <div class="lca-chart__area" style="float: left; padding-left: 50px">
+                <StackedBar :Options="stacked2_options" />
               </div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Scope 1/2 vs Net-Zero Target 월간 배출량 비교</h3>
-              </div>
-              <ul class="lca-chart__monthly-data">
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value increase"
-                    ><span title="증가">▲</span>120</strong
-                  >
-                </li>
-                <li>
-                  <span>월간 평균치</span><strong class="lca-chart__monthly-value">100</strong>
-                </li>
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value decrease"
-                    ><span title="감소">▼</span>92</strong
-                  >
-                </li>
-              </ul>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x336.gif" alt="" />
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">주요 가격 트렌드</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Scope 3 vs Net-Zero Target 월간 배출량 비교</h3>
-              </div>
-              <ul class="lca-chart__monthly-data">
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value increase"
-                    ><span title="증가">▲</span>1,308</strong
-                  >
-                </li>
-                <li>
-                  <span>월간 평균치</span><strong class="lca-chart__monthly-value">1,100</strong>
-                </li>
-                <li>
-                  <span>월간 최고치</span
-                  ><strong class="lca-chart__monthly-value decrease"
-                    ><span title="감소">▼</span>1,017</strong
-                  >
-                </li>
-              </ul>
-              <div class="lca-chart__area">
-                <img src="@/assets/images/dummy-chart-660x336.gif" alt="" />
-              </div>
+            <div class="lca-chart__area">
+              <PolygonalLine :Options="majorPrcTrend_Options" />
             </div>
           </div>
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-    <!--// Chart Grid -->
-
-    <!-- Chart Grid -->
-    <!-- div.swiper-slide 개수가 1개 일 경우 .swiper 클래스 삭제 -->
-    <div
-      class="lca-chart-grid swiper"
-      data-options='{
-      "autoplay": "0",
-      "pagination": "bullet"
-    }'
-    >
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          <div class="swiper-slide">
-            <div class="lca-chart lca-chart--wide">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Avoided Emission</h3>
-              </div>
-              <div class="lca-chart__area-wrap">
-                <div class="lca-chart__area" style="float: left">
-                  <StackedBar :Options="stacked1_options" />
-                </div>
-                <div class="lca-chart__area" style="float: left; padding-left: 50px">
-                  <StackedBar :Options="stacked2_options" />
-                </div>
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Avoided Emission</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">주요 가격 트렌드</h3>
-              </div>
-              <div class="lca-chart__area">
-                <PolygonalLine :Options="majorPrcTrend_Options" />
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="lca-chart lca-chart--wide">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Avoided Emission</h3>
-              </div>
-              <div class="lca-chart__area-wrap">
-                <div class="lca-chart__area"></div>
-                <div class="lca-chart__area"></div>
-              </div>
-            </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">주요 가격 트렌드</h3>
-              </div>
+            <div class="lca-chart__area-wrap">
               <div class="lca-chart__area"></div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="lca-chart lca-chart--wide">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">Avoided Emission</h3>
-              </div>
-              <div class="lca-chart__area-wrap">
-                <div class="lca-chart__area">
-                  <!-- <img src="@/assets/images/dummy-chart-400x414.gif" alt="" /> -->
-                </div>
-                <div class="lca-chart__area">
-                  <!-- <img src="@/assets/images/dummy-chart-400x414.gif" alt="" /> -->
-                </div>
-              </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">Avoided Emission</h3>
             </div>
-            <div class="lca-chart">
-              <div class="lca-chart__title-wrap">
-                <h3 class="lca-chart__title">주요 가격 트렌드</h3>
-              </div>
-              <div class="lca-chart__area">
-                <!-- <img src="@/assets/images/dummy-chart-400x414-2.gif" alt="" /> -->
-              </div>
+            <div class="lca-chart__area-wrap">
+              <div class="lca-chart__area"></div>
             </div>
+          </div>
+          <div class="swiper-slide lca-chart">
+            <div class="lca-chart__title-wrap">
+              <h3 class="lca-chart__title">주요 가격 트렌드</h3>
+            </div>
+            <div class="lca-chart__area"></div>
           </div>
         </div>
       </div>
