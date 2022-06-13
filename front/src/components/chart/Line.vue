@@ -68,7 +68,7 @@ export default defineComponent({
 </script>
 <template>
   <div :id="Options.idName">
-    <DxChart id="line_demo" :data-source="Options.loadedData" palette="Violet">
+    <DxChart id="line_chart" :data-source="Options.loadedData" palette="Violet">
       <DxCommonSeriesSettings :type="type" argument-field="energyDate" />
       <DxSeries name="월별배출량" value-field="oil" type="bar" color="#fac29a" />
       <DxSeries

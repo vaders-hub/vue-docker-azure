@@ -35,7 +35,6 @@ export default defineComponent({
     const customizeTooltip = (data) => {
       const title = data.seriesName
       const value = data.value
-      console.log(data)
 
       return {
         html: `<div>

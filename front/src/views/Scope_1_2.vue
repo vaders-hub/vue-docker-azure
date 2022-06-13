@@ -69,23 +69,41 @@ export default defineComponent({
       controllerFlag.value = false
     }
 
-    function searchData(data) {
-      console.log(data.yyyy + '년 ' + data.mm + '월')
-    }
-
     onMounted(() => {
       hander.contentReady()
       onChangeMenu()
       loadDatas()
     })
 
+    const corpNm = reactive<Record<string, unknown>>({ value: 'SKI' })
+
     // 회사 변경 감지
     watch(
       () => mainStore.company,
       (newVal, oldVal) => {
         onChangeMenu(newVal)
+        corpNm.value = mainStore.corpArr[newVal]
       },
     )
+
+    // 날짜 세팅
+    const setDate = new Date()
+    setDate.setMonth(setDate.getMonth() - 1)
+    let sch_year = setDate.getFullYear()
+    let sch_month = setDate.getMonth() + 1
+    let sch_date = reactive({ sch_year, sch_month })
+
+    function searchData(data) {
+      sch_date.sch_year = data.yyyy
+      sch_date.sch_month = data.mm
+      sch_year = data.yyyy
+      sch_month = data.mm
+      chartData_reLoad()
+    }
+
+    function chartData_reLoad() {
+      loadDatas()
+    }
 
     return {
       getStoreVisibility,
@@ -96,6 +114,8 @@ export default defineComponent({
       currentCompany,
       scope_1_2_options,
       emitBySite_options,
+      sch_date,
+      corpNm,
     }
   },
 })
@@ -106,7 +126,10 @@ export default defineComponent({
     <div class="page-top">
       <div class="page-top__header">
         <h1 class="page-top__title">Scope 1/2 <button @click="toggleController">toggle</button></h1>
-        <h2 class="page-top__sub-title"><strong>SK 에너지</strong><span>2022.04</span></h2>
+        <h2 class="page-top__sub-title">
+          <strong v-html="corpNm.value"></strong
+          ><span v-html="sch_date.sch_year + '.' + sch_date.sch_month" />
+        </h2>
       </div>
       <div class="view-options">
         <DateSearchBox @click-event="searchData($event)" />
@@ -132,7 +155,7 @@ export default defineComponent({
               <h3 class="lca-chart__title">Scope 1/2 배출량</h3>
             </div>
             <div class="lca-chart__area">
-              <StackedBar :Options="scope_1_2_options" />
+              <StackedBar :Options="scope_1_2_options" class="scope_1_2" />
             </div>
           </div>
           <div class="swiper-slide lca-chart">
@@ -141,7 +164,7 @@ export default defineComponent({
               <span class="lca-chart__unit">(단위 : MWh)</span>
             </div>
             <div class="lca-chart__area">
-              <Doughnut :Options="emitBySite_options" />
+              <Doughnut :Options="emitBySite_options" class="scope_1_2" />
             </div>
           </div>
           <div class="swiper-slide lca-chart">

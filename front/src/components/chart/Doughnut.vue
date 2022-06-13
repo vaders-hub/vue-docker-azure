@@ -56,9 +56,19 @@ export default defineComponent({
       :data-source="Options.loadedData"
       :inner-radius="0.2"
       type="doughnut"
-      :palette="['red', 'yellow', 'green', 'red', 'blue', 'pink']"
+      :palette="[
+        '#d9745f',
+        '#d9895f',
+        '#e69b50',
+        '#e9b150',
+        '#f3c848',
+        '#d1cead',
+        '#e8e5d3',
+        '#c0d4c2',
+        '#97afac',
+        '#a29183',
+      ]"
     >
-      <!-- :palette="['red', 'yellow', 'green', 'red', 'blue', 'pink']" -->
       <DxLegend
         :visible="true"
         horizontal-alignment="center"

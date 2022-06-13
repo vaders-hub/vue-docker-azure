@@ -32,23 +32,13 @@ export default defineComponent({
 
   setup(props) {
     const mainStore = useMainStore()
-    const corpNm = reactive<Record<string, unknown>>({ value: 'SK 이노베이션' })
-    const corpArr = {
-      ski: 'SK 이노베이션',
-      ske: 'SK 에너지',
-      skgc: 'SK 지오센트릭',
-      sko: 'SK 온',
-      skl: 'SK 루브리컨츠',
-      skipc: 'SK 인천석유화학',
-      skiet: 'SK 아이이테크놀로지',
-      skeo: 'SK 어스오일',
-    }
+    const corpNm = reactive<Record<string, unknown>>({ value: 'SKI' })
 
     // 회사 변경 감지
     watch(
       () => mainStore.company,
       (newVal, oldVal) => {
-        corpNm.value = corpArr[newVal]
+        corpNm.value = mainStore.corpArr[newVal]
         onChangeMenu(newVal)
       },
     )
@@ -351,15 +341,7 @@ export default defineComponent({
               <span class="lca-chart__unit">(단위 : MWh)</span>
             </div>
             <div class="lca-chart__area">
-              <Pie :Options="site_options" />
-            </div>
-          </div>
-          <div class="swiper-slide lca-chart">
-            <div class="lca-chart__title-wrap">
-              <h3 class="lca-chart__title">배출활동별 배출현황</h3>
-            </div>
-            <div class="lca-chart__area">
-              <Pie :Options="site_options" />
+              <Pie :Options="site_options" class="dashboard" />
             </div>
           </div>
           <div class="swiper-slide lca-chart">
@@ -367,7 +349,7 @@ export default defineComponent({
               <h3 class="lca-chart__title">카테고리별 배출현황</h3>
             </div>
             <div class="lca-chart__area">
-              <Pie :Options="cate_options" />
+              <Pie :Options="cate_options" class="dashboard" />
             </div>
           </div>
           <div class="swiper-slide lca-chart">
@@ -429,7 +411,7 @@ export default defineComponent({
               </li>
             </ul>
             <div class="lca-chart__area">
-              <Bar :Options="scope_1_2_options" />
+              <Bar :Options="scope_1_2_options" class="dashboard" />
             </div>
           </div>
           <div class="swiper-slide lca-chart">
@@ -454,7 +436,7 @@ export default defineComponent({
               </li>
             </ul>
             <div class="lca-chart__area">
-              <Bar :Options="scope_3_options" />
+              <Bar :Options="scope_3_options" class="dashboard" />
             </div>
           </div>
           <div class="swiper-slide lca-chart">
@@ -531,7 +513,7 @@ export default defineComponent({
             </div>
             <div class="lca-chart__area-wrap">
               <div class="lca-chart__area" style="float: left">
-                <StackedBar :Options="stacked1_options" />
+                <StackedBar :Options="stacked1_options" class="dashboard" />
               </div>
             </div>
           </div>
@@ -541,7 +523,7 @@ export default defineComponent({
             </div>
             <div class="lca-chart__area-wrap">
               <div class="lca-chart__area" style="float: left; padding-left: 50px">
-                <StackedBar :Options="stacked2_options" />
+                <StackedBar :Options="stacked2_options" class="dashboard" />
               </div>
             </div>
           </div>
@@ -550,7 +532,7 @@ export default defineComponent({
               <h3 class="lca-chart__title">주요 가격 트렌드</h3>
             </div>
             <div class="lca-chart__area">
-              <PolygonalLine :Options="majorPrcTrend_Options" />
+              <PolygonalLine :Options="majorPrcTrend_Options" class="dashboard" />
             </div>
           </div>
           <div class="swiper-slide lca-chart">

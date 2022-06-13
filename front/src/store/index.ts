@@ -27,6 +27,16 @@ export const useMainStore = defineStore({
     current: '',
     company: '',
     members: { login: false },
+    corpArr: {
+      ski: 'SKI',
+      ske: 'SKE(w/TI)',
+      skgc: 'SKGC',
+      sko: 'SKO',
+      skl: 'SKL',
+      skipc: 'SKIPC',
+      skiet: 'SKIET',
+      skeo: 'SKEO',
+    },
   }),
   actions: {
     changeLayout(layoutTo) {

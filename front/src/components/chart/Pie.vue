@@ -63,7 +63,18 @@ export default defineComponent({
       :data-source="Options.loadedData"
       type="doughnut"
       title=""
-      palette="Soft Pastel"
+      :palette="[
+        '#d9745f',
+        '#d9895f',
+        '#e69b50',
+        '#e9b150',
+        '#f3c848',
+        '#d1cead',
+        '#e8e5d3',
+        '#c0d4c2',
+        '#97afac',
+        '#a29183',
+      ]"
     >
       <DxSeries argument-field="item" value-field="value" />
       <DxLegend
