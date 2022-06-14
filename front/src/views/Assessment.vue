@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent, onMounted, onBeforeUnmount, reactive, ref } from 'vue'
+import { computed, defineComponent, onMounted, onBeforeUnmount, reactive, ref, inject } from 'vue'
 import { useAssessmentStore } from '@/store/assessment/index'
 import SelectBox from '@/components/common/SelectBox.vue'
 import DropdownMultiple from '@/components/common/DropdownMultiple.vue'
@@ -135,6 +135,16 @@ export default defineComponent({
       // console.log('selectChanged', e)
     }
 
+    const api = inject('api', (opt) => ({}), false)
+    const loginInfo = reactive({ id: '', pw: '' })
+    const apiTest = async () => {
+      try {
+        const user = await api({ methods: 'get', url: '/api/member', params: loginInfo })
+      } catch (e) {
+        console.warn(e)
+      }
+    }
+
     return {
       onClickStep,
       step1Items,
@@ -150,6 +160,7 @@ export default defineComponent({
       tempTreeData,
       selectChanged,
       multiDropChanged,
+      apiTest,
     }
   },
 })
@@ -160,7 +171,9 @@ export default defineComponent({
     <h1 class="hidden">평가</h1>
     <div class="assessment">
       <div class="assessment__data">
-        <h2 class="assessment__title">평가 항목을 입력해주세요.</h2>
+        <h2 class="assessment__title">
+          평가 항목을 입력해주세요. <button @click="apiTest">apiTest</button>
+        </h2>
 
         <div class="assessment-step-wrap">
           <!-- step 1 시점 -->

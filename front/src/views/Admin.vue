@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref, inject } from 'vue'
 import DashboardManagement from '@/components/admin/DashboardManagement.vue'
 import DiagramManagement from '@/components/admin/DiagramManagement.vue'
 

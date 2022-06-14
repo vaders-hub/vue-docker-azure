@@ -1,14 +1,16 @@
-import { defineConfig } from '@vue/cli-service'
-import { fileURLToPath, URL } from 'url'
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { defineConfig } = require('@vue/cli-service')
+const { fileURLToPath, URL } = require('url')
+const path = require('path')
 
-export default defineConfig({
+module.exports = defineConfig({
   transpileDependencies: true,
   publicPath: '/',
-  outputDir: 'public/',
+  outputDir: 'dist/',
   assetsDir: 'src/assets/',
   configureWebpack: (config) => {
     config.resolve.alias = {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@': path.join(__dirname, './src'),
     }
     if (process.env.NODE_ENV === 'production') {
       config.output.filename = 'js/[name].[hash].js'
@@ -17,11 +19,10 @@ export default defineConfig({
   },
   devServer: {
     proxy: {
-      '/api': {
-        target: 'https://localhost:6443/',
+      '/api/': {
+        target: 'http://10.242.113.24/',
         changeOrigin: true,
         secure: false,
-        // rewrite: (path) => path.replace(/^\/api/, '/api/members'),
       },
     },
   },
