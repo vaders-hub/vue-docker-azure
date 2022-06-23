@@ -108,21 +108,41 @@ export default defineComponent({
 
     const changeDiagram = async () => {
       const [{ id }] = toRaw(changedItem.value)
-      const newShapes = diagramData.shapes?.map((v, i) =>
-        v.key === id
+      const newShapes = diagramData.shapes?.map((v: any, i) => {
+        const storoked =
+          !v.style || (v.style && v.style.stroke === '') || v.style.stroke === '#000'
+            ? '#2b7832'
+            : '#000'
+        return v.key === id
           ? {
               ...v,
               style: {
-                stroke: '#2b7832',
+                stroke: storoked,
               },
             }
-          : {
-              ...v,
-              style: {},
-            },
-      )
+          : v
+      })
 
       diagramData.shapes = newShapes
+
+      const activated = newShapes?.reduce((acc, el) => {
+        if (el.style && el.style.stroke === '#2b7832') {
+          return [...acc, el.key]
+        } else {
+          return acc
+        }
+      }, [])
+
+      try {
+        const diagramResult = await api({
+          methods: 'get',
+          url: '/api/member',
+          params: { list: activated },
+        })
+      } catch (e) {
+        console.warn(e)
+      }
+
       diagramInstance.import(JSON.stringify(diagramData))
     }
 

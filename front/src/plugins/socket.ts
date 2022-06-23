@@ -21,6 +21,6 @@ try {
 
 export default {
   install: (app, options) => {
-    app.provide('socket', socketService)
+    // app.provide('socket', socketService)
   },
 }

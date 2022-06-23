@@ -1,5 +1,14 @@
 <script lang="ts">
-import { computed, defineComponent, onMounted, onBeforeUnmount, reactive, ref, inject } from 'vue'
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  onBeforeUnmount,
+  reactive,
+  ref,
+  inject,
+  toRaw,
+} from 'vue'
 import { useAssessmentStore } from '@/store/assessment/index'
 import SelectBox from '@/components/common/SelectBox.vue'
 import DropdownMultiple from '@/components/common/DropdownMultiple.vue'
@@ -145,6 +154,41 @@ export default defineComponent({
       }
     }
 
+    const dummyCssTest = ref([
+      {
+        id: '1',
+        name: 'a',
+        class: 'hideme',
+        sub: [
+          { id: '1#1', name: 'b' },
+          { id: '1#2', name: 'c' },
+        ],
+      },
+      {
+        id: '2',
+        name: 'd',
+        class: 'hideme',
+        sub: [
+          { id: '2#1', name: 'e' },
+          { id: '2#2', name: 'f' },
+          { id: '2#3', name: 'g' },
+        ],
+      },
+    ])
+
+    const dummyCssTestToggle = (idx) => {
+      const tobe = dummyCssTest.value.map((v) =>
+        v.id === idx
+          ? {
+              ...v,
+              class: v.class === 'hideme' ? '' : 'hideme',
+            }
+          : v,
+      )
+
+      dummyCssTest.value = tobe
+    }
+
     return {
       onClickStep,
       step1Items,
@@ -161,6 +205,8 @@ export default defineComponent({
       selectChanged,
       multiDropChanged,
       apiTest,
+      dummyCssTest,
+      dummyCssTestToggle,
     }
   },
 })
@@ -500,73 +546,22 @@ export default defineComponent({
           <div class="result-info__data">
             <h3 class="result-info__title">
               <strong>Total Emission</strong>
-              <span class="result-info__title-unit">(단위: 만원)</span>
+              <span class="result-info__title-unit">(단위: 만원) </span>
             </h3>
             <div class="result-info__table">
               <table>
-                <caption>
-                  Total Emission
-                </caption>
-                <thead>
+                <template v-for="item in dummyCssTest" :key="item.id">
                   <tr>
-                    <th scope="col" colspan="2">구분</th>
-                    <th scope="col">
-                      감축 Option 적용 전
-                      <span>(Baseline 대비)</span>
-                    </th>
-                    <th scope="col">감축 Option 적용 후</th>
+                    {{
+                      item.name
+                    }}
+                    <button @click="dummyCssTestToggle(item.id)">toggle</button>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row" colspan="2">누적 절대 배출량</th>
-                    <td><em>(-999.99)</em><span>999,999,999</span></td>
-                    <td><em>(-999.99)</em><span>945,999,999</span></td>
+                  <tr :class="item.class" v-for="(subitem, iSub) in item.sub" :key="subitem.id">
+                    <td v-if="iSub === 0" :rowspan="item.sub.length">{{ item.name }}</td>
+                    <td>{{ subitem.name }}</td>
                   </tr>
-                  <tr>
-                    <th scope="row" colspan="2">Scope 1&amp;2,3</th>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th scope="row" colspan="2">Scope 3</th>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th scope="row" rowspan="2">Olefin</th>
-                    <th scope="row">Ethylene</th>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Propylene</th>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th scope="row" rowspan="2">Aromatics</th>
-                    <th scope="row">B/T/X</th>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">PX</th>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th scope="row" rowspan="2">Polymer</th>
-                    <th scope="row">PE</th>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">PP</th>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
+                </template>
               </table>
             </div>
           </div>
@@ -602,5 +597,12 @@ export default defineComponent({
   .item-selection-rect {
     display: none;
   }
+}
+
+.hideme {
+  display: none;
+}
+tr {
+  display: table-row;
 }
 </style>
