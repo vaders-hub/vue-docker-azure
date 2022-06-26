@@ -29,7 +29,7 @@ export default defineComponent({
 
 <template>
   <section class="contents contents--admin">
-    <h1 class="admin-title">SK LCA Infra Admin</h1>
+    <h1 class="admin-title">Admin</h1>
     <div class="contents">
       <div class="lca-tab">
         <ul>

@@ -73,7 +73,7 @@ export default defineComponent({
 </script>
 <template>
   <div class="storyline__chart">
-    <h3 class="hidden">SKI</h3>
+    <h3 class="hidden">corp-I</h3>
     <div class="contents">
       <!-- div.swiper-slide 개수가 2개 이상일 경우 .swiper 클래스 추가 -->
       <div
@@ -96,7 +96,7 @@ export default defineComponent({
                   <!-- <img src="@/assets/images/dummy-chart-920x416.png" alt="" /> -->
                 </div>
               </div>
-              <!-- (D) 주요공정 차트가 없는 OC 아래 영역 삭제 (SK이노베이션, SK온, SK아이이테크놀로지) -->
+              <!-- (D) 주요공정 차트가 없는 OC 아래 영역 삭제 (corp-이노베이션, corp-온, corp-아이이테크놀로지) -->
               <div class="lca-chart">
                 <div class="lca-chart__title-wrap">
                   <h4 class="lca-chart__title">2022년 주요 공정</h4>
@@ -106,7 +106,7 @@ export default defineComponent({
                   <!-- <img src="@/assets/images/dummy-chart-400x416.png" alt="" /> -->
                 </div>
               </div>
-              <!--// (D) 주요공정 차트가 없는 OC 아래 영역 삭제 (SK이노베이션, SK온, SK아이이테크놀로지) -->
+              <!--// (D) 주요공정 차트가 없는 OC 아래 영역 삭제 (corp-이노베이션, corp-온, corp-아이이테크놀로지) -->
             </div>
           </div>
         </div>

@@ -28,7 +28,7 @@ export default defineComponent({
   <body class="bg-gray">
     <header class="login-header">
       <a href="#">
-        <img src="@/assets/images/logo-ski.png" alt="SK이노베이션" />
+        <img src="@/assets/images/logo-ski.png" alt="" />
       </a>
     </header>
     <div class="login">
@@ -36,7 +36,7 @@ export default defineComponent({
         <h1 class="login__title">Member Login</h1>
         <form class="login-form" action="#">
           <fieldset>
-            <legend class="hidden">SK 이노베이션 LCA Infra 로그인</legend>
+            <legend class="hidden">로그인</legend>
             <input
               class="login-form__input"
               type="text"

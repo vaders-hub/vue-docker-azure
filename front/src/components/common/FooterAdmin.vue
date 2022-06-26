@@ -12,6 +12,6 @@ export default defineComponent({
 </script>
 <template>
   <footer class="footer">
-    <p class="copyright">© 2022 SK innovation.Co.,Ltd</p>
+    <p class="copyright">© 2022 corp- innovation.Co.,Ltd</p>
   </footer>
 </template>

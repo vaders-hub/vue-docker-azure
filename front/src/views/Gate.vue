@@ -30,12 +30,12 @@ export default defineComponent({
     <header class="header header--transparent">
       <div class="header__inner">
         <strong class="lca-logo">
-          <span class="lca-logo__image"><span class="hidden">SK 이노베이션</span></span>
-          <span class="lca-logo__txt">LCA Infra</span>
+          <span class="lca-logo__image"><span class="hidden">CORP</span></span>
+          <span class="lca-logo__txt">Infra</span>
         </strong>
         <div class="header__util">
           <div class="user-info">
-            <strong>SKI_김선경</strong>님<br />
+            <strong></strong>님<br />
             오늘도 좋은하루 되세요!
           </div>
         </div>

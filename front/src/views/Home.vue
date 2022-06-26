@@ -14,7 +14,7 @@ export default defineComponent({
     DxButton,
   },
   props: {
-    msg: { type: String, default: 'SKI LCA infra' },
+    msg: { type: String, default: 'infra' },
   },
   setup(context) {
     const mainStore = useMainStore()

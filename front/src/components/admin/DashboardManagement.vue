@@ -64,7 +64,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck01" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SK이노베이션</td>
+          <td>corp-이노베이션</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>
@@ -72,7 +72,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck02" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SK아이테크놀로지</td>
+          <td>corp-아이테크놀로지</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>
@@ -80,7 +80,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck03" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SKI</td>
+          <td>corp-I</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>
@@ -88,7 +88,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck04" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SKI</td>
+          <td>corp-I</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>
@@ -96,7 +96,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck05" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SKI</td>
+          <td>corp-I</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>
@@ -104,7 +104,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck06" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SKI</td>
+          <td>corp-I</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>
@@ -112,7 +112,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck07" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SKI</td>
+          <td>corp-I</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>
@@ -120,7 +120,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck08" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SKI</td>
+          <td>corp-I</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>
@@ -128,7 +128,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck09" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SKI</td>
+          <td>corp-I</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>
@@ -136,7 +136,7 @@ export default defineComponent({
         <tr>
           <td><input type="checkbox" id="indicatorCheck10" title="{지표제목 Text}" /></td>
           <td>Dashboard</td>
-          <td>SKI</td>
+          <td>corp-I</td>
           <td class="t-left">총배출량</td>
           <td>YYYY-MM-DD</td>
           <td>노출</td>

@@ -33,7 +33,7 @@ export default defineComponent({
 </script>
 <template>
   <div class="storyline__chart storyline__chart--net-zero">
-    <h3 class="hidden">SKI</h3>
+    <h3 class="hidden">corp-I</h3>
     <div class="contents">
       <!-- div.swiper-slide 개수가 2개 이상일 경우 .swiper 클래스 추가 -->
       <div

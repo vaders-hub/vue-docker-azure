@@ -98,10 +98,10 @@ export default defineComponent({
     ]
     const step1ItemsSelected = ref('')
     const step2Items = [
-      { title: 'SK에너지' },
-      { title: 'SK지오센트릭' },
-      { title: 'SK루브리컨즈' },
-      { title: 'SK인천석유화학' },
+      { title: 'corp-에너지' },
+      { title: 'corp-지오센트릭' },
+      { title: 'corp-루브리컨즈' },
+      { title: 'corp-인천석유화학' },
     ]
     const step2ItemsSelected = ref('')
     const step3ItemsChk = ref('')
@@ -295,7 +295,7 @@ export default defineComponent({
               <button class="assessment-step__selected-data">
                 <em>사업회사</em>
                 <!-- (dev) 선택된 데이터 출력 영역 default는 빈 값, 다중 값 표현시 구분자는 / 사용 -->
-                <span>SK에너지</span>
+                <span>corp-에너지</span>
               </button>
             </div>
             <div class="assessment-step__contents">
@@ -393,7 +393,7 @@ export default defineComponent({
             <div class="assessment-step__contents">
               <div class="option-list option-list--bm">
                 <div class="option-item">
-                  <em class="option-item__title"><span>Step </span>SKE BM 선택</em>
+                  <em class="option-item__title"><span>Step </span>E BM 선택</em>
                   <div class="option-item__data">
                     <SelectBox :selectData="step4tempData" @selectChanged="selectChanged" />
                   </div>
@@ -418,7 +418,6 @@ export default defineComponent({
             </div>
             <div class="assessment-step__contents">
               <div class="option-list option-list--gc-frn">
-                <!-- 사업회사: SK에너지 / 평가 방법: 통합 평가 -->
                 <div class="option-item">
                   <div class="option-item__select">
                     <SelectBox :selectData="step4tempData" @selectChanged="selectChanged" />
@@ -430,8 +429,7 @@ export default defineComponent({
                     </div>
                   </div>
                 </div>
-                <!--// 사업회사: SK에너지 / 평가 방법: 통합 평가 -->
-                <!-- 사업회사: SK에너지 / 평가 방법: 개별 평가 -->
+                
                 <div class="option-item">
                   <div class="option-item__select">
                     <SelectBox :selectData="step4tempData" @selectChanged="selectChanged" />
@@ -443,7 +441,6 @@ export default defineComponent({
                     </div>
                   </div>
                 </div>
-                <!--// 사업회사: SK에너지 / 평가 방법: 개별 평가 -->
               </div>
             </div>
           </div>

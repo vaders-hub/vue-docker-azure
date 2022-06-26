@@ -13,16 +13,16 @@ export default defineComponent({
     const route = useRoute()
     const router = useRouter()
     const companyList = ref([
-      'SK이노베이션',
-      'SK에너지',
-      'SK지오센트릭',
-      'SK루브리컨츠',
-      'SK인천석유화학',
-      'SK어스온',
-      'SK온',
-      'SK아이테크놀로지',
+      'corp-이노베이션',
+      'corp-에너지',
+      'corp-지오센트릭',
+      'corp-루브리컨츠',
+      'corp-인천석유화학',
+      'corp-어스온',
+      'corp-온',
+      'corp-아이테크놀로지',
     ])
-    const selectedCompany = ref('SK이노베이션')
+    const selectedCompany = ref('corp-이노베이션')
 
     onMounted(() => {
       hander.contentReady()
@@ -49,8 +49,8 @@ export default defineComponent({
   <header class="header">
     <div class="header__inner">
       <strong class="lca-logo" @click="goHome">
-        <span class="lca-logo__image"><span class="hidden">SK 이노베이션</span></span>
-        <span class="lca-logo__txt">LCA Infra</span>
+        <span class="lca-logo__image"><span class="hidden">corp</span></span>
+        <span class="lca-logo__txt">Infra</span>
       </strong>
 
       <div class="view-options-wrap">

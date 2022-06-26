@@ -34,12 +34,12 @@ export default defineComponent({
   <footer class="footer">
     <address class="company-info">
       <ul>
-        <li>SK이노베이션(주) 서울특별시 종로구 종로 26 SK빌딩</li>
-        <li>대표이사 김준</li>
-        <li>사업자등록번호 101-86-32319</li>
-        <li>전화 02-2121-5114</li>
+        <li>corp-이노베이션(주) 서울특별시  corp-빌딩</li>
+        <li>대표이사 </li>
+        <li>사업자등록번호</li>
+        <li>전화</li>
       </ul>
     </address>
-    <p class="copyright">© 2022 SK innovation.Co.,Ltd</p>
+    <p class="copyright">© 2022 corp- innovation.Co.,Ltd</p>
   </footer>
 </template>
